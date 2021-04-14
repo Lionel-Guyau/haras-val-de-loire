@@ -9,10 +9,10 @@
 
 namespace App\Controller;
 
-class HomeController extends AbstractController
+class HarasController extends AbstractController
 {
     /**
-     * Display home page
+     * Display activity page
      *
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -22,6 +22,6 @@ class HomeController extends AbstractController
 
     public function index()
     {
-        return $this->twig->render('/Home/index.html.twig');
+        return $this->twig->render('/Haras/haras.html.twig');
     }
 }
