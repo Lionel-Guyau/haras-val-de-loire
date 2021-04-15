@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 14 avr. 2021 à 14:59
+-- Généré le : mer. 14 avr. 2021 à 16:30
 -- Version du serveur :  10.3.25-MariaDB-0ubuntu1
 -- Version de PHP : 7.4.9
 
@@ -178,6 +178,20 @@ CREATE TABLE `news` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `planning`
+--
+
+CREATE TABLE `planning` (
+  `id` int(11) NOT NULL,
+  `start_at` date NOT NULL,
+  `end_at` date NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `lesson_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `shop`
 --
 
@@ -273,6 +287,14 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `planning`
+--
+ALTER TABLE `planning`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_Planning_Course_id` (`course_id`),
+  ADD KEY `fk_Planning_Lesson_id` (`lesson_id`);
+
+--
 -- Index pour la table `shop`
 --
 ALTER TABLE `shop`
@@ -281,6 +303,12 @@ ALTER TABLE `shop`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `planning`
+--
+ALTER TABLE `planning`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `shop`
@@ -333,6 +361,13 @@ ALTER TABLE `lesson_equipment`
 ALTER TABLE `lesson_news`
   ADD CONSTRAINT `fk_Lesson_News_Lesson_id` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`),
   ADD CONSTRAINT `fk_Lesson_News_News_id` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`);
+
+--
+-- Contraintes pour la table `planning`
+--
+ALTER TABLE `planning`
+  ADD CONSTRAINT `fk_Planning_Course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
+  ADD CONSTRAINT `fk_Planning_Lesson_id` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

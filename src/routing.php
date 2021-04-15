@@ -12,12 +12,6 @@
 
 $routeParts = explode('/', ltrim($_SERVER['REQUEST_URI'], '/') ?: HOME_PAGE);
 
-// pour vérifier son code, pratique !
-// echo "<pre>";
-// print_r($routeParts);
-// echo "</pre>";
-// exit;
-
 $controller = 'App\Controller\\' . ucfirst($routeParts[0] ?? '') . 'Controller';
 $method = $routeParts[1] ?? 'index';
 $vars = array_slice($routeParts, 2);
