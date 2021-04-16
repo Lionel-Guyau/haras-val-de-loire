@@ -8651,6 +8651,12 @@ button.bg-dark:hover {
     text-align: center !important;
   }
 }
+@media (max-width: 768px) {
+  .dropdown-menu {
+    margin-top: .025rem !important;
+    padding-top: .2rem !important;
+  }
+}
 @media (min-width: 768px) {
   .text-md-left {
     text-align: left !important;
@@ -8881,4 +8887,10 @@ a.text-dark:hover {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+.container p-4{
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.link-list{
+  color: rgba(255, 255, 255, 0.5) !important;
 }
