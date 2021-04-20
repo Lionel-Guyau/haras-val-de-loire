@@ -1,5 +1,10 @@
+.accueil {
+    /* A modifier quand la police sera définie */
+    /* font: var(--text-content) var(--color-content); */
+}
+
 .accueil-intro {
-    background: linear-gradient(#f8f8f8, #ffffff);
+    background: linear-gradient(#f9f9f9, #ffffff);
 }
 
 .accueil p {
@@ -8,13 +13,15 @@
 
 .accueil-info {
     background-image: url("../images/horse-footer-accueil-mirror.png");
-    background-size: cover;
+    background-size: auto 75%;
+    background-repeat: no-repeat;
     background-position: bottom right;
 }
 
 .accueil-event {
     background-image: url("../images/horse-footer-accueil.png");
-    background-size: cover;
+    background-size: auto 75%;
+    background-repeat: no-repeat;
     background-position: bottom left;
 }
 

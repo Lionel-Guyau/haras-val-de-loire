@@ -103,10 +103,11 @@
 					</h2>
 				</div>
 				{# A enlever quand lié avec le back #}
+				{# A intégrer pour seulement les X premières valeurs (sinon pas lisible) #}
 				{% set events = [
-					'Nous sommes ouverts pendant tout le confinement',
-					'Cours, Stages, Baby-Poney MAINTENUS :)',
-					'Stages de Pâques COMPLETS !'
+					'Cours BABY-PONEY dans 1J	-	places : 12/15',
+					'Stage d\'été dans 2J	-	places : 19/30',
+					'Cours BABY-PONEY dans 3J	-	places : 8/15'
 						] %}
 				{% for event in events %}
 					<div class="accueil-event-content
@@ -115,6 +116,8 @@
 							justify-self-center
 							justify-content-start
 							align-items-center">
+						{# A modifier quand lié avec le back #}
+						{# href="/activity/?id={{ event.id }}"> #}
 						<p class="text-danger
 								py-1">
 							{{ event }}
