@@ -1,0 +1,19 @@
+.accueil-intro {
+    background: linear-gradient(#f8f8f8, #ffffff);
+}
+
+.accueil p {
+    margin: 5px 5% !important;
+}
+
+.accueil-info {
+    background-image: url("../images/horse-footer-accueil-mirror.png");
+    background-size: cover;
+    background-position: bottom right;
+}
+
+.accueil-event {
+    background-image: url("../images/horse-footer-accueil.png");
+    background-size: cover;
+    background-position: bottom left;
+}

@@ -4,15 +4,65 @@
 	Page Accueil
 {% endblock %}
 
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/style-accueil.css"> 
+{% endblock %}
+
 {% block content %}
-	<content class="accueil container p-0 m-0">
-		<div style="width: 100vw" height="60vh">
-			<img src="/recup_photos/etho2.png" alt="Photo accueil" width="100%" height="100%">
+	<content class="accueil container-flex p-0 m-0">
+		<div style="height: 50vh;">
+			<img src="/recup_photos/etho2.png" 
+				alt="Photo accueil" 
+				style="	width: 100%; 
+						height: 100%; 
+						object-fit: cover; 
+						object-position: bottom;">
 		</div>
+		<div class="accueil-intro d-flex p-0 flex-column align-items-stretch"
+			style="height: calc(50vh - 94px);">
+			<h1 class="align-self-center">Ecole d'équitation familiale</h1>
+			<p>
+			Situé à 10 minutes d'Orléans centre, 
+			votre poney-club/centre équestre "Le Haras du Val de Loire" 
+			est installé sur la commune de Saint Denis en Val.
+			</p>
+			<p>
+			Vous pourrez pratiquer l'équitation en toute sécurité, 
+			avec une cavalerie adaptée et respectée selon les règles 
+			d'étholgie, à des tarifs raisonés.
+			</p>
+			<p>
+			Possibilité du plus petit (dès 18 mois) au plus grand 
+			(ados, adultes, séniors...) de découvrir l'équitation tout 
+			au long de l'année.
+			</p>
+			<p>
+			Ambiance familiale et chaleureuse garantie, 
+			cette école d'équitation permet à tous de s'épanouir 
+			dans la nature, tout en faisant du sport.
+			</p>
+			<p>
+			Vacances, stages éthologie, dressage, saut d'obstacles, 
+			rando-brunch, compétitions, visite de l'élevage poney... 
+			Beaucoup de prestations sont proposées, sans oublier les 
+			cours, pour tous niveaux.
+			</p>
+			<p>
+			Les inscriptions aux cours d'équitation et les 
+			inscriptions aux stages se font tout au long de l'année.
+			</p>
+		</div>
+		<div class="d-flex justify-content-center">
+			<div style="width: 50vw; 
+						height: 50vw;"
+				class="accueil-info">
 
+			</div>
+			<div style="width: 50vw; 
+						height: 50vw;"
+				class="accueil-event">
 
-
-
-
+			</div>
+		</div>
 	</content>
 {% endblock %}
