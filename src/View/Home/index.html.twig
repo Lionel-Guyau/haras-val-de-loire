@@ -71,8 +71,21 @@
 				<div class="accueil-info-content
 						d-flex 
 						flex-column 
-						justify-self-center">
-
+						justify-self-center
+						justify-content-start
+						align-items-center">
+					{# A enlever quand lié avec le back #}
+					{% set information = [
+						'Nous sommes ouverts pendant tout le confinement',
+						'Cours, Stages, Baby-Poney MAINTENUS :)',
+						'Stages de Pâques COMPLETS !'
+						 ] %}
+					{% for info in information %}
+						<p class="text-danger
+								py-1">
+							{{ info }}
+						</p>
+					{% endfor %}
 				</div>
 			</div>
 			<div class="accueil-event"
@@ -89,9 +102,25 @@
 						Prochains évenements
 					</h2>
 				</div>
-				<div>
-
-				</div>
+				{# A enlever quand lié avec le back #}
+				{% set events = [
+					'Nous sommes ouverts pendant tout le confinement',
+					'Cours, Stages, Baby-Poney MAINTENUS :)',
+					'Stages de Pâques COMPLETS !'
+						] %}
+				{% for event in events %}
+					<div class="accueil-event-content
+							d-flex 
+							flex-column 
+							justify-self-center
+							justify-content-start
+							align-items-center">
+						<p class="text-danger
+								py-1">
+							{{ event }}
+						</p>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</content>
