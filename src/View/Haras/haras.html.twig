@@ -1,5 +1,69 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
-    <h1>Page haras</h1>
+{% block title %}
+    Page Haras
 {% endblock %}
+
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/style-accueil.css"> 
+{% endblock %}
+
+{% block content %}
+    <content class="haras container-flex p-0 m-0">
+    
+        <div class="navigation-haras">
+            <div class="btn-group col-12 position-fixed-top" role="group">
+                <a class="btn btn-primary rounded-0 text-light" href="#">Principes</a>
+                <a class="btn btn-primary rounded-0 text-light" href="#objectif">Objectifs</a>
+                <a class="btn btn-primary rounded-0 text-light" href="#directrice">Direction</a>
+            </div>
+        </div>
+
+
+        <div id="principes" class="haras-principes-body p-1">
+            <h1 class="title text-center text-light"  >Les principes de l'éthologie</h1>
+
+            <div id="card_haras"class="row align-items-center">
+                <div class="col-4 col-sm-2 mt-3">
+                    <div class="btn-group-vertical">
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Confiance</a>
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Confort</a>
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Sensibilisation</a>
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Savoir-être</a>
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Réflexes</a>
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">La fuite</a>
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Instincts</a>
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Défenses</a>
+                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Apprentissage</a>
+                    </div> 
+                </div>
+                
+                <div class="col-8 col-sm-10 mt-3">
+                    <p id="zone_text"class="p-3 text-light bg-primary rounded border border-light">L'éducation du couple homme/cheval est basée sur la confiance et le respect mutuel, gage indispensable à la sécurité.<br>
+                    Cette confiance est basée sur la sécurité et le confort que vous apportez au cheval. Il ne vous craint pas et sait s'en remettre à vous même dans les situations les plus délicates. 
+                    Il apprend à ne pas avoir peur des choses qui ne le concernent pas (l'oiseau qui s'envole soudainement, le chien qui arrive en courant, le cycliste, le tracteur et bien d'autres encore). 
+                    Il doit savoir qu'avec vous, rien de fâcheux ne peut lui arriver et que vous serez toujours là pour lui. Cette confiance s'obtient progressivement et peut être très grande. Il vous 
+                    appartient ensuite de ne pas la trahir.<br>
+
+                    Un cheval fiable et sûr donne de l'assurance au cavalier et apporte la sécurité.<br>
+                    
+                    Le respect, c'est avant tout faire bouger les pieds de l'autre! Avoir le contrôle des pieds du cheval c'est agir sur son physique, son mental et son émotionnel. Cela  permet également 
+                    d'accroitre la sécurité. Le cheval ne me bouscule pas, il apprend à respecter « mon espace » à pied comme à cheval. A titre d'exemple, un cheval respectueux ne marche pas sur les pieds,
+                     ne vous emmène pas en force vers un endroit tentant, ne bouge pas au montoir et répond de façon positive à nos aides.</p>
+                
+                  
+              
+                </div>
+            </div>
+		</div>
+        <div id="objectif" class="haras-objectif-body" style="height: 100vh;">
+            <h1 class="title text-center text-light" >Les objectifs de l'éthologie</h1>
+		</div>
+        <div id="directrice" class="haras-directrice-body" style="height: 100vh;">
+            <h1 id="directrice" class="title text-center text-light"  id="directrice" >Vanessa JORE - Directrice</h1>
+		</div>
+   
+    </content>
+
+{% endblock %}    

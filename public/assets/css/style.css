@@ -1,0 +1,32 @@
+.haras-principes-body{
+    background-image: url("/recup_photos/pexels-pixabay-48785-filter.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.haras-objectif-body{
+    background-image: url("/recup_photos/pexels-pixabay-53114.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.haras-directrice-body{
+    background-image: url("/recup_photos/girl-4689261_1920.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.col-8{
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+#principes{
+    height: calc(100vh - 94px - 38px);
+}
+
+#zone_text{
+    max-height: 100vh;
+}
+#card_haras{
+    font-size: calc(1vh + .8vw)!important;
+    height:calc(100vh - 94px - 38px - 64px);
+}
