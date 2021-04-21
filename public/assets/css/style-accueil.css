@@ -1,8 +1,11 @@
 
-.text-responsive {
+.text-responsive-p {
     font-size: calc(5% + 1vw + 1vh);
 }
 
+.text-responsive-titre {
+    font-size: calc(2vw + 2vh);
+}
 
 
 /* ---------------------- CSS ------------------------- */
@@ -12,17 +15,36 @@
     /* font: var(--text-content) var(--color-content); */
 }
 
+.accueil-page {
+    height: calc(100vh - 94px);
+}
+
+.accueil-picture {
+    height: inherit;
+}
+
+.accueil-picture img {
+    object-fit: cover; 
+	object-position: center;
+}
+
 .accueil-intro {
     background: linear-gradient(#f9f9f9, #ffffff);
 }
 
-.accueil p {
+.accueil-intro p {
     margin: 5px 5% !important;
 }
 
 .accueil-info, .accueil-event {
     width: 100vw !important;
     height: 50vw !important;
+}
+
+#left-arrow-down {
+    height: 100%;
+    margin: 0 30px 0 10px;
+    transform: rotate(90deg);
 }
 
 .accueil-event {
@@ -33,7 +55,8 @@
 }
 
 .accueil-info-content {
-    height: 50%;
+    overflow-y: scroll;
+    height: 60%;
     width: 90%;
     margin: 5% auto;
     background-color: antiquewhite;
@@ -50,7 +73,7 @@
     height: 10%;
     max-height: 45px;
     width: 90%;
-    margin: 5% auto;
+    margin: 3% auto;
     background-color: antiquewhite;
     border-radius: 5px;
     -webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5),

@@ -172,7 +172,7 @@ CREATE TABLE `lesson_news` (
 
 CREATE TABLE `news` (
   `id` int(11) NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_520_ci NOT NULL
+  `description` varchar(100) COLLATE utf8_unicode_520_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 -- --------------------------------------------------------
