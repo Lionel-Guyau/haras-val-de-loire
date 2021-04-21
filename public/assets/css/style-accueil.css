@@ -1,3 +1,12 @@
+
+.text-responsive {
+    font-size: calc(5% + 1vw + 1vh);
+}
+
+
+
+/* ---------------------- CSS ------------------------- */
+
 .accueil {
     /* A modifier quand la police sera définie */
     /* font: var(--text-content) var(--color-content); */
@@ -11,11 +20,9 @@
     margin: 5px 5% !important;
 }
 
-.accueil-info {
-    background-image: url("../images/horse-footer-accueil-mirror.png");
-    background-size: auto 75%;
-    background-repeat: no-repeat;
-    background-position: bottom right;
+.accueil-info, .accueil-event {
+    width: 100vw !important;
+    height: 50vw !important;
 }
 
 .accueil-event {
@@ -41,6 +48,7 @@
 
 .accueil-event-content {
     height: 10%;
+    max-height: 45px;
     width: 90%;
     margin: 5% auto;
     background-color: antiquewhite;
@@ -79,5 +87,17 @@
         margin: 1%;
         text-align:justify;
         text-shadow: 0 5px 10px black;
+    }
+    .accueil-info {
+        background-image: url("../images/horse-footer-accueil-mirror.png");
+        background-size: auto 75%;
+        background-repeat: no-repeat;
+        background-position: bottom right;
+    }
+    .accueil-info, .accueil-event {
+        width: 50vw !important;
+        height: 50vw !important;
+        max-width: 600px !important;
+        max-height: 500px !important;
     }
 }

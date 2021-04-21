@@ -10,18 +10,17 @@
 
 {% block content %}
 	<content class="accueil container-flex p-0 m-0">
-		<div class="accueil-picture" style="height: 50vh;">
-			<img src="/recup_photos/etho2.png" 
+		<div class="accueil-picture" style="height: 40vh;">
+			<img class="w-100 h-100"
+				src="/recup_photos/etho2.png" 
 				alt="Photo accueil" 
-				style="	width: 100%; 
-						height: 100%; 
-						object-fit: cover; 
-						object-position: bottom;">
+				style="object-fit: cover; 
+					object-position: center;">
 		</div>
-		<div class="accueil-intro d-flex p-0 flex-column align-items-stretch"
-			style="height: calc(50vh - 94px);">
+		<div class="accueil-intro d-flex p-0 flex-column align-items-stretch text-responsive"
+			style="height: calc(60vh - 94px);">
 			<h1 class="align-self-center">Ecole d'équitation familiale</h1>
-			<p>
+			<p class="">
 			Situé à 10 minutes d'Orléans centre, 
 			votre poney-club/centre équestre "Le Haras du Val de Loire" 
 			est installé sur la commune de Saint Denis en Val.
@@ -52,10 +51,8 @@
 			inscriptions aux stages se font tout au long de l'année.
 			</p>
 		</div>
-		<div class="d-flex justify-content-center mt-4">
-			<div class="accueil-info d-flex flex-column"
-				style="width: 50vw; 
-						height: 50vw;">
+		<div class="d-flex justify-content-center mt-4 flex-md-row flex-column">
+			<div class="accueil-info d-flex flex-column">
 				<div class="d-flex
 							justify-content-end"
 					style="height: 10%">
@@ -75,29 +72,30 @@
 						justify-content-start
 						align-items-stretch">
 					{# A enlever quand lié avec le back #}
-					{% set info_utile = [
+					{% set lastnews = [
 						'Nous sommes ouverts pendant tout le confinement',
 						'Cours, Stages, Baby-Poney MAINTENUS :)',
 						'Stages de Pâques COMPLETS !'
 						 ] %}
-					{% for info in info_utile %}
+					{% for news in lastnews %}
 						<p class="text-danger
 								py-1">
-							{{ info }}
+							{# {{ news.description }} #}
+							{{ news }}
 						</p>
+					{% else %}
+						<p>Pas de news</p>
 					{% endfor %}
 				</div>
 			</div>
-			<div class="accueil-event"
-				style="width: 50vw; 
-						height: 50vw;">
+			<div class="accueil-event">
 				<div class="d-flex
 							justify-content-start"
 					style="height: 10%">
-					<img src="/assets/images/right-down.png" 
+					<img src="/assets/images/right-down.png"
+						class="h-100"
 						alt="left-down arrow"
-						style="height: 100%;
-							margin: 0 10px 0 30px;">
+						style="margin: 0 10px 0 30px;">
 					<h2 class="align-self-end my-0">
 						Prochains évenements
 					</h2>
@@ -106,22 +104,28 @@
 				{# A intégrer pour seulement les X premières valeurs (sinon pas lisible) #}
 				{% set events = {
 					'0' : {
+							'id' : '12',
+							'type' : 'Cours',
 							'name' : 'Cours Baby-poney',
-							'date' : '25-04-2021 17:30:00',
-							'places' : 12,
+							'date' : '21-04-2021 17:30:00',
+							'places' : 12, 
 							'nbMaxSlot' : 15 },
 					'1' : {
+							'id' : '5',
+							'type' : 'Stage',
 							'name' : 'Stage d\'été',
 							'date' : '29-05-2021 08:30:00',
 							'places' : 19,
 							'nbMaxSlot' : 30 },
 					'2' : {
+							'id' : '13',
+							'type' : 'Cours',
 							'name' : 'Cours Baby-poney',
 							'date' : '30-05-2021 16:00:00',
 							'places' : 8,
 							'nbMaxSlot' : 15 },
 				 	} %}
-				{% for event in events %}
+				{% for event in lastevents %}
 					<div class="accueil-event-content
 							d-flex 
 							flex-column 
@@ -129,11 +133,29 @@
 							justify-content-start
 							align-items-center">
 						{# A modifier quand lié avec le back #}
-						{# href="/activity/?id={{ event.id }}"> #}
-						<p class="text-danger
+						{# href="/activity/{{ event.type }}/?id={{ event.id }}"> #}
+						<p class="text-center
 								py-1">
-							{% set difference = date('now').diff(date(event.date)) %}
-							{{ event.name }} dans {{ difference.days }} j - Places {{ event.places }}/{{ event.nbMaxSlot }}
+							{# Penser à récupérer des events pas encore passées #}
+							{# type id name start_at nb_register capacity #}
+							{% set difference = date('now').diff(date(event.start_at)) %}
+							{% if difference.days > 0 %}
+								{{ event.name }} dans {{ difference.days }} j - Places {{ event.nb_register }}/{{ event.capacity }}
+							{% else %}
+								{{ event.name }} dans {{ difference.h }}h - Places {{ event.nb_register }}/{{ event.capacity }}
+							{% endif %}
+						</p>
+					</div>
+				{% else %}
+					<div class="accueil-event-content
+							d-flex 
+							flex-column 
+							justify-self-center
+							justify-content-start
+							align-items-center">
+						<p class="text-center
+								py-1">
+							Pas de prochains évenements
 						</p>
 					</div>
 				{% endfor %}
