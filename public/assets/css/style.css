@@ -1,0 +1,27 @@
+.ftco-section {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 650px;
+}
+  
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.bottom {
+    padding-left: 0;
+    padding-right: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.map {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.info {
+    margin-top: 10px;
+}
