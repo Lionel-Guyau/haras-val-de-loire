@@ -80,18 +80,18 @@
 						justify-content-start
 						align-items-start">
 					{# A enlever quand lié avec le back #}
-					{% set lastnews = [
+					{# {% set lastnews = [
 						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr',
 						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr',
 						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr'
-						 ] %}
+						 ] %} #}
 					{% for news in lastnews %}
 						<p class="text-danger
 								text-justify
 								my-2 mx-3
 								text-responsive-p">
-							{# {{ news.description }} #}
-							{{ news }}
+							{{ news.description }}
+							{# {{ news }} #}
 						</p>
 					{% else %}
 						<p>Pas de news</p>
@@ -113,7 +113,7 @@
 				</div>
 				{# A enlever quand lié avec le back #}
 				{# A intégrer pour seulement les X premières valeurs (sinon pas lisible) #}
-				{% set lastevents = {
+				{# {% set lastevents = {
 					'0' : {
 							'id' : '12',
 							'type' : 'Cours',
@@ -135,16 +135,16 @@
 							'start_at' : '30-06-2021 16:00:00',
 							'nb_register' : 8,
 							'capacity' : 15 },
-				 	} %}
+				 	} %} #}
 				{% for event in lastevents %}
-					<div class="accueil-event-content
+					<a class="accueil-event-content
 							d-flex 
 							flex-column 
 							justify-self-center
 							justify-content-start
-							align-items-center">
+							align-items-center"
 						{# A modifier quand lié avec le back #}
-						{# href="/activity/{{ event.type }}/?id={{ event.id }}"> #}
+						href="/activity/{{ event.type }}/?id={{ event.id }}">
 						<p class="text-center
 								text-responsive-p
 								py-1">
@@ -157,7 +157,7 @@
 								{{ event.name }} dans {{ difference.h }}h - Places {{ event.nb_register }}/{{ event.capacity }}
 							{% endif %}
 						</p>
-					</div>
+					</a>
 				{% else %}
 					<div class="accueil-event-content
 							d-flex 
