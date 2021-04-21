@@ -76,5 +76,8 @@
     .accueil-intro > h1, .accueil-intro > p{
         position: relative;
         color: white;
+        margin: 1%;
+        text-align:justify;
+        text-shadow: 0 5px 10px black;
     }
 }

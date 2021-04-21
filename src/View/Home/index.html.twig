@@ -73,14 +73,14 @@
 						flex-column 
 						justify-self-center
 						justify-content-start
-						align-items-center">
+						align-items-stretch">
 					{# A enlever quand lié avec le back #}
-					{% set information = [
+					{% set info_utile = [
 						'Nous sommes ouverts pendant tout le confinement',
 						'Cours, Stages, Baby-Poney MAINTENUS :)',
 						'Stages de Pâques COMPLETS !'
 						 ] %}
-					{% for info in information %}
+					{% for info in info_utile %}
 						<p class="text-danger
 								py-1">
 							{{ info }}
@@ -104,11 +104,23 @@
 				</div>
 				{# A enlever quand lié avec le back #}
 				{# A intégrer pour seulement les X premières valeurs (sinon pas lisible) #}
-				{% set events = [
-					'Cours BABY-PONEY dans 1J	-	places : 12/15',
-					'Stage d\'été dans 2J	-	places : 19/30',
-					'Cours BABY-PONEY dans 3J	-	places : 8/15'
-						] %}
+				{% set events = {
+					'0' : {
+							'name' : 'Cours Baby-poney',
+							'date' : '25-04-2021 17:30:00',
+							'places' : 12,
+							'nbMaxSlot' : 15 },
+					'1' : {
+							'name' : 'Stage d\'été',
+							'date' : '29-05-2021 08:30:00',
+							'places' : 19,
+							'nbMaxSlot' : 30 },
+					'2' : {
+							'name' : 'Cours Baby-poney',
+							'date' : '30-05-2021 16:00:00',
+							'places' : 8,
+							'nbMaxSlot' : 15 },
+				 	} %}
 				{% for event in events %}
 					<div class="accueil-event-content
 							d-flex 
@@ -120,7 +132,8 @@
 						{# href="/activity/?id={{ event.id }}"> #}
 						<p class="text-danger
 								py-1">
-							{{ event }}
+							{% set difference = date('now').diff(date(event.date)) %}
+							{{ event.name }} dans {{ difference.days }} j - Places {{ event.places }}/{{ event.nbMaxSlot }}
 						</p>
 					</div>
 				{% endfor %}
