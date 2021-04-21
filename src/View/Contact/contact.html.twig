@@ -1,5 +1,87 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Page contact</h1>
+	<section class="ftco-section" style="background-image: url('../recup_photos/pexels-arthur-krijgsman-4019299.jpg');">
+		<div class="container">
+			<div class="row justify-content-center"></div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-7">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="form col-md-12">
+								<div class="contact-wrap form-box w-100 p-md-5 p-4">
+									<h1 class=" contactus mb-4 text-center text-secondary">Contactez-nous</h1>
+									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="label" for="firstname"></label>
+													<input type="text" class="form-control" name="firstname" id="firstname" placeholder="Prénom" required>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="label" for="lastname"></label>
+													<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Nom" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="email"></label>
+													<input type="email" class="form-control" name="email" id="email" placeholder="Adresse email" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="subject"></label>
+													<input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="message"></label>
+													<textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message" required></textarea>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group text-center">
+													<input type="submit" value="Envoyer" class="mt-5 btn btn-primary">
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-5 d-flex align-items-stretch">
+								<div class="info-wrap w-100 p-5 img"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="bottom col-12">
+		<div class="row container-fluid bg-secondary col-12">
+			<div class="info col-sm-12 col-md-6 text-center text-primary">
+				<h2 class="uinfo text-primary">
+					<u>Informations utiles</u>
+				</h2>
+
+				<p>
+					999 Rue de Chemeau
+					<br>
+					45560 Saint-Denis-en-Val<br>
+					02 38 24 75 20<br>
+					contact@harasduvaldeloire.fr
+				</p>
+			</div>
+
+			<div class="map col-sm-12 col-md-6 d-flex justify-content-center">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.244950007569!2d1.973995115639781!3d47.87358457920331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e4e304e4ddb9c3%3A0xa8f9064ed6e47080!2sHaras%20du%20Val%20de%20Loire%20-%20Poney-Club%20Orl%C3%A9ans!5e0!3m2!1sfr!2sfr!4v1618860438509!5m2!1sfr!2sfr" width="auto" height="auto" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+			</div>
+		</div>
+	</section>
 {% endblock %}
