@@ -9,6 +9,8 @@
 
 namespace App\Controller;
 
+use App\Model\HomeManager;
+
 class HomeController extends AbstractController
 {
     /**
@@ -20,8 +22,12 @@ class HomeController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
-    public function index()
+    public function index(): string
     {
-        return $this->twig->render('/Home/index.html.twig');
+        $homeManager = new HomeManager();
+        $lastNews = $homeManager->selectLastNews();
+        $lastEvents = $homeManager->selectLastEvents();
+
+        return $this->twig->render('/Home/index.html.twig', ['lastnews' => $lastNews, 'lastevents' => $lastEvents]);
     }
 }
