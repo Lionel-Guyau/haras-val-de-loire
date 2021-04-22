@@ -66,7 +66,7 @@
 							justify-content-end
 							text-responsive-titre"
 					style="height: 15%">
-					<p class="my-0">
+					<p class="my-0" style="align-self: flex-end;">
 						Informations utiles
 					</p>
 					<img id="left-arrow-down"
@@ -78,7 +78,8 @@
 						flex-column 
 						justify-self-center
 						justify-content-start
-						align-items-start">
+						align-items-start
+						mx-auto my-3">
 					{# A enlever quand lié avec le back #}
 					{# {% set lastnews = [
 						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr',
@@ -103,11 +104,12 @@
 							justify-content-start
 							text-responsive-titre"
 					style="height: 15%">
-					<img src="/assets/images/right-down.png"
-						class="h-100"
+					<img id="right-down-arrow"
+						src="/assets/images/right-down.png"
 						alt="left-down arrow"
 						style="margin: 0 10px 0 30px;">
-					<p class="align-self-end my-0">
+					<p class="align-self-end my-0"
+						style="align-self: flex-end;">
 						Prochains évenements
 					</p>
 				</div>
@@ -142,7 +144,8 @@
 							flex-column 
 							justify-self-center
 							justify-content-start
-							align-items-center"
+							align-items-center
+							mx-auto my-2 my-md-3"
 						{# A modifier quand lié avec le back #}
 						href="/activity/{{ event.type }}/?id={{ event.id }}">
 						<p class="text-center
