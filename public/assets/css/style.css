@@ -1,3 +1,4 @@
+
 .haras-principes-body{
     background-image: url("/recup_photos/pexels-pixabay-48785-filter.jpg");
     background-repeat: no-repeat;
@@ -76,3 +77,74 @@
     font-size: calc(1vh + .6vw)!important;
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
+
+.ftco-section {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 650px;
+}
+
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.bottom {
+  padding-left: 0;
+  padding-right: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.map {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.info {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    padding-top: 0.2rem !important;
+  }
+
+  .navbar-collapse {
+    padding-left: 8px;
+  }
+}
+
+.container p-4 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.link-list {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+@media (min-width: 768px) {
+  .text-md-left {
+    text-align: left !important;
+  }
+}
+
+.dropdown-menu {
+  border-radius: 0 0 0.25rem 0.25rem !important;
+}
+
+.navbar-toggler {
+  margin-right: 8px;
+}
+
+.dropdown-menu-dark .dropdown-item {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.contactus {
+  padding-bottom: 50px;
+  font-family: "Roboto", sans-serif;
+  text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a;
+}
+
