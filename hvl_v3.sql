@@ -81,8 +81,10 @@ CREATE TABLE `customer_course` (
   `customer_id` int NOT NULL,
   `course_id` int NOT NULL,
   `register` tinyint(1) NOT NULL,
-  KEY `fk_Clients_Stage_client_id` (`customer_id`),
-  KEY `fk_Clients_Stage_stage_id` (`course_id`)
+  KEY `fk_Clients_Course_client_id` (`customer_id`),
+  KEY `fk_Clients_Course_stage_id` (`course_id`),
+  CONSTRAINT `fk_Clients_Course_client_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `fk_Clients_Course_stage_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS customer_lesson;
@@ -90,10 +92,10 @@ CREATE TABLE `customer_lesson` (
   `customer_id` int NOT NULL,
   `lesson_id` int NOT NULL,
   `register` tinyint(1) NOT NULL,
-  KEY `fk_Clients_Cours_client_id` (`customer_id`),
-  KEY `fk_Clients_Cours_cours_id` (`lesson_id`),
-  CONSTRAINT `fk_Clients_Stage_client_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `fk_Clients_Stage_stage_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
+  KEY `fk_Clients_Lesson_client_id` (`customer_id`),
+  KEY `fk_Clients_Lesson_cours_id` (`lesson_id`),
+  CONSTRAINT `fk_Clients_Lesson_client_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `fk_Clients_Lesson_stage_id` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS equipment;
