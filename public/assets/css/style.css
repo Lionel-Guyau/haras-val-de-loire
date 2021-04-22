@@ -19,6 +19,10 @@
     max-height: 50vh;
     overflow-y: scroll;
 }
+.col-8::-webkit-scrollbar {
+  display: none;
+}
+
 #principes{
     height: calc(100vh - 94px - 25px);
 }
@@ -26,8 +30,14 @@
     text-shadow:  1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
 
-#principe_text_area{
+/* #principe_text_area{
     max-height: 103vh!important;
+} */
+@media (min-width: 1300px){
+  #principe_text_area{
+    font-size: calc(1vh + .5vw)!important;
+    height: 80%;
+  }
 }
 #principe_row{
     font-size: calc(1vh + .8vw)!important;
@@ -39,9 +49,13 @@
     height: 103vh;
 }
 #goal_row{
-    font-size: calc(1vh + 1vw)!important; 
+    font-size: calc(1vh + 1vw); 
 }
-
+@media (min-width: 1300px){
+  #goal_row{
+    font-size: calc(1vh + .5vw)!important;
+  }
+}
 #goal h1{
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
@@ -60,12 +74,17 @@
 
 #director_p{
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+    font-size: calc(1vh + 1vw);
+}
+#talk_title p{
+    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+    font-size: calc(1vh + .8vw);
 }
 #talk_title{
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
 #talk_text{
-    font-size: calc(1vh + .6vw)!important;
+    font-size: calc(1vh + .3vw)!important;
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
 
@@ -75,4 +94,9 @@
 #director p{
     font-size: calc(1vh + .6vw)!important;
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+@media (min-width: 1300px){
+  #director p{
+    font-size: calc(1vh + .5vw)!important;
+  }
 }
