@@ -16,9 +16,8 @@ class ContactManager extends AbstractManager
      */
     public function addContactInfo(array $contactInfos)
     {
-        $query = "
-            INSERT INTO " . static::TABLE . " ('firstname', 'lastname', 'email', 'subject', 'message') 
-            VALUES (:firstname, :lastname, :email, :subject, :message)";
+        $query = "INSERT INTO contact (`firstname`, `lastname`, `email`, `subject`, `message`) 
+                VALUES (:firstname, :lastname, :email, :subject, :message)";
         $statement = $this->pdo->prepare($query);
 
         $statement->bindValue(':firstname', $contactInfos['firstname'], \PDO::PARAM_STR);
