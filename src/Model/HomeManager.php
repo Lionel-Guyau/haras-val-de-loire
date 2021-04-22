@@ -16,7 +16,7 @@ class HomeManager extends AbstractManager
      */
     public function selectLastNews()
     {
-        $query = "SELECT news.description FROM " . static::TABLE . " ORDER BY news.news_date DESC LIMIT 3";
+        $query = "SELECT news.description FROM " . static::TABLE . " ORDER BY news.news_date ASC LIMIT 3";
 
         return $this->pdo->query($query)->fetchAll();
     }
