@@ -1,3 +1,83 @@
+
+.haras-principes-body{
+    background-image: url("/recup_photos/pexels-pixabay-48785-filter.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.haras-objectif-body{
+    background-image: url("/recup_photos/pexels-pixabay-210237-filter.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.haras-directrice-body{
+    background-image: url("/recup_photos/pexels-eberhard-grossgasteiger-2317182-filter.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.col-8{
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+#principes{
+    height: calc(100vh - 94px - 25px);
+}
+#principes h1{
+    text-shadow:  1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+
+#principe_text_area{
+    max-height: 103vh!important;
+}
+#principe_row{
+    font-size: calc(1vh + .8vw)!important;
+    height:calc(100vh - 94px - 38px - 64px)!important;
+    
+}
+
+#goal{
+    height: 103vh;
+}
+#goal_row{
+    font-size: calc(1vh + 1vw)!important; 
+}
+
+#goal h1{
+    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+#goal_row p{
+    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+
+.col-1 img{
+    height: 30px;
+    width: 30px;
+    margin-bottom: 1rem;
+}
+#director{
+    height:103vh;
+}
+
+#director_p{
+    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+#talk_title{
+    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+#talk_text{
+    font-size: calc(1vh + .6vw)!important;
+    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+
+#director_title{
+    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+#director p{
+    font-size: calc(1vh + .6vw)!important;
+    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+}
+
 .ftco-section {
   background-size: cover;
   background-repeat: no-repeat;
@@ -67,3 +147,4 @@
   font-family: "Roboto", sans-serif;
   text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a;
 }
+
