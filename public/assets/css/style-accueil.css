@@ -71,8 +71,10 @@
 
 .accueil-event-content {
     height: 10%;
+    min-height: 20px;
     max-height: 45px;
     width: 90%;
+    text-decoration: none;
     margin: 3% auto;
     background-color: antiquewhite;
     border-radius: 5px;
