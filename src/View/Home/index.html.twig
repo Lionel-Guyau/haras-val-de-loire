@@ -1,5 +1,181 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+	Page Accueil
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/style-accueil.css"> 
+{% endblock %}
+
 {% block content %}
-	<h1>Accueil</h1>
+	<content class="accueil container-flex p-0 m-0">
+		<div class="accueil-page d-flex flex-column-reverse">
+			<div class="accueil-intro 
+					d-flex 
+					p-0 
+					flex-column 
+					align-items-stretch 
+					text-responsive-p">
+				<p class="align-self-center 
+						text-responsive-titre"
+					id="accueil-titre">
+					Ecole d'équitation familiale
+				</p>
+				<p>
+				Situé à 10 minutes d'Orléans centre, 
+				votre poney-club/centre équestre "Le Haras du Val de Loire" 
+				est installé sur la commune de Saint Denis en Val.
+				</p>
+				<p>
+				Vous pourrez pratiquer l'équitation en toute sécurité, 
+				avec une cavalerie adaptée et respectée selon les règles 
+				d'étholgie, à des tarifs raisonés.
+				</p>
+				<p>
+				Possibilité du plus petit (dès 18 mois) au plus grand 
+				(ados, adultes, séniors...) de découvrir l'équitation tout 
+				au long de l'année.
+				</p>
+				<p>
+				Ambiance familiale et chaleureuse garantie, 
+				cette école d'équitation permet à tous de s'épanouir 
+				dans la nature, tout en faisant du sport.
+				</p>
+				<p>
+				Vacances, stages éthologie, dressage, saut d'obstacles, 
+				rando-brunch, compétitions, visite de l'élevage poney... 
+				Beaucoup de prestations sont proposées, sans oublier les 
+				cours, pour tous niveaux.
+				</p>
+				<p>
+				Les inscriptions aux cours d'équitation et les 
+				inscriptions aux stages se font tout au long de l'année.
+				</p>
+			</div>
+
+			<div class="accueil-picture">
+				<img class="w-100 h-100"
+					src="/recup_photos/etho2.png" 
+					alt="Photo accueil">
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-center mt-4 flex-md-row flex-column">
+			<div class="accueil-info d-flex flex-column">
+				<div class="d-flex
+							justify-content-end
+							text-responsive-titre"
+					style="height: 15%">
+					<p class="my-0" style="align-self: flex-end;">
+						Informations utiles
+					</p>
+					<img id="left-arrow-down"
+						src="/assets/images/right-down.png" 
+						alt="left-down arrow">
+				</div>
+				<div class="accueil-info-content
+						d-flex 
+						flex-column 
+						justify-self-center
+						justify-content-start
+						align-items-start
+						mx-auto my-3">
+					{# A enlever quand lié avec le back #}
+					{# {% set lastnews = [
+						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr',
+						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr',
+						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr'
+						 ] %} #}
+					{% for news in lastnews %}
+						<p class="text-danger
+								text-justify
+								my-2 mx-3
+								text-responsive-p">
+							{{ news.description }}
+							{# {{ news }} #}
+						</p>
+					{% else %}
+						<p>Pas de news</p>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="accueil-event">
+				<div class="d-flex
+							justify-content-start
+							text-responsive-titre"
+					style="height: 15%">
+					<img id="right-down-arrow"
+						src="/assets/images/right-down.png"
+						alt="left-down arrow"
+						style="margin: 0 10px 0 30px;">
+					<p class="align-self-end my-0"
+						style="align-self: flex-end;">
+						Prochains évenements
+					</p>
+				</div>
+				{# A enlever quand lié avec le back #}
+				{# A intégrer pour seulement les X premières valeurs (sinon pas lisible) #}
+				{# {% set lastevents = {
+					'0' : {
+							'id' : '12',
+							'type' : 'Cours',
+							'name' : 'Cours Baby-poney',
+							'start_at' : '21-04-2021 17:30:00',
+							'nb_register' : 12, 
+							'capacity' : 15 },
+					'1' : {
+							'id' : '5',
+							'type' : 'Stage',
+							'name' : 'Stage d\'été',
+							'start_at' : '29-05-2021 08:30:00',
+							'nb_register' : 19,
+							'capacity' : 30 },
+					'2' : {
+							'id' : '13',
+							'type' : 'Cours',
+							'name' : 'Cours Baby-poney',
+							'start_at' : '30-06-2021 16:00:00',
+							'nb_register' : 8,
+							'capacity' : 15 },
+				 	} %} #}
+				{% for event in lastevents %}
+					<a class="accueil-event-content
+							d-flex 
+							flex-column 
+							justify-self-center
+							justify-content-start
+							align-items-center
+							mx-auto my-2 my-md-3"
+						{# A modifier quand lié avec le back #}
+						href="/activity/{{ event.type }}/?id={{ event.id }}">
+						<p class="text-center
+								text-responsive-p
+								py-1">
+							{# Penser à récupérer des events pas encore passées #}
+							{# type id name start_at nb_register capacity #}
+							{% set difference = date('now').diff(date(event.start_at)) %}
+							{% if difference.days > 0 %}
+								{{ event.name }} dans {{ difference.days }} j - Places {{ event.nb_register }}/{{ event.capacity }}
+							{% else %}
+								{{ event.name }} dans {{ difference.h }}h - Places {{ event.nb_register }}/{{ event.capacity }}
+							{% endif %}
+						</p>
+					</a>
+				{% else %}
+					<div class="accueil-event-content
+							d-flex 
+							flex-column 
+							justify-self-center
+							justify-content-start
+							align-items-center">
+						<p class="text-center
+								py-1">
+							Pas de prochains évenements
+						</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</content>
 {% endblock %}
