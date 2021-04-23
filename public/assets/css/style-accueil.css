@@ -1,0 +1,137 @@
+
+.text-responsive-p {
+    font-size: min(calc(5% + 1vw + 1vh), 22px);
+}
+
+.text-responsive-titre {
+    font-size: min(calc(2vw + 2vh), 42px);
+}
+
+
+/* ---------------------- CSS ------------------------- */
+
+.accueil {
+    /* A modifier quand la police sera définie */
+    /* font: var(--text-content) var(--color-content); */
+}
+
+.accueil-page {
+    height: calc(100vh - 94px);
+}
+
+.accueil-picture {
+    height: inherit;
+}
+
+.accueil-picture img {
+    object-fit: cover; 
+	object-position: center;
+}
+
+.accueil-intro {
+    background: linear-gradient(#f9f9f9, #ffffff);
+}
+
+.accueil-intro p {
+    margin: 5px 5% !important;
+}
+
+.accueil-info, .accueil-event {
+    width: 100vw !important;
+    height: 50vw !important;
+}
+
+#left-arrow-down {
+    height: 80%;
+    margin: 0 30px 0 10px;
+    transform: rotate(90deg);
+}
+
+#right-down-arrow {
+    height: 80%;
+    margin: 0 10px 0 30px;
+}
+
+.accueil-event {
+    background-image: url("../images/horse-footer-accueil.png");
+    background-size: auto 75%;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+
+.accueil-info-content {
+    overflow-y: scroll;
+    height: 60%;
+    width: 90%;
+    /* margin: 5% auto; */
+    background-color: antiquewhite;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5),
+        0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5),
+        0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.accueil-event-content {
+    height: 10%;
+    min-height: 20px;
+    max-height: 45px;
+    width: 90%;
+    text-decoration: none;
+    /* margin: 5% auto; */
+    background-color: antiquewhite;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5),
+        0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5),
+        0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+/* ---------------------- Breakpoints ------------------------- */
+
+@media (min-width: 768px) {
+    .accueil-picture {
+        display: none;
+    }
+    .accueil-intro::before {
+        background-image: url("../../recup_photos/etho2.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        filter: grayscale(100%) brightness(50%);
+    }
+    .accueil-intro {
+        height: calc(100vh - 94px) !important;
+        position: relative;
+    }
+    .accueil-intro > h1, .accueil-intro > p{
+        position: relative;
+        color: white;
+        margin: min(1%, 20px) 5% !important;
+        text-align:justify;
+        text-shadow: 0 5px 10px black;
+    }
+    .accueil-info {
+        background-image: url("../images/horse-footer-accueil-mirror.png");
+        background-size: auto 75%;
+        background-repeat: no-repeat;
+        background-position: bottom right;
+    }
+    .accueil-info, .accueil-event {
+        width: 50vw !important;
+        height: 50vw !important;
+        max-width: 600px !important;
+        max-height: 500px !important;
+    }
+    #accueil-titre {
+        font-family: "Roboto", sans-serif;
+        text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a;
+    }
+}
