@@ -1,0 +1,120 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} Administration {% endblock %}
+
+
+
+{% block javascript %}
+<!-- Récupération du bouton asoscié, de la valeur et l'enregistrement de la nouvelle valeur -->
+  <script>
+    const newsModal = document.getElementById('add-news-modal');
+
+    newsModal.addEventListener('show.bs.modal', function (event) {
+      // Récupération du bouton associé à la modale
+      const button = event.relatedTarget;
+
+      // Récupération des infos sur la news cliquée
+      const newsId = button.dataset.bsId;
+      const newsDescription = button.dataset.bsDescription;
+
+      // On rempli les champs du formulaire avec les données récupérées depuis le bouton (cf ci-dessus)
+      newsModal.querySelector('[name="id"]').setAttribute('value', newsId);
+      newsModal.querySelector('[name="description"]').setAttribute('value', newsDescription);
+    });
+  </script>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- Back buton -->
+<div>
+  <a class="my-3 btn btn-warning" href="/admin">Retour</a>
+</div>
+
+<!-- Add Form -->
+<nav class="my-1 navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex w-100" method="post" action="/admin/addNews">
+      <input 
+        type="text" 
+        class="me-4 form-control" 
+        name="description" 
+        placeholder="Ajouter votre information"
+        required
+        maxlength="150" 
+      />
+
+      <button class="btn btn-primary" type="submit">Enregistrer</button>
+    </form>
+  </div>
+</nav>
+
+<!-- Modal Form -->
+<div class="modal fade" id="add-news-modal" tabindex="-1" aria-labelledby="add-news-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" action="/admin/majNews">
+        <div class="modal-header">
+          <h5 class="modal-title" id="add-news-modal-label">Modification de l'information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="id" />
+
+          <div class="mb-3">
+            <label for="description" class="col-form-label">Contenu :</label>
+            <input type="text" class="form-control" id="description" name="description" maxlength="50" required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Annuler
+          </button>
+
+          <button type="submit" class="btn btn-danger">
+            Modifier
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Database rows -->
+<table class="my-4 table table-sm table-striped table-bordered">
+    <thead>
+      <th>Information</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </thead>
+
+    <tbody>
+        {% for news in selectnews %}
+          <tr>
+            <td>{{news.description }}</td>
+            <td>{{news.news_date|date("d-m-Y H:i:s")}}</td>
+            <td>
+              <button 
+                type="button" 
+                class="btn btn-primary" 
+                data-bs-toggle="modal"
+                data-bs-target="#add-news-modal"
+                data-bs-id="{{ news.id }}"
+                data-bs-description="{{ news.description }}"
+              >
+                Modifier
+              </button>
+
+              <a class="btn btn-danger" href="/admin/delNews?id={{news.id}}">
+                Supprimer
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
