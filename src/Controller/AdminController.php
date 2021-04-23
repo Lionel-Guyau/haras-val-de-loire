@@ -47,11 +47,9 @@ class AdminController extends AbstractController
         return false;
     }
 
-    public function testInput($data)
+    public function sanitizeInput($data)
     {
         $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
         return $data;
     }
 
@@ -68,15 +66,11 @@ class AdminController extends AbstractController
         $adminManager = new AdminManager();
 
         if ($this->controlDataPost($_POST['description'])) {
-            $description = $this->testInput($_POST['description']);
+            $description = $this->sanitizeInput($_POST['description']);
 
             if (strlen($description) < 50) {
                 $adminManager->insertNews($description);
-            } else {
-                echo 'Texte supérieur à 50 charactères';
             }
-        } else {
-            echo 'Veuillez rentrer un champ';
         }
         header('Location: /admin/news');
     }
@@ -86,16 +80,12 @@ class AdminController extends AbstractController
         $adminManager = new AdminManager();
 
         if ($this->controlDataGet($_GET['id'])) {
-            $id = $this->testInput($_GET['id']);
+            $id = $this->sanitizeInput($_GET['id']);
             if (filter_var($id, FILTER_VALIDATE_INT)) {
                 $adminManager->deleteNews($id);
-            } else {
-                echo 'Veuillez rentrer un champ valide';
             }
-        } else {
-            echo 'Veuillez ne pas toucher aux liens des boutons';
+            header('Location: /admin/news');
         }
-        header('Location: /admin/news');
     }
 
     public function majNews()
@@ -103,16 +93,12 @@ class AdminController extends AbstractController
         $adminManager = new AdminManager();
 
         if ($this->controlDataPost($_POST['description']) && $this->controlDataPost($_POST['id'])) {
-            $id = $this->testInput($_POST['id']);
-            $description = $this->testInput($_POST['description']);
+            $id = $this->sanitizeInput($_POST['id']);
+            $description = $this->sanitizeInput($_POST['description']);
 
             if (strlen($description) < 50 && filter_var($id, FILTER_VALIDATE_INT)) {
                 $adminManager->updateNews($id, $description);
-            } else {
-                echo 'Veuillez rentrer des champs valides';
             }
-        } else {
-            echo 'Veuillez rentrer des champs';
         }
         header('Location: /admin/news');
     }
