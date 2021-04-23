@@ -9,10 +9,12 @@
 
 namespace App\Controller;
 
+use App\Model\ContactManager;
+
 class ContactController extends AbstractController
 {
     /**
-     * Display activity page
+     * Display contact page
      *
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -23,5 +25,37 @@ class ContactController extends AbstractController
     public function index()
     {
         return $this->twig->render('/Contact/contact.html.twig');
+    }
+
+    public function add()
+    {
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            // test des valeurs d'entrées ($_POST)
+            if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($subject) && !empty($message)) {
+                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    // intégrer les valeurs dans une table $contactInfos
+                    $contactInfos = [
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'email' => $email,
+                        'subject' => $subject,
+                        'message' => $message,
+                    ];
+
+                    // appeler la requête SQL $this->addContactInfo($contactInfos)
+                    $objetModel = new ContactManager();
+                    $objetModel->addContactInfo($contactInfos);
+                        // est égal à (new ContactManager())-> addContactInfo($contactInfos);
+                }
+            }
+        }
+        // retourne sur la page Contact
+        header("Location: /contact");
     }
 }
