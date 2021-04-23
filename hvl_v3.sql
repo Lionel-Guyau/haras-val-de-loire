@@ -20,9 +20,20 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
+DROP TABLE IF EXISTS contact;
+CREATE TABLE `contact` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 DROP TABLE IF EXISTS course;
 CREATE TABLE `course` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL,
   `default_price` int NOT NULL,
   `capacity` int NOT NULL,
@@ -34,16 +45,16 @@ CREATE TABLE `course` (
   PRIMARY KEY (`id`),
   KEY `fk_Price_id_Course_Type` (`default_price`),
   CONSTRAINT `fk_Price_id_Course_Type` FOREIGN KEY (`default_price`) REFERENCES `price` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS course_equipment;
 CREATE TABLE `course_equipment` (
   `course_id` int NOT NULL,
   `equipment_id` int NOT NULL,
-  KEY `fk_Stage_Equipment_stage_id` (`course_id`),
-  KEY `fk_Stage_Equipment_equipment_id` (`equipment_id`),
-  CONSTRAINT `fk_Stage_Equipment_equipment_id` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`),
-  CONSTRAINT `fk_Stage_Equipment_stage_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
+  KEY `fk_Course_Equipment_stage_id` (`course_id`),
+  KEY `fk_Course_Equipment_equipment_id` (`equipment_id`),
+  CONSTRAINT `fk_Course_Equipment_equipment_id` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`),
+  CONSTRAINT `fk_Course_Equipment_stage_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS course_news;
@@ -58,22 +69,22 @@ CREATE TABLE `course_news` (
 
 DROP TABLE IF EXISTS customer;
 CREATE TABLE `customer` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL,
   `lastname` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL,
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS customer_course;
 CREATE TABLE `customer_course` (
   `customer_id` int NOT NULL,
   `course_id` int NOT NULL,
   `register` tinyint(1) NOT NULL,
-  KEY `fk_Clients_Stage_client_id` (`customer_id`),
-  KEY `fk_Clients_Stage_stage_id` (`course_id`),
-  CONSTRAINT `fk_Clients_Stage_client_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `fk_Clients_Stage_stage_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
+  KEY `fk_Clients_Course_client_id` (`customer_id`),
+  KEY `fk_Clients_Course_stage_id` (`course_id`),
+  CONSTRAINT `fk_Clients_Course_client_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `fk_Clients_Course_stage_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS customer_lesson;
@@ -81,23 +92,23 @@ CREATE TABLE `customer_lesson` (
   `customer_id` int NOT NULL,
   `lesson_id` int NOT NULL,
   `register` tinyint(1) NOT NULL,
-  KEY `fk_Clients_Cours_client_id` (`customer_id`),
-  KEY `fk_Clients_Cours_cours_id` (`lesson_id`),
-  CONSTRAINT `fk_Clients_Cours_client_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `fk_Clients_Cours_cours_id` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`)
+  KEY `fk_Clients_Lesson_client_id` (`customer_id`),
+  KEY `fk_Clients_Lesson_cours_id` (`lesson_id`),
+  CONSTRAINT `fk_Clients_Lesson_client_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `fk_Clients_Lesson_stage_id` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS equipment;
 CREATE TABLE `equipment` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `desciption` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL,
   `season` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_520_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS lesson;
 CREATE TABLE `lesson` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL,
   `default_price` int NOT NULL,
   `capacity` int NOT NULL,
@@ -109,16 +120,16 @@ CREATE TABLE `lesson` (
   PRIMARY KEY (`id`),
   KEY `fk_Price_id_Lesson_Type` (`default_price`),
   CONSTRAINT `fk_Price_id_Lesson_Type` FOREIGN KEY (`default_price`) REFERENCES `price` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS lesson_equipment;
 CREATE TABLE `lesson_equipment` (
   `lesson_id` int NOT NULL,
   `equipment_id` int NOT NULL,
-  KEY `fk_Cours_Equipment_cours_id` (`lesson_id`),
-  KEY `fk_Cours_Equipment_equipment_id` (`equipment_id`),
-  CONSTRAINT `fk_Cours_Equipment_cours_id` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`),
-  CONSTRAINT `fk_Cours_Equipment_equipment_id` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`)
+  KEY `fk_Lesson_Equipment_cours_id` (`lesson_id`),
+  KEY `fk_Lesson_Equipment_equipment_id` (`equipment_id`),
+  CONSTRAINT `fk_Lesson_Equipment_cours_id` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`),
+  CONSTRAINT `fk_Lesson_Equipment_equipment_id` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS lesson_news;
@@ -133,11 +144,11 @@ CREATE TABLE `lesson_news` (
 
 DROP TABLE IF EXISTS news;
 CREATE TABLE `news` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL,
   `news_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 DROP TABLE IF EXISTS planning;
 CREATE TABLE `planning` (
@@ -176,7 +187,9 @@ CREATE TABLE `shop` (
 
 INSERT INTO admin(id,firstname,lastname,email,password,last_connexion) VALUES(1,'admin_1','admin_1','admin-1@mail.com','admin1','2021-04-20 01:00:00'),(2,'admin_2','admin_2','admin-2@mail.com','admin2','2021-05-13 02:00:00');
 
-INSERT INTO course(id,name,default_price,capacity,start_at,end_at,price,is_active,duration) VALUES(1,'stage_1',1,30,'2021-05-13 01:00:00',NULL,NULL,1,'01:00:00'),(2,'stage_2',2,30,'2021-05-13 00:00:00',NULL,NULL,1,'01:00:00'),(3,'stage_3',3,30,'2021-05-13 00:00:00',NULL,NULL,1,'01:00:00'),(4,'stage_4',3,1,'2021-05-13 04:00:00',NULL,NULL,1,'01:00:00'),(5,'stage_5',3,30,'2021-04-20 05:00:00',NULL,NULL,1,'01:00:00'),(6,'stage_6',3,30,'2021-04-20 06:00:00',NULL,NULL,0,'01:00:00'),(7,'stage_7',3,30000000,'2021-05-13 07:00:00',NULL,NULL,1,'01:00:00'),(8,'stage_8',3,30,'2021-05-13 08:00:00',NULL,1000,1,'01:00:00'),(9,'stage_9',3,30,'2021-05-13 09:00:00','2021-05-14 00:00:00',NULL,1,'01:00:00'),(10,'stage_10',3,30,'2021-05-13 10:00:00','2021-04-20 00:00:00',NULL,1,'01:00:00');
+INSERT INTO contact(id,firstname,lastname,email,subject,message) VALUES(1,'Michel','Céleubrézil','michou@mail.com','don','cadeau de 5 euros');
+
+INSERT INTO course(id,name,default_price,capacity,start_at,end_at,price,is_active,duration) VALUES(1,'stage_1',1,30,'2021-05-13 01:00:01',NULL,NULL,1,'01:00:00'),(2,'stage_2',2,30,'2021-05-13 02:00:01',NULL,NULL,0,'01:00:00'),(3,'stage_3',3,30,'2021-05-13 03:00:01',NULL,NULL,1,'01:00:00'),(4,'stage_4',3,1,'2021-05-13 04:00:01',NULL,NULL,1,'01:00:00'),(5,'stage_5',3,30,'2021-04-20 05:00:01',NULL,NULL,1,'01:00:00'),(6,'stage_6',3,30,'2021-04-20 06:00:01',NULL,NULL,0,'01:00:00'),(7,'stage_7',3,30000000,'2021-05-13 07:00:01',NULL,NULL,1,'01:00:00'),(8,'stage_8',3,30,'2021-05-13 08:00:01',NULL,1000,1,'01:00:00'),(9,'stage_9',3,30,'2021-05-13 09:00:01','2021-05-14 00:00:00',NULL,1,'01:00:00'),(10,'stage_10',3,30,'2021-05-13 10:00:01','2021-04-20 00:00:00',NULL,1,'01:00:00');
 
 INSERT INTO course_equipment(course_id,equipment_id) VALUES(2,2),(3,3),(4,4),(4,5),(5,5);
 
