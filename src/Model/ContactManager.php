@@ -2,9 +2,6 @@
 
 namespace App\Model;
 
-use App\Model\Connection;
-use PDO;
-
 class ContactManager extends AbstractManager
 {
 
@@ -12,7 +9,7 @@ class ContactManager extends AbstractManager
 
 
     /**
-     * Select old news in database
+     * Ajouter les informations de contact issues du formulaire dans la base de données
      */
     public function addContactInfo(array $contactInfos)
     {

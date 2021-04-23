@@ -27,7 +27,7 @@ CREATE TABLE `contact` (
   `lastname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `subject` varchar(100) NOT NULL,
-  `message` varchar(100) NOT NULL,
+  `message` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
