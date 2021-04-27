@@ -7,43 +7,56 @@
 
 {% block stylesheet %}
 	<link rel="stylesheet" href="/assets/css/style.css"> 
-    <link rel="stylesheet" href="/assets/css/style-activity.css"> 
+  <link rel="stylesheet" href="/assets/css/style-activity.css"> 
 	<link rel="stylesheet" href="/assets/css/bootstrap.min.css"> 
 	<link rel="stylesheet" href="/assets/css/bootstrap.min.css.map"> 
-    <link rel="stylesheet" href="../package/swiper-bundle.min.css">
+  <link rel="stylesheet" href="../package/swiper-bundle.min.css">
 
 {% endblock %}
 
 {% block content %}
 
 <body>
-  <!-- Swiper -->
+  <!-- Swiper lessons -->
+
   <div class="swiper-container" id="Cours">
     <div class="swiper-wrapper">
+
         {% for lesson in lessons %}
-            <div class="swiper-slide">{{lesson.name}}
-            <div>{{lesson.capacity}}</div>
+            <div class="swiper-slide shadow p-3 mb-5 bg-light rounded-2 w-5 text-primary" style="width: 30%; height: 90%; margin-right: 30px; margin-top: 2.5%;">
+              {{lesson.name}} </br>
+              {{lesson.capacity}} places restante(s) </br>
+              {{lesson.start_at}}
             </div>
         {% endfor %}
+
     </div>
-    <!-- Add Pagination -->
+    <!-- Swiper lessons Pagination -->
     <div class="swiper-pagination"></div>
   </div>
 
-    <!-- Swiper -->
-  <div class="swiper-container">
-    <div class="swiper-wrapper" id="Stages">
-        {% for course in courses %}
-            <div class="swiper-slide">{{course.name}}
-            </div>
-        {% endfor %}
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-  </div>
 
-    <!-- Swiper -->
-  <div class="swiper-container" id="Formations">
+      <!-- Swiper courses -->
+
+    <div class="swiper-container">
+      <div class="swiper-wrapper" id="Stages">
+    
+          {% for course in courses %}
+              <div class="swiper-slide shadow p-3 mb-5 bg-light rounded-2 w-5 text-primary" style="width: 30%; height: 90%; margin-right: 30px; margin-top: 2.5%;">
+              {{course.name}} </br>
+              {{course.capacity}} places restante(s) </br>
+              {{course.start_at}}
+              </div>
+          {% endfor %}
+
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper des formation, à rajouter quand la Table sera créée -->
+
+  {# <div class="swiper-container" id="Formations">
     <div class="swiper-wrapper">
         {% for formation in formations %}
             <div class="swiper-slide">{{formation}}</div>
@@ -51,12 +64,14 @@
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
-  </div>
+  </div> #}
 
   <!-- Swiper JS -->
     
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
   <!-- Initialize Swiper -->
+
   <script>
     var swiper = new Swiper('.swiper-container', {
       slidesPerView: 4,
@@ -68,6 +83,7 @@
       },
     });
   </script>
+
 </body>
 
 {% endblock %}

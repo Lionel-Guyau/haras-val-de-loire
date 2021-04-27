@@ -31,9 +31,11 @@ class ActivityController extends AbstractController
         $activityManager = new ActivityManager();
         $lessons = $activityManager->selectLessons();
         $courses = $activityManager->selectCourses();
-        // $st = $activityManager->selectLessons();
-        
-        return $this->twig->render('/Activity/activity.html.twig', ['lessons' => $lessons, 'courses' => $courses]);
+
+        return $this->twig->render('/Activity/activity.html.twig', [
+            'lessons' => $lessons, 
+            'courses' => $courses,
+        ]);
     }
 
 
