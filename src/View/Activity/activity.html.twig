@@ -31,39 +31,38 @@
 {% endblock %}
 
 {% block content %}
-  <!-- Swiper lessons -->
-
-  <div class="swiper-container" id="Cours">
-    <div class="swiper-wrapper">
-      {% for lesson in lessons %}
-        <div class="swiper-slide shadow p-3 mb-5 bg-light rounded-2 w-5 text-primary">
-          {{lesson.name}} </br>
-          {{lesson.capacity}} places restante(s) </br>
-          {{lesson.start_at}}
-        </div>
-      {% endfor %}
-    </div>
-
-    <!-- Swiper lessons Pagination -->
-    <div class="swiper-pagination"></div>
-  </div>
 
 
-      <!-- Swiper courses -->
+  <!-- Cards lessons -->
 
-    <div class="swiper-container">
-      <div class="swiper-wrapper" id="Stages">
+  <div id="activity_body" class="d-flex  flex-wrap">
+      <div class="mt-3 mb-5 col-12 d-flex flex-wrap justify-content-around">
+        {% for lesson in lessons %}
+          <div class="card shadow col-md-4 col-lg-3 col-8 m-3 p-3 bg-white rounded-2 w-5 text-primary d-flex " style="align-items: center;">
+            <img class="card-img-top"
+            src="/recup_photos/Capture d’écran 2021-04-13 191525.png" 
+            alt="Photo cours">
+            <p> {{lesson.name}}<p>
+            <p> {{lesson.capacity}} places restante(s)</p>
+            <p> {{lesson.start_at}}</p>
+          </div>
+        {% endfor %}
+      </div>
+  
+        <!-- Cards courses -->
+
+    <div class="mt-3 mb-5 col-12 d-flex flex-wrap justify-content-around">
         {% for course in courses %}
-            <div class="swiper-slide shadow p-3 mb-5 bg-light rounded-2 w-5 text-primary" style="width: 30%; height: 90%; margin-right: 30px; margin-top: 2.5%;">
-              {{course.name}} </br>
-              {{course.capacity}} places restante(s) </br>
-              {{course.start_at}}
+            <div class="card shadow col-3 m-3 p-3 bg-light rounded-2 w-5 text-primary d-flex" style="align-items: center;">
+            <img class="card-img-top"
+              src="/recup_photos/etho3.png" 
+              alt="Photo cours">
+              <p> {{course.name}} </p>
+              <p> {{course.capacity}} places restante(s) </p>
+              <p> {{course.start_at}} </p>
             </div>
         {% endfor %}
       </div>
-
-      <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
     </div>
 
     <!-- Swiper des formation, à rajouter quand la Table sera créée -->
@@ -75,7 +74,8 @@
         {% endfor %}
     </div>
     <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-  </div> #}
+    <div class="swiper-pagination"></div>  #}
+  </div>
+
 {% endblock %}
 

@@ -37,3 +37,7 @@ body {
   -webkit-align-items: center;
   align-items: center;
 }
+
+#activity_body{
+  background-image: url("/recup_photos/horses-5896935_1920.jpg")
+}
