@@ -16,14 +16,14 @@ class ActivityManager extends AbstractManager
 
     public function selectLessons()
     {
-        $query = "SELECT lesson.name, lesson.capacity, lesson.start_at FROM lesson";
+        $query = "SELECT name, capacity, start_at FROM lesson";
 
         return $this->pdo->query($query)->fetchAll();
     }
 
     public function selectCourses()
     {
-        $query = "SELECT course.name FROM course";
+        $query = "SELECT name, capacity, start_at FROM course";
 
         return $this->pdo->query($query)->fetchAll();
     }
