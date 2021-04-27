@@ -16,7 +16,7 @@ class AdminManager extends AbstractManager
      */
     public function selectNews()
     {
-        $query = "SELECT * FROM " . static::TABLE . " ORDER BY news.news_date DESC";
+        $query = "SELECT * FROM " . static::TABLE . " ORDER BY news.id DESC";
 
         return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }

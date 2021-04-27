@@ -9,6 +9,8 @@
 
 namespace App\Controller;
 
+use App\Controller\Calendar\Calendar;
+
 class ActivityController extends AbstractController
 {
     /**
@@ -22,6 +24,8 @@ class ActivityController extends AbstractController
 
     public function index()
     {
-        return $this->twig->render('/Activity/activity.html.twig');
+        $calendarInfo = Calendar::getCalendarInfo();
+
+        return $this->twig->render('/Activity/activity.html.twig', ['calendarInfo' => $calendarInfo]);
     }
 }
