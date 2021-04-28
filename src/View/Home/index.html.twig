@@ -155,9 +155,9 @@
 							{% set difference = date('now').diff(date(event.startingDate)) %}
 							{% set places = event.nb_register == event.capacity ? "Complet" : "Places " ~ event.nb_register ~ "/" ~ event.capacity %}
 							{% if difference.days > 0 %}
-								{{event.type}} {{ event.name }} dans {{ difference.days }} j - {{ places }}
+								{{ event.description }} dans {{ difference.days }} j - {{ places }}
 							{% else %}
-								{{ event.name }} dans {{ difference.h }}h - {{ places }}
+								{{ event.description }} dans {{ difference.h }}h - {{ places }}
 							{% endif %}
 						</p>
 					</a>

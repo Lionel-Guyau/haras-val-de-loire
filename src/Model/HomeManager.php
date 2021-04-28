@@ -24,8 +24,8 @@ class HomeManager extends AbstractManager
     public function selectLastEvents()
     {
         $query =
-            "SELECT activity.id as id,
-                activity.name AS name, 
+            "SELECT activity.id AS id,
+                planning.description AS description, 
                 activity.type AS type,
                 planning.start_at AS startingDate,
                 COUNT(customer_planning.customer_id) AS nb_register,

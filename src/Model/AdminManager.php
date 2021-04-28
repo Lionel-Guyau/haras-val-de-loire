@@ -10,6 +10,7 @@ class AdminManager extends AbstractManager
 
     public const TABLE_NEWS = 'news';
     public const TABLE_ACTIVITY = 'activity';
+    public const TABLE_PLANNING = 'planning';
 
     /**
      * Select last news in database
@@ -64,7 +65,17 @@ class AdminManager extends AbstractManager
      */
     public function selectActivity()
     {
-        $query = "SELECT * FROM " . static::TABLE_ACTIVITY . " ORDER BY name ASC";
+        $query =
+                "SELECT 
+                    activity.type,
+                    activity.name,
+                    activity.capacity,
+                    activity.price,
+                    equipment.desciption 
+                FROM ((activity_equipment
+                    INNER JOIN activity ON activity_equipment.activity_id = activity.id
+                    INNER JOIN equipment ON activity_equipment.equipment_id = equipment.id))
+                ORDER BY activity.type";
 
         return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -72,13 +83,8 @@ class AdminManager extends AbstractManager
     /**
      * Insert Activity in database
      */
-    public function insertActivity(string $name)
+    public function insertActivity(string $type, int $capacity, int $price)
     {
-        $query = $this->pdo->prepare("
-        INSERT INTO " . static::TABLE_ACTIVITY . " (`name`,`start_at`) 
-        VALUES (:start_at, NOW())");
-        $query->bindValue(':name', $name);
-
-        $query->execute();
+        
     }
 }
