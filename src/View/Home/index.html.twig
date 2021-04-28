@@ -93,7 +93,7 @@
 								my-2 mx-3
 								text-responsive-p">
 							{{ news.description }}
-							{# {{ news }} #}
+							{# {{ news }} #} 
 						</p>
 					{% else %}
 						<p>Pas de news</p>
@@ -148,17 +148,16 @@
 							align-items-center
 							mx-auto my-2 my-md-3"
 						{# A modifier quand lié avec le back #}
-						href="/activity/{{ event.type }}/?id={{ event.id }}">
+						href="/activity/register?id={{ event.id }}">
 						<p class="text-center
 								text-responsive-p
 								py-1">
-							{# Penser à récupérer des events pas encore passées #}
-							{# type id name start_at nb_register capacity #}
-							{% set difference = date('now').diff(date(event.start_at)) %}
+							{% set difference = date('now').diff(date(event.startingDate)) %}
+							{% set places = event.nb_register == event.capacity ? "Complet" : "Places " ~ event.nb_register ~ "/" ~ event.capacity %}
 							{% if difference.days > 0 %}
-								{{ event.name }} dans {{ difference.days }} j - Places {{ event.nb_register }}/{{ event.capacity }}
+								{{event.type}} {{ event.name }} dans {{ difference.days }} j - {{ places }}
 							{% else %}
-								{{ event.name }} dans {{ difference.h }}h - Places {{ event.nb_register }}/{{ event.capacity }}
+								{{ event.name }} dans {{ difference.h }}h - {{ places }}
 							{% endif %}
 						</p>
 					</a>
