@@ -8,7 +8,7 @@ class ActivityManager extends AbstractManager
 
     // public const LESSON_TABLE = 'lesson';
     // public const COURSE_TABLE = 'course';
-    public const TABLE = 'lesson';
+    public const TABLE = 'activity';
 
     /**
      * Ajouter les informations de contact issues du formulaire dans la base de données
@@ -16,7 +16,7 @@ class ActivityManager extends AbstractManager
 
     public function selectLessons()
     {
-        $query = "SELECT name, capacity, start_at FROM lesson";
+        $query = "SELECT name, capacity, start_at FROM activity";
 
         return $this->pdo->query($query)->fetchAll();
     }
@@ -27,7 +27,7 @@ class ActivityManager extends AbstractManager
 
         return $this->pdo->query($query)->fetchAll();
     }
-    
+
     public function selectLastEvents()
     {
         $query =
@@ -55,6 +55,13 @@ class ActivityManager extends AbstractManager
             GROUP BY customer_course.course_id
         
         ORDER BY start_at ASC LIMIT 3";
+
+        return $this->pdo->query($query)->fetchAll();
+    }
+
+    public function getAllActivities()
+    {
+        $query = "SELECT * FROM activity";
 
         return $this->pdo->query($query)->fetchAll();
     }

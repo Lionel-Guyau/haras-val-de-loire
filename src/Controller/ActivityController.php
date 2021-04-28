@@ -30,6 +30,14 @@ class ActivityController extends AbstractController
         return $this->twig->render('/Activity/activity.html.twig');
     }
 
+    public function register()
+    {
+        $activity = new ActivityManager();
+        $activityType = $activity->getAllActivities();
+
+        return $this->twig->render('/Activity/register.html.twig', ['activityType' => $activityType]);
+    }
+
 
     public function showActivity()
     {
