@@ -10,47 +10,26 @@
 namespace App\Controller;
 
 use App\Model\AdminManager;
+use App\Service\AuthService;
 
 class AdminController extends AbstractController
 {
+    // On appelle le construct parent et on initialise la class AuthService et la méthode checkSession
+    // checkSession : Si pas connecté, on redirige vers /login
+    // Cela permet de sécuriser les méthodes afin d'éviter d'y accéder depuis l'URL
+
+    public function __construct()
+    {
+        parent::__construct();
+        (new AuthService())->checkSession();
+    }
+
     /**
      * Display home page
-     *
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-
     public function index()
     {
         return $this->twig->render('/Admin/admin.html.twig');
-    }
-
-    public function controlDataPost($input): bool
-    {
-        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-            if (!empty($input)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function controlDataGet(string $input): bool
-    {
-        if ($_SERVER["REQUEST_METHOD"] === 'GET') {
-            if (!empty($input)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function sanitizeInput($data)
-    {
-        $data = trim($data);
-        return $data;
     }
 
     public function news()
@@ -72,6 +51,7 @@ class AdminController extends AbstractController
                 $adminManager->insertNews($description);
             }
         }
+
         header('Location: /admin/news');
     }
 
@@ -81,15 +61,18 @@ class AdminController extends AbstractController
 
         if ($this->controlDataGet($_GET['id'])) {
             $id = $this->sanitizeInput($_GET['id']);
+
             if (filter_var($id, FILTER_VALIDATE_INT)) {
                 $adminManager->deleteNews($id);
             }
-            header('Location: /admin/news');
         }
+
+        header('Location: /admin/news');
     }
 
     public function majNews()
     {
+
         $adminManager = new AdminManager();
 
         if ($this->controlDataPost($_POST['description']) && $this->controlDataPost($_POST['id'])) {
@@ -100,6 +83,33 @@ class AdminController extends AbstractController
                 $adminManager->updateNews($id, $description);
             }
         }
+
         header('Location: /admin/news');
+    }
+
+    private function controlDataPost($input): bool
+    {
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            if (!empty($input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function controlDataGet(string $input): bool
+    {
+        if ($_SERVER["REQUEST_METHOD"] === 'GET') {
+            if (!empty($input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function sanitizeInput($data)
+    {
+        $data = trim($data);
+        return $data;
     }
 }
