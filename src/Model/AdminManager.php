@@ -16,7 +16,7 @@ class AdminManager extends AbstractManager
      */
     public function selectNews()
     {
-        $query = "SELECT * FROM " . static::TABLE . " ORDER BY news.news_date DESC";
+        $query = "SELECT * FROM " . static::TABLE . " ORDER BY news_date DESC";
 
         return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -40,7 +40,7 @@ class AdminManager extends AbstractManager
      */
     public function deleteNews(int $id): void
     {
-        $query = $this->pdo->prepare("DELETE FROM " . static::TABLE . " WHERE news.id = :id");
+        $query = $this->pdo->prepare("DELETE FROM " . static::TABLE . " WHERE id = :id");
         $query->bindValue(':id', $id, \PDO::PARAM_INT);
 
         $query->execute();
@@ -51,7 +51,8 @@ class AdminManager extends AbstractManager
      */
     public function updateNews(int $id, string $description): void
     {
-        $query = $this->pdo->prepare("UPDATE " . static::TABLE . " SET description = :description WHERE id = :id");
+        $query = $this->pdo->prepare("UPDATE " . static::TABLE . " 
+        SET description = :description, news_date = now() WHERE id = :id");
         $query->bindValue(':id', $id, \PDO::PARAM_INT);
         $query->bindValue(':description', $description);
         $query->execute();
