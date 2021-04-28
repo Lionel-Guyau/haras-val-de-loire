@@ -10,6 +10,7 @@
 namespace App\Controller;
 
 use App\Model\AdminManager;
+use App\Service\AuthService;
 
 class AdminController extends AbstractController
 {
@@ -21,6 +22,15 @@ class AdminController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
+
+    // On appelle le construct parent et on initialise la class AuthService et la méthode checkSession
+    // checkSession : Si pas connecté, on redirige vers /login
+    // Cela permet de sécuriser les méthodes afin d'éviter d'y accéder depuis l'URL
+    public function __construct()
+    {
+        parent::__construct();
+        (new AuthService())->checkSession();
+    }
 
     public function index()
     {
