@@ -9,6 +9,11 @@
 
 namespace App\Controller;
 
+use App\Model\Connection;
+use PDO;
+
+use App\Model\ActivityManager;
+
 class ActivityController extends AbstractController
 {
     /**
@@ -20,8 +25,18 @@ class ActivityController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
-    public function index()
+
+    public function showActivity()
     {
-        return $this->twig->render('/Activity/activity.html.twig');
+        $activityManager = new ActivityManager();
+        $lessons = $activityManager->selectLessons();
+        $courses = $activityManager->selectCourses();
+
+        return $this->twig->render('/Activity/activity.html.twig', [
+            'lessons' => $lessons, 
+            'courses' => $courses,
+        ]);
     }
+
+
 }
