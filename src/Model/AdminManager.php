@@ -85,6 +85,8 @@ class AdminManager extends AbstractManager
      */
     public function insertActivity(string $type, int $capacity, int $price)
     {
-        
+        $type = '0';
+        $capacity = 0;
+        $price = 0;
     }
 }
