@@ -1,0 +1,27 @@
+.calendar__table {
+    width: 100%;
+    height: calc(80vh - 94px - 50px);
+}
+
+.calendar__table td {
+    border: 1px solid #CCC;
+    padding: 5px;
+    vertical-align: top;
+    width: calc(100% / 7);
+    /* height: calc(100% / 5); */
+    height: calc(100% / 6);
+    font-size: 0.8em;
+}
+
+.calendar__weekday {
+    font-weight: bold;
+    color: #000;
+}
+
+.calendar__othermonth .calendar__day {
+    opacity: 0.3;
+}
+
+.calendar__event {
+    margin: 1px 0;
+}

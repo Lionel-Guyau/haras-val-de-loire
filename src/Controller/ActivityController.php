@@ -10,6 +10,7 @@
 namespace App\Controller;
 
 use App\Controller\Calendar\Calendar;
+use App\Model\Calendar\Events;
 
 class ActivityController extends AbstractController
 {
@@ -22,10 +23,27 @@ class ActivityController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
+    /**
+     * Page par défault lors de l'arrivée sur xxx/activity
+     */
     public function index()
     {
-        $calendarInfo = Calendar::getCalendarInfo();
+        $calendarInfo = new Calendar();
+        $calendarInfo = $calendarInfo->getCalendarInfo();
 
-        return $this->twig->render('/Activity/activity.html.twig', ['calendarInfo' => $calendarInfo]);
+        $events = new Events();
+        $start = $calendarInfo['firstDay'];
+        $end = (clone $start)->modify("+" . ($calendarInfo['weeks'] * 7 - 1) . " days");
+
+        $eventsForDays = $events->getEventsBetweenByDay($start, $end);
+
+
+        return $this->twig->render(
+            '/Activity/activity.html.twig',
+            [
+                'calendarInfo' => $calendarInfo,
+                'eventsForDays' => $eventsForDays
+            ]
+        );
     }
 }
