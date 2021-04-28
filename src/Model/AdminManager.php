@@ -51,7 +51,8 @@ class AdminManager extends AbstractManager
      */
     public function updateNews(int $id, string $description): void
     {
-        $query = $this->pdo->prepare("UPDATE " . static::TABLE . " SET description = :description, news_date = now() WHERE id = :id");
+        $query = $this->pdo->prepare("UPDATE " . static::TABLE . " 
+        SET description = :description, news_date = now() WHERE id = :id");
         $query->bindValue(':id', $id, \PDO::PARAM_INT);
         $query->bindValue(':description', $description);
         $query->execute();

@@ -17,7 +17,6 @@ class AuthService
     {
         if (!$this->isLogged()) {
             header('Location: /login');
-            exit;
         }
     }
 

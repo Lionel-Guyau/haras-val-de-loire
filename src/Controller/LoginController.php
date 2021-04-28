@@ -32,22 +32,19 @@ class LoginController extends AbstractController
             header('Location: /');
         }
 
-        // Si les champs du formulaire ne sont pas vides, on appelle la class LoginManager pour 
-        // requêter en BDD et retourner l'utilisateur. 
+        // Si les champs du formulaire ne sont pas vides, on appelle la class LoginManager pour
+        // requêter en BDD et retourner l'utilisateur.
         if (!empty($_POST['email']) && !empty($_POST['pass'])) {
-
             $loginManager = new LoginManager();
             $user = $loginManager->connectAdminUser($_POST['email']);
 
             // On vérifie que l'utilisateur en BDD et le mdp haché soit identique aux saisies des champs du formulaire.
             if (!empty($user) && password_verify($_POST['pass'], $user['password'])) {
-
                 // Si c'est vérifié, alors on enregistre le user en session
                 $_SESSION['user'] = $user;
 
                 // Et on redirige vers admin
                 header('Location: /admin');
-                exit;
             } else {
                 // Sinon on affiche le message d'erreur
                 $error = 'Utilisateur ou mot de passe incorrect !';
