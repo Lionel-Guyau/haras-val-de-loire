@@ -32,7 +32,6 @@ class ActivityController extends AbstractController
 
     public function register()
     {
-<<<<<<< HEAD
         $activity = new ActivityManager();
         $activityType = $activity->getAllActivities();
 
@@ -50,8 +49,6 @@ class ActivityController extends AbstractController
             'lessons' => $lessons,
             'courses' => $courses,
         ]);
-=======
         return $this->twig->render('/Activity/register.html.twig');
->>>>>>> 3a367b64de7c844084f24c09dad5d2d4b01c2d64
     }
 }

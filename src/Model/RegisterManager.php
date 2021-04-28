@@ -5,13 +5,13 @@ namespace App\Model;
 class RegisterManager extends AbstractManager
 {
 
-    public const TABLE = 'contact';
+    public const TABLE = 'activity';
 
 
     /**
      * Ajouter les informations de contact issues du formulaire dans la base de données
      */
-    public function addContactInfo(array $contactInfos)
+    public function showActivity(array $contactInfos)
     {
         $query = "INSERT INTO contact (`firstname`, `lastname`, `email`, `subject`, `message`) 
                 VALUES (:firstname, :lastname, :email, :subject, :message)";
