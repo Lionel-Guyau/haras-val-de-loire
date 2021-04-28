@@ -1,0 +1,90 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+	<section class="ftco-section bg-info">
+		<div class="container">
+			<div class="row justify-content-center"></div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-7">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="form col-md-12">
+								<div class="contact-wrap form-box w-100 p-md-5 p-4">
+									<h1 class=" contactus mb-4 text-center text-secondary">Inscription</h1>
+
+									<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img src="..." class="d-block w-100" alt="...">
+											</div>
+											<div class="carousel-item">
+												<img src="..." class="d-block w-100" alt="...">
+											</div>
+											<div class="carousel-item">
+												<img src="..." class="d-block w-100" alt="...">
+											</div>
+										</div>
+										<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+										<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
+									</div>
+
+									<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="/contact/add">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="label" for="firstname"></label>
+													<input type="text" class="form-control" name="firstname" id="firstname" placeholder="Prénom" required>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="label" for="lastname"></label>
+													<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Nom" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="label" for="email"></label>
+													<input type="email" class="form-control" name="email" id="email" placeholder="Adresse email" required>
+												</div>
+											</div>
+
+											<div class="col-md-12 my-4">
+												<div class="form-group">
+													<select class="form-select" aria-label="Default select example">
+														<option selected>Choisissez votre activité</option>
+														<option value="1">One</option>
+														<option value="2">Two</option>
+														<option value="3">Three</option>
+														<option value="3">Viva l'Algérie</option>
+													</select>
+												</div>
+											</div>
+
+											<div class="col-md-12">
+												<div class="form-group text-center">
+													<input type="submit" value="Envoyer" class="mt-5 btn btn-primary">
+													<div class="submitting"></div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-5 d-flex align-items-stretch">
+								<div class="info-wrap w-100 p-5 img"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

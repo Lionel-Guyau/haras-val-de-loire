@@ -25,6 +25,11 @@ class ActivityController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
+    public function index()
+    {
+        return $this->twig->render('/Activity/activity.html.twig');
+    }
+
 
     public function showActivity()
     {
