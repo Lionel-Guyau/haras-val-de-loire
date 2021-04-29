@@ -1,37 +1,70 @@
 {% extends 'layout.html.twig' %}
 
+{% block javascript %}
+	<script>
+		document.querySelector('[name="activity"]').addEventListener('change', e => {
+			document.location = '/activity/register?activity=' + e.currentTarget.value;
+		})
+	</script>
+{% endblock %}
+
 {% block content %}
 
 	<h1 class=" inscription my-3 text-center text-secondary">Inscription</h1>
-	<h4 class="text-primary mx-4 fs-5 my-4" style="text-align:center">Ce poney-club, proche d'Orléans, met à la disposition de vos enfants une cavalerie adaptée à leur niveau ainsi que des installations qui leur permettront de pratiquer l’équitation en toute sécurité.</h4>
+	<p class="text-primary mx-4 fs-5 my-4" style="text-align:center">Ce poney-club, proche d'Orléans, met à la disposition de vos enfants une cavalerie adaptée à leur niveau ainsi que des installations qui leur permettront de pratiquer l’équitation en toute sécurité.</p>
+	<p class="text-primary mx-4 fs-5 my-4" style="text-align:center">Les plus jeunes pourront apprendre à monter tout en s'amusant, d'abord avec de petits poneys, bien à leur taille, puis sur des montures plus grandes.</p>
+	<p class="text-primary mx-4 fs-5 my-5" style="text-align:center">Choisissez une activité à laquelle vous souhaitez vous inscrire</p>
 
-	<div class="card-container">
+	<div class="" style="text-align:center">
 
-		<div class="card-group d-flex flex-wrap justify-content-evenly" style="text-align:center">
-
+		<div class="row justify-content-evenly">
 			{% for activity in activityType %}
-
-				<div class="card col-5 col-md-8 col-lg-8">
-
-					<img src="/recup_photos/etho2.png">
-
-					<div class="card-body bg-primary text-light">
-						<p>{{activity.type}}</p>
-						<p>Tarif : {{activity.price}} €</p>
-						<p>Nombre de places total : {{activity.capacity}}</p>
+				<div class="col-sm-2 mx-5 mb-3">	
+					<div class="card">
+						<img src="/recup_photos/pexels-alexander-dummer-1364073.jpg">
+						<div class="card-body bg-primary text-light">
+							<p class="text-capitalize">{{activity.type}}</p>
+							<p>Tarif : {{activity.price}} €</p>
+							<p>Nombre de places total : {{activity.capacity}}</p>
+						</div>
 					</div>
-
 				</div>
-
 			{% endfor %}
-
 		</div>
 
 	</div>
 
+
 	<div class="container col-11 col-lg-5">
 		<form method="POST" id="contactForm" name="contactForm" class="contactForm" action="/contact/add">
 			<div class="row">
+
+				<div class="col-md-12 my-4">
+					<div class="form-group">
+						<select id="select-activity" name="activity" class="form-select" aria-label="Default select example">
+							<option selected>Choisissez votre type d'activité</option>
+							{% for activity in activityType %}
+								<option value="{{ activity.id }}" {% if selectedActivity and selectedActivity == activity.id %} selected{% endif %}>
+									{{ activity.type }}
+								</option>
+							{% endfor %}
+						</select>
+					</div>
+				</div>
+
+				{% if planning is not empty %}
+					<div class="col-md-12 my-4">
+						<div class="form-group">
+							<select class="form-select" aria-label="Default select example">
+								<option selected>Choisissez votre date</option>
+								{% for date in planning %}
+									<option value="{{ date.id }}">{{ date.start_at|format('d/m/Y') }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+				{% endif %}
+				
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="label" for="firstname"></label>
@@ -51,45 +84,6 @@
 					</div>
 				</div>
 
-				<div class="col-md-12 my-4">
-					<div class="form-group">
-						<select id="select-activity" class="form-select" aria-label="Default select example">
-							<option selected>Choisissez votre type d'activité</option>
-							{% for activity in activityType %}
-								<option value="{{ activity.id }}">{{ activity.type }}</option>
-							{% endfor %}
-						</select>
-					</div>
-				</div>
-
-				<div class="col-md-12 my-4">
-					<div class="form-group">
-					
-						{% for activity in plannedActivityOrdered %}
-						<pre>
-{{ dump(activity)}}
-					</pre>
-							<select id="select-activity-date-{{ activity.id }}" class="form-select" aria-label="Default select example">
-								{# <option selected>Choisissez votre date</option> #}
-								<option selected>{{ activity.id }}</option>
-								{% for date in activity|keys %}
-									<option value="1">{{ date }}</option>
-								{% endfor %}
-							</select>
-
-							{% for date in activity|keys %}
-								<select id="select-activity-hour-{{ activity.id }}-{{ date }}" class="form-select" aria-label="Default select example">
-									{# <option selected>Choisissez votre horaire</option> #}
-									<option selected>{{ activity.id }} - {{ date }}</option>
-									{% for hour in activity[date] %}
-										<option value="1">{{hour.start_at}}</option>
-									{% endfor %}
-								</select>
-							{% endfor %}
-						{% endfor %}
-					</div>
-				</div>
-
 				<div class="col-md-12">
 					<div class="form-group text-center">
 						<input type="submit" value="Envoyer" class="mt-5 btn btn-primary">
@@ -102,4 +96,9 @@
 			<div class="info-wrap w-100 p-5 img"></div>
 		</div>
 	</div>
+
+		
+
+
+	
 {% endblock %}

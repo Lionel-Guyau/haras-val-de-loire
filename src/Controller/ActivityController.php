@@ -10,6 +10,7 @@
 namespace App\Controller;
 
 use App\Model\ActivityManager;
+use App\Model\PlanningManager;
 
 class ActivityController extends AbstractController
 {
@@ -35,10 +36,13 @@ class ActivityController extends AbstractController
         $activityType = $activity->selectActivity();
         $plannedActivity = $activity->selectPlannedActivity();
         $plannedActivityOrdered = $this->orderingActivitiesByType($plannedActivity);
+        $planning = isset($_GET['activity']) ? (new PlanningManager())->selectByActivity($_GET['activity']) : [];
 
         return $this->twig->render('/Activity/register.html.twig', [
             'activityType' => $activityType,
-            'plannedActivityOrdered' => $plannedActivityOrdered
+            'plannedActivityOrdered' => $plannedActivityOrdered,
+            'selectedActivity' => isset($_GET['activity']) ? $_GET['activity'] : null,
+            'planning' => $planning,
         ]);
     }
 
