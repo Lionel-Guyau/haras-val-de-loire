@@ -36,14 +36,14 @@ class ActivityController extends AbstractController
         $start = $calendarInfo['firstDay'];
         $end = (clone $start)->modify("+" . ($calendarInfo['weeks'] * 7 - 1) . " days");
 
-        $eventsForDays = $events->getEventsBetweenByDay($start, $end);
+        $eventsByDays = $events->getEventsBetweenByDay($start, $end);
 
 
         return $this->twig->render(
             '/Activity/activity.html.twig',
             [
                 'calendarInfo' => $calendarInfo,
-                'eventsForDays' => $eventsForDays
+                'eventsByDays' => $eventsByDays
             ]
         );
     }
