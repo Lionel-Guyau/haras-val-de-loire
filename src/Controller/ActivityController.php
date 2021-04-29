@@ -10,7 +10,6 @@
 namespace App\Controller;
 
 use App\Controller\Calendar\Calendar;
-use App\Model\Calendar\Events;
 use App\Model\ActivityManager;
 
 class ActivityController extends AbstractController
@@ -29,14 +28,13 @@ class ActivityController extends AbstractController
      */
     public function index()
     {
-        $calendarInfo = new Calendar();
-        $calendarInfo = $calendarInfo->getCalendarInfo();
+        $calendar = new Calendar();
+        $calendarInfo = $calendar->getCalendarInfo();
 
-        $events = new Events();
         $start = $calendarInfo['firstDay'];
         $end = (clone $start)->modify("+" . ($calendarInfo['weeks'] * 7 - 1) . " days");
 
-        $eventsByDays = $events->getEventsBetweenByDay($start, $end);
+        $eventsByDays = $calendar->getEventsBetweenByDay($start, $end);
 
 
         return $this->twig->render(

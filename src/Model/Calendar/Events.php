@@ -36,26 +36,4 @@ class Events extends AbstractManager
 
         return $this->pdo->query($query)->fetchAll();
     }
-
-    /**
-     * Récupère les évènements commançant entre 2 dates par jour
-     * @param \DateTime $start
-     * @param \DateTime $end
-     * @return array
-     */
-    public function getEventsBetweenByDay(DateTime $start, DateTime $end): array
-    {
-        $events = $this->getEventsBetween($start, $end);
-        $days = [];
-        foreach ($events as $event) {
-            $date = explode(' ', $event['start_at'])[0];
-            if (!isset($days[$date])) {
-                $days[$date] = [$event];
-            } else {
-                $days[$date][] = $event;
-            }
-        }
-
-        return $days;
-    }
 }

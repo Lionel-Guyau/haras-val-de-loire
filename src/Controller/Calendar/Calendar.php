@@ -10,6 +10,7 @@
 namespace App\Controller\Calendar;
 
 use App\Controller\Calendar\Month;
+use App\Model\Calendar\Events;
 use DateTime;
 
 class Calendar
@@ -58,5 +59,28 @@ class Calendar
             'nextYear' => (clone $actualMonth)->modify('+1 month')->format('Y'),
             'previousYear' => (clone $actualMonth)->modify('-1 month')->format('Y')
         ];
+    }
+
+    /**
+     * Récupère les évènements commançant entre 2 dates par jour
+     * @param \DateTime $start
+     * @param \DateTime $end
+     * @return array
+     */
+    public function getEventsBetweenByDay(DateTime $start, DateTime $end): array
+    {
+        $events = new Events();
+        $eventsBetween = $events->getEventsBetween($start, $end);
+        $days = [];
+        foreach ($eventsBetween as $event) {
+            $date = explode(' ', $event['start_at'])[0];
+            if (!isset($days[$date])) {
+                $days[$date] = [$event];
+            } else {
+                $days[$date][] = $event;
+            }
+        }
+
+        return $days;
     }
 }
