@@ -5,11 +5,11 @@
 	<h1 class=" contactus mb-4 text-center text-secondary">Inscription</h1>
 	<div class="card-container col-12">
 		<div class="card-group col-6">
-			{% for type in activityType %}
+			{% for activity in activityType %}
 				<div class="card col-4">
 					<img src="/recup_photos/etho2.png">
 					<div class="card-body bg-danger">
-						{{type.type}}
+						{{activity.type}}
 					</div>
 				</div>
 			{% endfor %}
@@ -41,11 +41,27 @@
 				<div class="col-md-12 my-4">
 					<div class="form-group">
 						<select class="form-select" aria-label="Default select example">
-							<option selected>Choisissez votre activité</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-							<option value="3">Viva l'Algérie</option>
+							<option selected>Choisissez votre type d'activité</option>
+							{% for activity in activityType %}
+								<option value="1">{{activity.type}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				</div>
+
+				<div class="col-md-12 my-4">
+					<div class="form-group">
+					
+						{{ dump(plannedActivity) }}
+						
+						{% set plannedActivities = plannedActivity[0].type%}
+						{{dump(plannedActivities)}}
+					
+						<select class="form-select" aria-label="Default select example">
+							<option selected>Choisissez votre date</option>
+							{% for plannedActivities in plannedActivity %}
+								<option value="1">{{plannedActivities['baby-poney'].type}}</option>
+							{% endfor %}
 						</select>
 					</div>
 				</div>

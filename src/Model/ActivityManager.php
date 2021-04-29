@@ -15,14 +15,30 @@ class ActivityManager extends AbstractManager
      * Récupère les activités avec leurs dates
      * @return array
      */
-    public function selectActivity(): array
+    public function selectPlannedActivity(): array
     {
         $query =
                 "SELECT activity.type, 
-                        activity.capacity, 
-                        planning.start_at 
+                        planning.start_at,
+                        activity.capacity,
+                        COUNT(customer_planning.customer_id) AS nb_register
                 FROM activity
-                    INNER JOIN planning ON activity.id = planning.activity_id";
+                    INNER JOIN planning ON activity.id = planning.activity_id
+                    INNER JOIN customer_planning ON planning.id = customer_planning.planning_id
+                WHERE customer_planning.register=1 AND planning.start_at >= now()
+                GROUP BY planning.id
+                ORDER BY activity.type, planning.start_at ASC";
+
+        return $this->pdo->query($query)->fetchAll();
+    }
+
+    /**
+     * Recupère chaque type d'activités
+     */
+    public function selectActivity(): array
+    {
+        $query =
+                "SELECT activity.type FROM activity";
 
         return $this->pdo->query($query)->fetchAll();
     }
@@ -50,3 +66,26 @@ class ActivityManager extends AbstractManager
         return $this->pdo->query($query)->fetchAll();
     }
 }
+
+// ----------
+
+// [0] => ['type' => 'Baby-poney',
+//         'capacity' => '30',
+//         'start_at' => '2021-04-21 00:00:00'],
+// [1] => ['type' => 'Baby-poney',
+//         'capacity' => '30',
+//         'start_at' => '2021-04-22 00:00:00'],
+// [2] => ['type' => 'Eveil-poney',
+//         'capacity' => '30',
+//         'start_at' => '2021-04-23 00:00:00']
+
+// // ---------------
+
+// ['baby-poney'] =>   [ '2021-04-21' =>  [  'capacity' => 30,
+//                                         'nb_register' => 12],
+//                     '2021-04-22' =>  [  'capacity' => 30,
+//                                         'nb_register' => 12]
+//                     ],
+// ['Eveil-poney'] =>  [ '2021-04-21' =>  [  'capacity' => 30,
+//                                         'nb_register' => 12]
+//                     ]
