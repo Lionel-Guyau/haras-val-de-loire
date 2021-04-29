@@ -9,9 +9,6 @@
 
 namespace App\Controller;
 
-use App\Model\Connection;
-use PDO;
-
 use App\Model\ActivityManager;
 
 class ActivityController extends AbstractController
@@ -33,7 +30,7 @@ class ActivityController extends AbstractController
     public function register()
     {
         $activity = new ActivityManager();
-        $activityType = $activity->getAllActivities();
+        $activityType = $activity->selectActivity();
 
         return $this->twig->render('/Activity/register.html.twig', ['activityType' => $activityType]);
     }
@@ -42,12 +39,10 @@ class ActivityController extends AbstractController
     public function showActivity()
     {
         $activityManager = new ActivityManager();
-        $lessons = $activityManager->selectLessons();
-        $courses = $activityManager->selectCourses();
+        $activities = $activityManager->selectActivity();
 
         return $this->twig->render('/Activity/activity.html.twig', [
-            'lessons' => $lessons,
-            'courses' => $courses,
+            'activities' => $activities,
         ]);
         return $this->twig->render('/Activity/register.html.twig');
     }
