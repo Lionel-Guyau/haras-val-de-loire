@@ -6,12 +6,20 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 
-			<div class="mb-3 modal-body d-flex flex-column">
+			<div class="modal-body d-flex flex-wrap">
 				{% for event in eventsForDay %}
 
-					<a href="/activity?id={{event.id}}" class="btn btn-sm btn-secondary m-1 calendar__event" name="name">
-						{{event.name}}
-					</a>
+					{% if eventsForDay|length == 1 %}
+
+						<a href="/activity/register?id={{event.id}}" class="selector btn btn-sm col-12 py-2 {{"calendar__" ~ event.type}}">
+							{{event.type}}
+						</a>
+					{% else %}
+
+						<a href="/activity/register?id={{event.id}}" class="selector btn btn-sm col-6 py-2 {{"calendar__" ~ event.type}}">
+							{{event.type}}
+						</a>
+					{% endif %}
 
 				{% endfor %}
 			</div>

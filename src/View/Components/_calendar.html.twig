@@ -1,15 +1,9 @@
 
 <div class="calendar">
-	<div class="d-flex flex-row align-items-center justify-content-between my-2 mx-3">
-		<h1 style="height: 50px;" class="m-0 py-1">
-			{{ calendarInfo.selectedMonthYear }}
-		</h1>
-
-		<div>
-			<a href="/activity?month={{calendarInfo.previousMonth}}&year={{calendarInfo.previousYear}}" class="btn btn-primary">&lt;</a>
-			<a href="/activity" class="btn btn-primary">Aujourd'hui</a>
-			<a href="/activity?month={{calendarInfo.nextMonth}}&year={{calendarInfo.nextYear}}" class="btn btn-primary">&gt;</a>
-		</div>
+	<div class="d-flex flex-row align-items-center justify-content-center my-2 mx-3">
+			<a href="/activity?month={{calendarInfo.previousMonth}}&year={{calendarInfo.previousYear}}" class="btn btn-outline-primary btn-shadow">&lt;</a>
+			<a href="/activity" class="btn btn-outline-primary btn-shadow w-50 mx-3">{{ calendarInfo.selectedMonthYear }}</a>
+			<a href="/activity?month={{calendarInfo.nextMonth}}&year={{calendarInfo.nextYear}}" class="btn btn-outline-primary btn-shadow">&gt;</a>
 	</div>
 
 	<table class="calendar__table">
@@ -23,11 +17,11 @@
 					{% set sameMonth = firstDayModified|date('m') == calendarInfo.actualMonth|date('m') %}
 					{% set eventsForDay = eventsByDays[firstDayModified|date('Y-m-d')] ?? null %}
 
-					<td class="{{(sameMonth) ? '' : 'calendar__othermonth'}}">
+					<td class="{{sameMonth ? '' : 'calendar__othermonth'}} {{firstDayModified|date('d/m/Y') == "now"|date('d/m/Y') ? 'calendar__today' : ''}}">
 						{% if i == 0 %}
 
 							<div class="calendar__weekday d-none d-sm-block align-start">
-								{{ day }}
+								{{ day }} 
 							</div>
 
 						{% endif %}
@@ -37,24 +31,13 @@
 								{{ firstDayModified|date('d') }}
 							</div>
 
-							<div class="calendar__event d-flex flex-column flex-wrap align-items-end">
-								{% if eventsByDay|length < 4 %}
-
-									{% for event in eventsForDay %}
-
-										<a href="/activity/register?id={{event.id}}" class="btn btn-sm btn-secondary py-0 calendar__event">
-											{{event.type}}
-										</a>
-
-									{% endfor %}
-
-								{% else %}
-
+							<div class="d-flex flex-column align-items-stretch align-items-sm-start w-sm-50">
+								{% if eventsForDay|length != 0 %}
 									<button type="button" 
-											class="btn btn-sm btn-secondary py-0 m-0" 
+											class="btn btn-sm btn-primary py-0 calendar__event btn-shadow" 
 											data-bs-toggle="modal" 
 											data-bs-target="#show-modal-{{loop.index0 }}">
-										Cours et stages
+										{{eventsForDay|length}}
 									</button>
 
 									{% include 'Components/_calendar_modal.html.twig' with {

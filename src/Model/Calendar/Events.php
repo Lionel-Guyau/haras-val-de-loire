@@ -10,7 +10,7 @@
 namespace App\Model\Calendar;
 
 use App\Model\AbstractManager;
-use PhpParser\Node\Expr\Print_;
+use DateTime;
 
 class Events extends AbstractManager
 {
@@ -23,7 +23,7 @@ class Events extends AbstractManager
      * @param \DateTime $end
      * @return array
      */
-    public function getEventsBetween(\DateTime $start, \DateTime $end): array
+    public function getEventsBetween(DateTime $start, DateTime $end): array
     {
         $start = $start->format('Y-m-d 00:00:00');
         $end = $end->format('Y-m-d 23:59:59');
@@ -42,7 +42,7 @@ class Events extends AbstractManager
      * @param \DateTime $end
      * @return array
      */
-    public function getEventsBetweenByDay(\DateTime $start, \DateTime $end): array
+    public function getEventsBetweenByDay(DateTime $start, DateTime $end): array
     {
         $events = $this->getEventsBetween($start, $end);
         $days = [];
