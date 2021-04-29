@@ -1,6 +1,8 @@
+
 .calendar__table {
     width: 100%;
-    height: calc(80vh - 94px - 50px);
+    /* height: calc(80vh - 94px - 50px); */
+    height: 400px;
 }
 
 .calendar__table td {
