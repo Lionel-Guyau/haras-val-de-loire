@@ -23,10 +23,9 @@ class AdminController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
-        // On appelle le construct parent et on initialise la class AuthService et la méthode checkSession
+    // On appelle le construct parent et on initialise la class AuthService et la méthode checkSession
     // checkSession : Si pas connecté, on redirige vers /login
     // Cela permet de sécuriser les méthodes afin d'éviter d'y accéder depuis l'URL
-
     public function __construct()
     {
         parent::__construct();
@@ -112,5 +111,27 @@ class AdminController extends AbstractController
             }
         }
         header('Location: /admin/news');
+    }
+
+    public function activity()
+    {
+        $adminManager = new AdminManager();
+        $selectActivity = $adminManager->selectActivity();
+
+        return $this->twig->render('/Admin/adminActivity.html.twig', ['selectactivity' => $selectActivity]);
+    }
+
+    public function addActivity()
+    {
+        $adminManager = new AdminManager();
+
+        if ($this->controlDataPost($_POST['name'])) {
+            $name = $this->sanitizeInput($_POST['name']);
+
+            if (strlen($name) < 50) {
+                $adminManager->insertActivity($name);
+            }
+        }
+        header('Location: /admin/activity');
     }
 }

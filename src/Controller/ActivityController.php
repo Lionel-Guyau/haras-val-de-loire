@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Controller\Calendar\Calendar;
 use App\Model\Calendar\Events;
+use App\Model\ActivityManager;
 
 class ActivityController extends AbstractController
 {
@@ -45,5 +46,15 @@ class ActivityController extends AbstractController
                 'eventsForDays' => $eventsForDays
             ]
         );
+    }
+
+    public function showActivity()
+    {
+        $activityManager = new ActivityManager();
+        $activities = $activityManager->selectActivity();
+
+        return $this->twig->render('/Activity/activity.html.twig', [
+            'activities' => $activities,
+        ]);
     }
 }

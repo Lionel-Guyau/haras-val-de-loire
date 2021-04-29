@@ -81,19 +81,12 @@
 						justify-content-start
 						align-items-start
 						mx-auto my-3">
-					{# A enlever quand lié avec le back #}
-					{# {% set lastnews = [
-						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr',
-						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr',
-						'abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkrstuvwxyz abcdefghijklmnopkr'
-						 ] %} #}
 					{% for news in lastnews %}
 						<p class="text-danger
 								text-justify
 								my-2 mx-3
 								text-responsive-p">
 							{{ news.description }}
-							{# {{ news }} #}
 						</p>
 					{% else %}
 						<p>Pas de news</p>
@@ -114,31 +107,6 @@
 						Prochains évenements
 					</p>
 				</div>
-				{# A enlever quand lié avec le back #}
-				{# A intégrer pour seulement les X premières valeurs (sinon pas lisible) #}
-				{# {% set lastevents = {
-					'0' : {
-							'id' : '12',
-							'type' : 'Cours',
-							'name' : 'Cours Baby-poney',
-							'start_at' : '21-04-2021 17:30:00',
-							'nb_register' : 12, 
-							'capacity' : 15 },
-					'1' : {
-							'id' : '5',
-							'type' : 'Stage',
-							'name' : 'Stage d\'été',
-							'start_at' : '29-05-2021 08:30:00',
-							'nb_register' : 19,
-							'capacity' : 30 },
-					'2' : {
-							'id' : '13',
-							'type' : 'Cours',
-							'name' : 'Cours Baby-poney',
-							'start_at' : '30-06-2021 16:00:00',
-							'nb_register' : 8,
-							'capacity' : 15 },
-				 	} %} #}
 				{% for event in lastevents %}
 					<a class="accueil-event-content
 							d-flex 
@@ -147,18 +115,16 @@
 							justify-content-start
 							align-items-center
 							mx-auto my-2 my-md-3"
-						{# A modifier quand lié avec le back #}
-						href="/activity/{{ event.type }}/?id={{ event.id }}">
+						href="/activity/register?id={{ event.id }}">
 						<p class="text-center
 								text-responsive-p
 								py-1">
-							{# Penser à récupérer des events pas encore passées #}
-							{# type id name start_at nb_register capacity #}
-							{% set difference = date('now').diff(date(event.start_at)) %}
+							{% set difference = date('now').diff(date(event.startingDate)) %}
+							{% set places = event.nb_register == event.capacity ? "Complet" : "Places " ~ event.nb_register ~ "/" ~ event.capacity %}
 							{% if difference.days > 0 %}
-								{{ event.name }} dans {{ difference.days }} j - Places {{ event.nb_register }}/{{ event.capacity }}
+								{{ event.description }} dans {{ difference.days }} j - {{ places }}
 							{% else %}
-								{{ event.name }} dans {{ difference.h }}h - Places {{ event.nb_register }}/{{ event.capacity }}
+								{{ event.description }} dans {{ difference.h }}h - {{ places }}
 							{% endif %}
 						</p>
 					</a>

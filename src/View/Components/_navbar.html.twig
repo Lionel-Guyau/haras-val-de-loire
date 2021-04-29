@@ -20,10 +20,10 @@
 							<a class="dropdown-item" href="/haras">Principes</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="/haras">Objectifs</a>
+							<a class="dropdown-item" href="/haras#goal">Objectifs</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="/haras">Direction</a>
+							<a class="dropdown-item" href="/haras#director">Direction</a>
 						</li>
 					</ul>
 				</li>
@@ -33,7 +33,7 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-dark bg-primary border-0 mt-sm-0 mt-md-4" aria-labelledby=" navbardropdownmenulink">
 						<li>
-							<a class="dropdown-item" href="#">Cours</a>
+							<a class="dropdown-item" href="/activity/showActivity">Cours</a>
 						</li>
 						<li>
 							<a class="dropdown-item" href="#">Stages</a>
@@ -46,6 +46,14 @@
 				<li class="nav-item mx-lg-4">
 					<a class="nav-link" href="/contact">Contact</a>
 				</li>
+
+				<!-- Menu Session -->
+				{% if is_logged %}
+					<div><a class="nav-link" href="/logout">Se déconnecter</a></div>
+					<div><p class="nav-link disabled">{{user.email}} </p></div>	
+				{% else %}
+				{% endif %}
+
 				<li class="flex-grow-1"></li>
 				<li class="nav-item">
 					<a class="nav-link" href="/shop">Boutique</a>

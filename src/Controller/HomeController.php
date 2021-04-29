@@ -10,6 +10,7 @@
 namespace App\Controller;
 
 use App\Model\HomeManager;
+use App\Model\ActivityManager;
 
 class HomeController extends AbstractController
 {
@@ -26,7 +27,9 @@ class HomeController extends AbstractController
     {
         $homeManager = new HomeManager();
         $lastNews = $homeManager->selectLastNews();
-        $lastEvents = $homeManager->selectLastEvents();
+
+        $activityManager = new ActivityManager();
+        $lastEvents = $activityManager->selectLastEvents();
 
         return $this->twig->render('/Home/index.html.twig', ['lastnews' => $lastNews, 'lastevents' => $lastEvents]);
     }
