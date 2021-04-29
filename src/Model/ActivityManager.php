@@ -62,27 +62,5 @@ class ActivityManager extends AbstractManager
 
         return $this->pdo->query($query)->fetchAll();
     }
+
 }
-
-// ----------
-
-// [0] => ['type' => 'Baby-poney',
-//         'capacity' => '30',
-//         'start_at' => '2021-04-21 00:00:00'],
-// [1] => ['type' => 'Baby-poney',
-//         'capacity' => '30',
-//         'start_at' => '2021-04-22 00:00:00'],
-// [2] => ['type' => 'Eveil-poney',
-//         'capacity' => '30',
-//         'start_at' => '2021-04-23 00:00:00']
-
-// // ---------------
-
-// ['baby-poney'] =>   [ '2021-04-21' =>  [  'capacity' => 30,
-//                                         'nb_register' => 12],
-//                     '2021-04-22' =>  [  'capacity' => 30,
-//                                         'nb_register' => 12]
-//                     ],
-// ['Eveil-poney'] =>  [ '2021-04-21' =>  [  'capacity' => 30,
-//                                         'nb_register' => 12]
-//                     ]
