@@ -31,7 +31,8 @@ class Events extends AbstractManager
                 "SELECT * 
                 FROM activity
                     INNER JOIN planning ON activity.id = planning.activity_id
-                WHERE planning.start_at BETWEEN '$start' AND '$end'";
+                WHERE planning.start_at BETWEEN '$start' AND '$end'
+                ORDER BY activity.type, planning.start_at ASC";
 
         return $this->pdo->query($query)->fetchAll();
     }

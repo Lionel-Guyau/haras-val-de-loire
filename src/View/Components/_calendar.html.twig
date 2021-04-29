@@ -36,12 +36,12 @@
 									<button type="button" 
 											class="btn btn-sm btn-primary py-0 calendar__event btn-shadow" 
 											data-bs-toggle="modal" 
-											data-bs-target="#show-modal-{{loop.index0 }}">
+											data-bs-target="#show-modal-{{loop.index0}}-{{i}}">
 										{{eventsForDay|length}}
 									</button>
 
 									{% include 'Components/_calendar_modal.html.twig' with {
-										'modalId': loop.index0,
+										'modalId': loop.index0 ~ "-" ~ i,
 										'eventsForDay': eventsForDay
 									}%}
 								{% endif %}
