@@ -69,7 +69,7 @@ class ActivityController extends AbstractController
                 }
 
                 //A faire : Alert si l'enregistrement a bien été effectué
-                
+
                 header('Location: /activity');
             }
         }
