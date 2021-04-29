@@ -14,8 +14,7 @@ use App\Model\AbstractManager;
 class Events extends AbstractManager
 {
 
-    public const TABLE = 'course';
-    public const TABLE2 =  'lesson';
+    public const TABLE = 'activity';
 
     /**
      * Récupère les évènements commançant entre 2 dates
@@ -27,7 +26,11 @@ class Events extends AbstractManager
     {
         $start = $start->format('Y-m-d 00:00:00');
         $end = $end->format('Y-m-d 23:59:59');
-        $query = "SELECT * FROM " . static::TABLE . " WHERE start_at BETWEEN '$start' AND '$end' AND is_active = 1";
+        $query =
+                "SELECT * 
+                FROM activity
+                    INNER JOIN planning ON activity.id = planning.activity_id
+                WHERE planning.start_at BETWEEN '$start' AND '$end'";
 
         return $this->pdo->query($query)->fetchAll();
     }
