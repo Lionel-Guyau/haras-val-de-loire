@@ -73,7 +73,7 @@ class ActivityController extends AbstractController
             // echo '</pre>';
             // exit;
 
-            $activity = $this->orderingActivitiesByDate($activity);
+            // $activity = $this->orderingActivitiesByDate($activity);
 
             // vérifie qu'il existe déjà ou non une indéxation avec la clé sélectionnée, sinon créé cette indéxation
             if (!isset($typedActivity[$type])) {
