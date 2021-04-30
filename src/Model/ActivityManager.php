@@ -15,14 +15,27 @@ class ActivityManager extends AbstractManager
      * Récupère les activités avec leurs dates
      * @return array
      */
+    public function selectPlannedActivity(): array
+    {
+        $query =
+                "SELECT *, COUNT(customer_planning.customer_id) AS nb_register
+                FROM activity
+                    INNER JOIN planning ON activity.id = planning.activity_id
+                    INNER JOIN customer_planning ON planning.id = customer_planning.planning_id
+                WHERE customer_planning.register=1 AND planning.start_at >= now()
+                GROUP BY planning.id
+                ORDER BY activity.type, planning.start_at ASC";
+
+        return $this->pdo->query($query)->fetchAll();
+    }
+
+    /**
+     * Recupère chaque type d'activités
+     */
     public function selectActivity(): array
     {
         $query =
-                "SELECT activity.type, 
-                        activity.capacity, 
-                        planning.start_at 
-                FROM activity
-                    INNER JOIN planning ON activity.id = planning.activity_id";
+                "SELECT * FROM activity";
 
         return $this->pdo->query($query)->fetchAll();
     }
@@ -49,4 +62,5 @@ class ActivityManager extends AbstractManager
 
         return $this->pdo->query($query)->fetchAll();
     }
+
 }
