@@ -1,0 +1,70 @@
+
+.calendar__table {
+    width: 100%;
+    /* height: calc(80vh - 94px - 50px); */
+    height: 400px;
+}
+
+.calendar__table td {
+    border: 1px solid #CCC;
+    padding: 5px;
+    vertical-align: top;
+    width: calc(100% / 7);
+    /* height: calc(100% / 5); */
+    height: calc(100% / 6);
+    font-size: 0.8em;
+}
+
+.calendar__weekday {
+    font-weight: bold;
+    color: #000;
+}
+
+.calendar__othermonth .calendar__day {
+    opacity: 0.3;
+}
+
+.calendar__today {
+    background-color: rgb(220, 242, 255);
+}
+
+.calendar__event {
+    margin: 3px 0;
+    height: 30% i !important;
+}
+
+.calendar__baby-poney {
+    background-color: lightpink;
+}
+
+.calendar__eveil-poney {
+    background-color: lightgreen;
+}
+
+.calendar__6\+ {
+    background-color: lightblue;
+}
+
+.calendar__adulte {
+    background-color:lightcoral;
+}
+
+.calendar__privilege {
+    background-color: lightgrey;
+}
+
+.calendar__formation {
+    background-color: lightsalmon;
+}
+
+.calendar__stage {
+    background-color: lightgoldenrodyellow;
+}
+
+.selector {
+    border: 2px solid white;
+}
+
+.btn-shadow {
+    box-shadow: 2px 2px 4px gray;
+}

@@ -5,16 +5,34 @@
 				<h5 class="modal-title" id="show-modal-label">Activités pour ce jour</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
+			<div class="modal-body d-flex flex-wrap">
+				{% if eventsForDay|length < 2 %}
 
-			<div class="mb-3 modal-body d-flex flex-column">
-				{% for event in eventsForDay %}
+					<a href="/activity/register?activity={{eventsForDay[0].activity_id}}" class="selector btn btn-sm col-12 py-2 {{"calendar__" ~ eventsForDay[0].type}}">
+						{% if eventsForDay[0].start_at|date('d/m/Y') == eventsForDay[0].end_at|date('d/m/Y') %}
 
-					<a href="/activity?id={{event.id}}" class="btn btn-sm btn-secondary m-1 calendar__event" name="name">
-						{{event.name}}
+							activité : <b>{{eventsForDay[0].type}}</b>   -  de <b>{{eventsForDay[0].start_at|date('h:i')}}</b>  à <b>{{eventsForDay[0].end_at|date('h:i')}}</b> 
+						{% else %}
+							
+							activité : <b>{{eventsForDay[0].type}}</b>   -  débute à <b>{{eventsForDay[0].start_at|date('h:i')}}</b>  et termine le <b>{{eventsForDay[0].end_at|date('d M')}}</b>  à <b>{{eventsForDay[0].end_at|date('h:i')}}</b> 
+						{% endif %}
 					</a>
+				{% else %}
 
-				{% endfor %}
-			</div>
+					{% for event in eventsForDay %}
+					
+					<a href="/activity/register?activity={{eventsForDay[0].activity_id}}" class="selector btn btn-sm col-6 py-2 {{"calendar__" ~ event.type}}">
+						{% if event.start_at|date('d/m/Y') == event.end_at|date('d/m/Y') %}
+
+							activité : <b>{{event.type}}</b>  -  de <b>{{event.start_at|date('h:i')}}</b>  à <b>{{event.end_at|date('h:i')}}</b>
+						{% else %}
+							
+							activité : <b>{{event.type}}</b>   -  débute à <b>{{event.start_at|date('h:i')}}</b>  et termine le <b>{{event.end_at|date('d M')}}</b>  à <b>{{event.end_at|date('h:i')}}</b> 
+						{% endif %}
+					</a>
+					{% endfor %}
+				{% endif %}
+		</div>
 		</div>
 	</div>
 </div>
