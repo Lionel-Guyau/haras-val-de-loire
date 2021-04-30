@@ -15,14 +15,14 @@
 	<p class="text-primary mx-4 fs-5 my-4" style="text-align:center">Les plus jeunes pourront apprendre à monter tout en s'amusant, d'abord avec de petits poneys, bien à leur taille, puis sur des montures plus grandes.</p> #}
 	<p class="text-primary mx-4 fs-5 my-3" style="text-align:center">Choisissez une activité à laquelle vous souhaitez vous inscrire</p>
 
-	<div class="" style="text-align:center">
+	{# <div class="" style="text-align:center">
 
 		<div class="row justify-content-evenly">
 			{% for activity in activityType %}
 				<div class="col-5 col-sm-4 col-md-3 mx-1 mx-sm-2 mb-3 p-0 bg-primary" style="box-shadow: 10px 10px 10px gray;">	
-					
+					 #}
 						{# <img src="/recup_photos/pexels-alexander-dummer-1364073.jpg"> #}
-						<div  class="bg-primary text-light p-1">
+						{# <div  class="bg-primary text-light p-1">
 							<p class="text-capitalize">{{activity.type}}</p>
 							<p>Tarif : {{activity.price}} €</p>
 						</div>
@@ -31,7 +31,7 @@
 			{% endfor %}
 		</div>
 
-	</div>
+	</div> #}
 
 
 	<div class="container col-11 col-lg-5">

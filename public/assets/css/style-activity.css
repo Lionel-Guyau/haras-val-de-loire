@@ -109,5 +109,16 @@ body {
 
 #activity-card {
   box-shadow: 10px 10px 10px black !important;
+}
 
+.calendar_component {
+  width: 90%;
+  margin: 5% auto;
+  max-width: 1000px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px black;
+}
+
+#activity-text{
+  text-shadow: 2px 2px 5px black;
 }
