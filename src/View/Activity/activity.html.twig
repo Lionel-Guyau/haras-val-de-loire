@@ -21,32 +21,37 @@
 	<div id="activity_body" class="d-flex  flex-wrap">
 		<h2 class="text-white text-center my-4 mx-auto">Retrouvez toutes nos activités</h2>
 		<p id="activity-text" class="text-white fs-5 text-center mx-4">
-      Le centre équestre, soutenu par la ville de Saint Denis en Val, est agréé label qualité FFE (Fédération Française d'Equitation), ce qui nous autorise à utiliser les méthodes et le matériel spécifiques de l'équitation à poney et à faire passer les examens appropriés.
-      Ce poney-club, proche d'Orléans, met à la disposition de vos enfants une cavalerie adaptée à leur niveau ainsi que des installations qui leur permettront de pratiquer l’équitation en toute sécurité.
-      Les plus jeunes pourront apprendre à monter tout en s'amusant, d'abord avec de petits poneys, bien à leur taille, puis sur des montures plus grandes.
-    </p>
+			Le centre équestre, soutenu par la ville de Saint Denis en Val, est agréé label qualité FFE (Fédération Française d'Equitation), ce qui nous autorise à utiliser les méthodes et le matériel spécifiques de l'équitation à poney et à faire passer les examens appropriés.
+			      Ce poney-club, proche d'Orléans, met à la disposition de vos enfants une cavalerie adaptée à leur niveau ainsi que des installations qui leur permettront de pratiquer l’équitation en toute sécurité.
+			      Les plus jeunes pourront apprendre à monter tout en s'amusant, d'abord avec de petits poneys, bien à leur taille, puis sur des montures plus grandes.
+		</p>
 
-    <div class="col-12 mt-5" style="text-align:center">
-
-      <div class="row justify-content-evenly ">
-        {% for activity in activityType %}
-          <div class="col-4 col-sm-4 col-md-3 mx-1 mx-sm-2 mb-3 p-0 bg-primary" style="box-shadow: 4px 4px 10px black;">	
-            
-              {# <img src="/recup_photos/pexels-alexander-dummer-1364073.jpg"> #}
-              <div  class="bg-primary text-light p-1">
-                <p class="text-capitalize">{{activity.type}}</p>
-                <p>Tarif : {{activity.price}} €</p>
-              </div>
-            
-          </div>
-        {% endfor %}
-      </div>
-
-	  </div>
 
 		<div class="calendar_component bg-white">
 			{% include 'Components/_calendar.html.twig' %}
 		</div>
+
+
+		<div class="col-12 my-5" style="text-align:center">
+
+			<div class="row justify-content-evenly ">
+				{% for activity in activityType %}
+					<div
+						class="col-4 col-sm-4 col-md-3 mx-1 mx-sm-2 mb-3 p-0 bg-primary" style="box-shadow: 4px 4px 10px black;">
+
+						{# <img src="/recup_photos/pexels-alexander-dummer-1364073.jpg"> #}
+						<div class="bg-primary text-light p-1">
+							<p class="text-capitalize">{{activity.type}}</p>
+							<p>Tarif :
+								{{activity.price}}
+								€</p>
+						</div>
+
+					</div>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
+
 
 {% endblock %}
