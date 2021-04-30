@@ -11,7 +11,9 @@ namespace App\Controller;
 
 use App\Model\AdminManager;
 use App\Service\AuthService;
+use App\Model\NewsManager;
 use App\Model\EquipmentManager;
+use App\Model\ActivityManager;
 
 class AdminController extends AbstractController
 {
@@ -38,9 +40,9 @@ class AdminController extends AbstractController
         return $this->twig->render('/Admin/admin.html.twig');
     }
 
-    public function controlDataPost($input): bool
+    public function controlData($input): bool
     {
-        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+        if (($_SERVER["REQUEST_METHOD"] === 'POST') || ($_SERVER["REQUEST_METHOD"] === 'GET')) {
             if (!empty($input)) {
                 return true;
             }
@@ -48,15 +50,6 @@ class AdminController extends AbstractController
         return false;
     }
 
-    public function controlDataGet(string $input): bool
-    {
-        if ($_SERVER["REQUEST_METHOD"] === 'GET') {
-            if (!empty($input)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public function sanitizeInput($data)
     {
@@ -66,21 +59,21 @@ class AdminController extends AbstractController
 
     public function news()
     {
-        $adminManager = new AdminManager();
-        $selectNews = $adminManager->selectNews();
+        $newsManager = new NewsManager();
+        $selectNews = $newsManager->selectNews();
 
         return $this->twig->render('/Admin/adminNews.html.twig', ['selectnews' => $selectNews]);
     }
 
     public function addNews()
     {
-        $adminManager = new AdminManager();
+        $newsManager = new NewsManager();
 
-        if ($this->controlDataPost($_POST['description'])) {
+        if ($this->controlData($_POST['description'])) {
             $description = $this->sanitizeInput($_POST['description']);
 
             if (strlen($description) < 50) {
-                $adminManager->insertNews($description);
+                $newsManager->insertNews($description);
             }
         }
         header('Location: /admin/news');
@@ -88,12 +81,12 @@ class AdminController extends AbstractController
 
     public function delNews()
     {
-        $adminManager = new AdminManager();
+        $newsManager = new NewsManager();
 
-        if ($this->controlDataGet($_GET['id'])) {
+        if ($this->controlData($_GET['id'])) {
             $id = $this->sanitizeInput($_GET['id']);
             if (filter_var($id, FILTER_VALIDATE_INT)) {
-                $adminManager->deleteNews($id);
+                $newsManager->deleteNews($id);
             }
             header('Location: /admin/news');
         }
@@ -101,14 +94,14 @@ class AdminController extends AbstractController
 
     public function majNews()
     {
-        $adminManager = new AdminManager();
+        $newsManager = new NewsManager();
 
-        if ($this->controlDataPost($_POST['description']) && $this->controlDataPost($_POST['id'])) {
+        if ($this->controlData($_POST['description']) && $this->controlData($_POST['id'])) {
             $id = $this->sanitizeInput($_POST['id']);
             $description = $this->sanitizeInput($_POST['description']);
 
             if (strlen($description) < 50 && filter_var($id, FILTER_VALIDATE_INT)) {
-                $adminManager->updateNews($id, $description);
+                $newsManager->updateNews($id, $description);
             }
         }
         header('Location: /admin/news');
@@ -116,25 +109,8 @@ class AdminController extends AbstractController
 
     public function activity()
     {
-        $adminManager = new AdminManager();
-        $selectActivity = $adminManager->selectActivity();
-
-        return $this->twig->render('/Admin/adminActivity.html.twig', ['selectactivity' => $selectActivity]);
-    }
-
-    public function addActivity()
-    {
-        $adminManager = new AdminManager();
-
-        if ($this->controlDataPost($_POST['name'])) {
-            $name = $this->sanitizeInput($_POST['name']);
-
-            if (strlen($name) < 50) {
-                $adminManager->insertActivity($name);
-            }
-        }
-        header('Location: /admin/activity');
-        $activities = $adminManager->selectActivity();
+        $activityManager = new ActivityManager();
+        $activities = $activityManager->selectActivity();
 
         return $this->twig->render('/Admin/adminActivity.html.twig', [
             'activities' => $activities,
@@ -146,11 +122,12 @@ class AdminController extends AbstractController
     {
         $activity = $_POST;
 
-        // if ($this->controlDataPost($activity)) {
+        // if ($this->controlData($activity)) {
         //     $activities = $this->sanitizeInput($activity);
 
         // if (strlen($activities) < 50) {
-        $adminManager = (new AdminManager())->saveActivity($activity);
+        $activityManager = (new ActivityManager())->saveActivity($activity);
+        echo $activityManager;
         // }
 
         header('Location: /admin/activity');
@@ -159,12 +136,12 @@ class AdminController extends AbstractController
 
     public function delActivity()
     {
-        $adminManager = new AdminManager();
+        $activityManager = new ActivityManager();
 
-        if ($this->controlDataGet($_GET['id'])) {
+        if ($this->controlData($_GET['id'])) {
             $id = $this->sanitizeInput($_GET['id']);
             if (filter_var($id, FILTER_VALIDATE_INT)) {
-                $adminManager->deleteActivity($id);
+                $activityManager->deleteActivity($id);
             }
             header('Location: /admin/activity');
         }
