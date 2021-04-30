@@ -26,12 +26,12 @@
       activityModal.querySelector('[name="capacity"]').setAttribute('value', activityCapacity);
       activityModal.querySelector('[name="price"]').setAttribute('value', activityPrice);
 
-      {% for equipment in activityEquipment %}    
-            activityModal.querySelector('[name="equipment"]').setAttribute('value', equipment);  
-      {% endfor %}
-
-      // activityModal.querySelector('[name="equipment"]').setAttribute('value', activityEquipment);
-      console.log(activityEquipment)
+      if (activityEquipment) {
+        activityEquipment.forEach(equipment => {
+          const checkbox = document.querySelector('.form-check-input[value="' + equipment.id + '"]');
+          checkbox.setAttribute('checked', true);
+        })
+      }
     });
   </script>
 {% endblock %}

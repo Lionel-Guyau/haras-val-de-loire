@@ -122,17 +122,12 @@ class AdminController extends AbstractController
     {
         $activity = $_POST;
 
-        // if ($this->controlData($activity)) {
-        //     $activities = $this->sanitizeInput($activity);
-
-        // if (strlen($activities) < 50) {
-        $activityManager = (new ActivityManager())->saveActivity($activity);
-        echo $activityManager;
-        // }
+        $activities = new ActivityManager();
+        $activities->saveActivity($activity);
 
         header('Location: /admin/activity');
-        // }
     }
+
 
     public function delActivity()
     {
