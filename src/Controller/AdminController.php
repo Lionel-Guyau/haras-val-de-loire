@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Model\AdminManager;
 use App\Service\AuthService;
+use App\Model\EquipmentManager;
 
 class AdminController extends AbstractController
 {
@@ -133,5 +134,39 @@ class AdminController extends AbstractController
             }
         }
         header('Location: /admin/activity');
+        $activities = $adminManager->selectActivity();
+
+        return $this->twig->render('/Admin/adminActivity.html.twig', [
+            'activities' => $activities,
+            'equipments' => (new EquipmentManager())->selectAll("description")
+        ]);
+    }
+
+    public function saveActivity()
+    {
+        $activity = $_POST;
+
+        // if ($this->controlDataPost($activity)) {
+        //     $activities = $this->sanitizeInput($activity);
+
+        // if (strlen($activities) < 50) {
+        $adminManager = (new AdminManager())->saveActivity($activity);
+        // }
+
+        header('Location: /admin/activity');
+        // }
+    }
+
+    public function delActivity()
+    {
+        $adminManager = new AdminManager();
+
+        if ($this->controlDataGet($_GET['id'])) {
+            $id = $this->sanitizeInput($_GET['id']);
+            if (filter_var($id, FILTER_VALIDATE_INT)) {
+                $adminManager->deleteActivity($id);
+            }
+            header('Location: /admin/activity');
+        }
     }
 }
