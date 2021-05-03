@@ -15,6 +15,7 @@ use App\Model\EquipmentManager;
 use App\Model\ActivityManager;
 use App\Service\SecurityService;
 
+
 class AdminController extends AbstractController
 {
     private SecurityService $securityService;
@@ -141,6 +142,71 @@ class AdminController extends AbstractController
                     $adminManager->deleteActivity($id);
                 }
                 header('Location: /admin/activity');
+            }
+        }
+    }
+
+    public function equipments()
+    {
+        $equipmentsManager = new EquipmentManager();
+        $selectEquipments = $equipmentsManager->selectEquipments();
+
+        return $this->twig->render('/Admin/adminEquipments.html.twig', ['equipments' => $selectEquipments]);
+    }
+
+    public function addEquip()
+    {
+        $equip = $_POST;
+
+        $equipManager = new EquipmentManager();
+
+        if (!empty($equip)) {
+            if ($this->securityService->controlData($_POST['description'])) {
+                $description = $this->securityService->sanitizeInput($_POST['description']);
+
+                if (strlen($description) < 50) {
+                    $equipManager->insertEquip($description);
+                }
+            }
+            header('Location: /admin/equipments');
+        }
+    }
+
+    public function delEquip()
+    {
+        $equip = $_GET;
+
+        $equipManager = new EquipmentManager();
+
+        if (!empty($equip)) {
+            if ($this->securityService->controlData($_GET['id'])) {
+                $id = $this->securityService->sanitizeInput($_GET['id']);
+                if (filter_var($id, FILTER_VALIDATE_INT)) {
+                    $equipManager->deleteEquip($id);
+                }
+            }
+            header('Location: /admin/equipments');
+        }
+    }
+
+    public function majEquip()
+    {
+        $equip = $_POST;
+
+        $equipManager = new EquipmentManager();
+
+        if (!empty($equip)) {
+            if (
+                $this->securityService->controlData($_POST['description']) &&
+                $this->securityService->controlData($_POST['id'])
+            ) {
+                $id = $this->securityService->sanitizeInput($_POST['id']);
+                $description = $this->securityService->sanitizeInput($_POST['description']);
+
+                if (strlen($description) < 50 && filter_var($id, FILTER_VALIDATE_INT)) {
+                    $equipManager->updateEquip($id, $description);
+                }
+                header('Location: /admin/equipments');
             }
         }
     }
