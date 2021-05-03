@@ -33,4 +33,14 @@ class PlanningManager extends AbstractManager
 
         return $statement->execute();
     }
+
+    /**
+     * Select Planning in database
+     */
+    public function selectPlanning()
+    {
+        $activities = $this->pdo->query("SELECT planning.*, activity.type from planning INNER JOIN activity ON activity.id = planning.activity_id ORDER BY planning.start_at ASC")->fetchAll();
+
+        return $activities;
+    }
 }
