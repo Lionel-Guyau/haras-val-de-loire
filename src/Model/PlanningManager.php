@@ -13,7 +13,6 @@ class PlanningManager extends AbstractManager
      */
     public function selectByActivity(int $id)
     {
-        // $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE activity_id = :activity_id");
         $query = "SELECT activity.capacity, planning.start_at,  
                         COUNT(customer_planning.customer_id) AS nb_register
                 FROM planning

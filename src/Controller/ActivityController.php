@@ -58,10 +58,7 @@ class ActivityController extends AbstractController
         $plannedActivity = $activity->selectPlannedActivity();
         $plannedActivityOrdered = $this->orderingActivitiesByType($plannedActivity);
         $planning = isset($_GET['activity']) ? (new PlanningManager())->selectByActivity($_GET['activity']) : [];
-        // echo "<pre>";
-        // print_r($planning);
-        // echo "</pre>";
-        // exit;
+
         $errors = [];
 
         // Vérification de l'existence de la request en methode POST
