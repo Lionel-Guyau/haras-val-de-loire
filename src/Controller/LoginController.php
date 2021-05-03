@@ -28,8 +28,9 @@ class LoginController extends AbstractController
         $error = '';
 
         // Si l'utilisateur est connecté et qu'il tente d'aller sur login, il est redirigé
-        if (isset($_SESSION['email']) && isset($_SESSION['pass'])) {
-            header('Location: /');
+        // session_start();
+        if (!empty($_SESSION['user'])) {
+            header('Location: /admin');
         }
 
         // Si les champs du formulaire ne sont pas vides, on appelle la class LoginManager pour

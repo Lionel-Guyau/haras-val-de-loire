@@ -7,65 +7,55 @@
 
 {% block content %}
 
-<div class="admin-body">
+<div>
   <div class="my-5 text-center">
   <h3>Mon espace de gestion</h3><p></p>
   </div>
 
-
-  <div class="d-flex justify-content-around">
-    <div class="col-2 d-flex my-5 justify-content-around" >
-
-      <div id="admin-cards"class="card" style="width: 18rem"; >
-        <div class="card-body">
-        <img src="../assets/images/Accueil.jpg" class="card-img-top">
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+      <img src="../assets/images/Accueil.jpg" class="card-img-top">
         <h5 class="card-title">Informations Accueil</h5>
-        <p class="card-text">Ajout, modification, suppression du champ Informations.</p>
+        <p class="card-text">Ajout, modification, suppression des informations.</p>
         <a href="/admin/news" class="btn btn-success">Informations Accueil</a>
-        </div>
       </div>
     </div>
-
-    <div class="col-2 d-flex my-5 justify-content-around">
-
-      <div id="admin-cards" class="card" style="width: 18rem">
-        <div class="card-body">
-        <img src="../assets/images/logo-activites-sportives.png" class="card-img-top">
-        <h5 class="card-title">Mes activités</h5>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+      <img src="../assets/images/logo-activites-sportives.png" class="card-img-top">
+         <h5 class="card-title">Mes activités</h5>
         <p class="card-text">Ajout, modification, suppression des activités.</p>
         <a href="/admin/activity" class="btn btn-success">Mes activités</a>
-        </div>
       </div>
-
     </div>
-
-    <div class="col-2 d-flex my-5 justify-content-around">
-
-      <div id="admin-cards" class="card" style="width: 18rem">
-        <div class="card-body">
-        <img src="../assets/images/equipements.jpg" class="card-img-top">
+  </div>
+    <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+      <img src="../assets/images/equipements.jpg" class="card-img-top">
         <h5 class="card-title">Mes équipements</h5>
         <p class="card-text">Ajout, modification, suppression de mes équipements.</p>
         <a href="/admin/equipment" class="btn btn-success">Mes équipements</a>
-        </div>
       </div>
-
     </div>
-
-    <div class="col-2 d-flex my-5 justify-content-around">
-
-      <div id="admin-cards" class="card" style="width: 18rem">
-        <div class="card-body">
-        <img src="../assets/images/planning.jpg" class="card-img-top">
+  </div>
+    <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+       <img src="../assets/images/planning.png" class="card-img-top">
         <h5 class="card-title">Mon planning</h5>
         <p class="card-text">Voir mon planning</p>
         <a href="/admin/planning" class="btn btn-success">Mon planning</a>
-        </div>
       </div>
-
     </div>
-  
   </div>
+</div>
+
+
 </div>
 
 {% endblock %}

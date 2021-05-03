@@ -2,11 +2,13 @@
 
 namespace App\Model;
 
-<<<<<<< HEAD
+use App\Model\Connection;
+use PDO;
+
 class ActivityManager extends AbstractManager
 {
 
-    public const TABLE = 'activity';
+    public const TABLE_ACTIVITY = 'activity';
 
     /**
      * Ajouter les informations de contact issues du formulaire dans la base de données
@@ -19,7 +21,7 @@ class ActivityManager extends AbstractManager
     public function selectPlannedActivity(): array
     {
         $query =
-                "SELECT *, COUNT(customer_planning.customer_id) AS nb_register
+            "SELECT *, COUNT(customer_planning.customer_id) AS nb_register
                 FROM activity
                     INNER JOIN planning ON activity.id = planning.activity_id
                     INNER JOIN customer_planning ON planning.id = customer_planning.planning_id
@@ -33,10 +35,10 @@ class ActivityManager extends AbstractManager
     /**
      * Recupère chaque type d'activités
      */
-    public function selectActivity(): array
+    public function selectActivities(): array
     {
         $query =
-                "SELECT * FROM activity";
+            "SELECT * FROM activity";
 
         return $this->pdo->query($query)->fetchAll();
     }
@@ -64,46 +66,13 @@ class ActivityManager extends AbstractManager
         return $this->pdo->query($query)->fetchAll();
     }
 
-=======
-use App\Model\Connection;
-use PDO;
-
-class ActivityManager extends AbstractManager
-{
-    public const TABLE_ACTIVITY = 'activity';
-
 
     /**
      * Select Activity in database
      */
     public function selectActivity()
     {
-        $query =
-            "SELECT 
-                    activity.type,
-                    activity.capacity,
-                    activity.price,
-                    equipment.desciption
-                FROM ((activity_equipment
-                    INNER JOIN activity ON activity_equipment.activity_id = activity.id
-                    INNER JOIN equipment ON activity_equipment.equipment_id = equipment.id))
-                ORDER BY activity.type";
-
-        return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    /**
-     * Insert Activity in database
-     */
-    public function insertActivity(string $name)
-    {
-        $query = $this->pdo->prepare("
-        INSERT INTO " . static::TABLE_ACTIVITY . " (`name`,`start_at`) 
-        VALUES (:start_at, NOW())");
-        $query->bindValue(':name', $name);
-
-        $query->execute();
-        $activities = $this->pdo->query("SELECT * FROM activity ORDER BY id DESC")->fetchAll();
+        $activities = $this->pdo->query("SELECT * FROM activity ORDER BY type ASC")->fetchAll();
 
         $statement = $this->pdo->prepare("
             SELECT e.* FROM activity_equipment ae 
@@ -122,19 +91,21 @@ class ActivityManager extends AbstractManager
         return $activities;
     }
 
+
+
     /**
      * Insert/Update Activity in database
      */
     public function saveActivity(array $activity)
     {
-        $query = "INSERT INTO " . static::TABLE_ACTIVITY . " 
-        (`type`,`capacity`,`price`) VALUES (:type, :capacity, :price)";
+        $query = "INSERT INTO " . static::TABLE_ACTIVITY . " (`type`,`capacity`,`price`) 
+        VALUES (:type, :capacity, :price)";
+
         // Cas d'un udpate car l'id de l'activité est présent
         if (!empty($activity['id'])) {
-            $query = "UPDATE " . static::TABLE_ACTIVITY . " 
-            SET type = :type, capacity = :capacity, price = :price WHERE id = :id";
+            $query = "UPDATE " . static::TABLE_ACTIVITY . " SET type = :type, capacity = :capacity, price = :price 
+            WHERE id = :id";
         }
-
         $statement = $this->pdo->prepare($query);
 
         // Cas d'un udpate car l'id de l'activité est présent
@@ -156,14 +127,16 @@ class ActivityManager extends AbstractManager
         $statement->execute();
 
         // Ajout des équipements à l'activité
-        foreach ($activity['equipments'] as $equipment) {
-            $statement = $this->pdo->prepare("
+        if (!empty($activity['equipments'])) {
+            foreach ($activity['equipments'] as $equipment) {
+                $statement = $this->pdo->prepare("
                 INSERT INTO activity_equipment(`activity_id`,`equipment_id`) VALUES (:activity_id, :equipment_id)
-            ");
+                 ");
 
-            $statement->bindValue(':activity_id', $newActivityId, PDO::PARAM_INT);
-            $statement->bindValue(':equipment_id', $equipment, PDO::PARAM_INT);
-            $statement->execute();
+                $statement->bindValue(':activity_id', $newActivityId, PDO::PARAM_INT);
+                $statement->bindValue(':equipment_id', $equipment, PDO::PARAM_INT);
+                $statement->execute();
+            }
         }
     }
 
@@ -179,5 +152,4 @@ class ActivityManager extends AbstractManager
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
     }
->>>>>>> 02060aa... US20
 }
