@@ -58,8 +58,8 @@ class ActivityController extends AbstractController
         $plannedActivity = $activity->selectPlannedActivity();
         $planActivityOrd = $this->orderingActivitiesByType($plannedActivity);
         $planning = isset($_GET['activity']) ? (new PlanningManager())->selectByActivity($_GET['activity']) : [];
-
         $errors = [];
+
         // Vérification de l'existence de la request en methode POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validation des données
@@ -68,9 +68,10 @@ class ActivityController extends AbstractController
             // Insertion des données dans la DB si pas d'erreurs
             if (empty($errors)) {
                 $register = new RegisterManager();
+
                 $customer = $register->getCustomer($_POST);
                 if (empty($customer)) {
-                    $register-> addCustomer($_POST);
+                    $register->addCustomer($_POST);
                     $customer = $register->getCustomer($_POST);
                 }
                 $customerId = $customer['id'];
