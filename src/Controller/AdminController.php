@@ -14,6 +14,7 @@ use App\Model\NewsManager;
 use App\Model\EquipmentManager;
 use App\Model\ActivityManager;
 use App\Service\SecurityService;
+use App\Model\PlanningManager;
 
 class AdminController extends AbstractController
 {
@@ -129,6 +130,48 @@ class AdminController extends AbstractController
     }
 
     public function delActivity()
+    {
+        $activity = $_GET;
+
+        $adminManager = new ActivityManager();
+
+        if (!empty($activity)) {
+            if ($this->securityService->controlData($_GET['id'])) {
+                $id = $this->securityService->sanitizeInput($_GET['id']);
+                if (filter_var($id, FILTER_VALIDATE_INT)) {
+                    $adminManager->deleteActivity($id);
+                }
+                header('Location: /admin/activity');
+            }
+        }
+    }
+
+    public function planning()
+    {
+        $planningManager = new PlanningManager();
+        $planning = $planningManager->selectPlanning();
+        $activities = (new ActivityManager())->selectActivities();
+
+        return $this->twig->render('/Admin/adminPlanning.html.twig', [
+            'planning' => $planning,
+            'activities' => $activities
+        ]);
+    }
+
+    public function savePlanning()
+    {
+        $activity = $_POST;
+
+        $adminManager = new ActivityManager();
+
+        if (!empty($activity)) {
+            $adminManager->saveActivity($activity);
+        }
+
+        header('Location: /admin/activity');
+    }
+
+    public function delPlanning()
     {
         $activity = $_GET;
 
