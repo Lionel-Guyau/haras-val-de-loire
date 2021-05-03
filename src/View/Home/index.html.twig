@@ -53,12 +53,6 @@
 				inscriptions aux stages se font tout au long de l'année.
 				</p>
 			</div>
-
-			<div class="accueil-picture">
-				<img class="w-100 h-100"
-					src="/recup_photos/etho2.png" 
-					alt="Photo accueil">
-			</div>
 		</div>
 
 		<div class="d-flex justify-content-center mt-4 flex-md-row flex-column">
@@ -118,13 +112,13 @@
 						href="/activity/register?id={{ event.id }}">
 						<p class="text-center
 								text-responsive-p
-								py-1">
+								py-1 m-auto">
 							{% set difference = date('now').diff(date(event.startingDate)) %}
 							{% set places = event.nb_register == event.capacity ? "Complet" : "Places " ~ event.nb_register ~ "/" ~ event.capacity %}
 							{% if difference.days > 0 %}
-								{{ event.description }} dans {{ difference.days }} j - {{ places }}
+								{{ event.description }} dans {{ difference.days + 1 }} j - {{ places }}
 							{% else %}
-								{{ event.description }} dans {{ difference.h }}h - {{ places }}
+								{{ event.description }} dans {{ difference.h + 1 }}h - {{ places }}
 							{% endif %}
 						</p>
 					</a>
