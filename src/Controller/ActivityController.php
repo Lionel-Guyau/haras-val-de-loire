@@ -58,9 +58,12 @@ class ActivityController extends AbstractController
         $plannedActivity = $activity->selectPlannedActivity();
         $plannedActivityOrdered = $this->orderingActivitiesByType($plannedActivity);
         $planning = isset($_GET['activity']) ? (new PlanningManager())->selectByActivity($_GET['activity']) : [];
-
+        // echo "<pre>";
+        // print_r($planning);
+        // echo "</pre>";
+        // exit;
         $errors = [];
-        
+
         // Vérification de l'existence de la request en methode POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -70,20 +73,17 @@ class ActivityController extends AbstractController
             // Insertion des données dans la DB si pas d'erreurs
             if (empty($errors)) {
                 $register = new RegisterManager();
-                
+
                 $customer = $register->getCustomer($_POST);
-                if (empty($customer))
-                {
-                    $register-> addCustomer($_POST);
+                if (empty($customer)) {
+                    $register->addCustomer($_POST);
                     $customer = $register->getCustomer($_POST);
                 }
                 $customerId = $customer['id'];
                 $planningId = $_POST['datetime'];
-                $customerPlanning = $register->getCustomerPlanning($customerId , $planningId);
-                if (empty($customerPlanning))
-                {
-                    $register-> addCustomerPlanning($customerId , $planningId);
-
+                $customerPlanning = $register->getCustomerPlanning($customerId, $planningId);
+                if (empty($customerPlanning)) {
+                    $register->addCustomerPlanning($customerId, $planningId);
                 } else {
 
                     // A faire : Alert si déjà enregistré et retour sur /activity
@@ -102,8 +102,6 @@ class ActivityController extends AbstractController
             'planning' => $planning,
             'errors' => $errors
         ]);
-
-
     }
 
     public function validateForm(): array
@@ -119,7 +117,6 @@ class ActivityController extends AbstractController
                     $errors[] = 'Veuillez remplir TOUS les champs pour l\'inscription';
                 }
                 $_POST[$key] = htmlspecialchars(trim($value));
-                
             }
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 if (empty($errors)) {
