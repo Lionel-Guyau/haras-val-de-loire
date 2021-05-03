@@ -2,166 +2,212 @@
 
 
 {% block title %}
-    Page Haras
+	Page Haras
 {% endblock %}
 
-{# 
-{% block stylesheet %}
-	<link rel="stylesheet" href="/assets/css/style.css"> 
-	<link rel="stylesheet" href="/assets/css/style-accueil.css"> 
-	<link rel="stylesheet" href="/assets/css/bootstrap.min.css"> 
-	<link rel="stylesheet" href="/assets/css/bootstrap.min.css.map"> 
-{% endblock %} #}
 
 {% block content %}
-    <content class="haras container-flex p-0 m-0">
-    
+	<content class="haras container-flex p-0 m-0">
 
-        <div class="navigation-haras">
-            <div class="btn-group col-12 position-fixed-top" role="group">
-                <a class="btn btn-primary rounded-0 text-light" href="#">Principes</a>
-                <a class="btn btn-primary rounded-0 text-light" href="#goal">Objectifs</a>
-                <a class="btn btn-primary rounded-0 text-light" href="#director">Direction</a>
-            </div>
-        </div>
 
-        <div id="principes" class="haras-principes-body p-1 p-lg-4">
-            <h1 id "principe_title" class="title text-center text-white pt-3 m-lg-1"  >Les principes de l'éthologie</h1>
-            <div id="principe_row"class="row align-items-center">
-                <div class="col-4 col-sm-3 col-mg-2 mt-2 col-lg-3" style="text-align-last: center;">
-                    <div id="principe_button" class="btn-group-vertical" style="opacity: .8;">
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Confiance</a>
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Confort</a>
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Sensibilisation</a>
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Savoir-être</a>
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Réflexes</a>
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">La fuite</a>
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Instincts</a>
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Défenses</a>
-                        <a class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Apprentissage</a>
-                    </div> 
-                </div>
-                
-                <div id="principe_text"class="col-8 col-sm-8 mt-3 pr-lg-3 pr-mg-4 col-mg-10 col-lg-8">
-                    <p id="principe_text_area"class="p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">L'éducation du couple homme/cheval est basée sur la confiance et le respect mutuel, gage indispensable à la sécurité.<br>
-                    Cette confiance est basée sur la sécurité et le confort que vous apportez au cheval. Il ne vous craint pas et sait s'en remettre à vous même dans les situations les plus délicates. 
-                    Il apprend à ne pas avoir peur des choses qui ne le concernent pas (l'oiseau qui s'envole soudainement, le chien qui arrive en courant, le cycliste, le tracteur et bien d'autres encore). 
-                    Il doit savoir qu'avec vous, rien de fâcheux ne peut lui arriver et que vous serez toujours là pour lui. Cette confiance s'obtient progressivement et peut être très grande. Il vous 
-                    appartient ensuite de ne pas la trahir.<br>
-                    Un cheval fiable et sûr donne de l'assurance au cavalier et apporte la sécurité.<br>
-                    Le respect, c'est avant tout faire bouger les pieds de l'autre! Avoir le contrôle des pieds du cheval c'est agir sur son physique, son mental et son émotionnel. Cela  permet également 
-                    d'accroitre la sécurité. Le cheval ne me bouscule pas, il apprend à respecter « mon espace » à pied comme à cheval. A titre d'exemple, un cheval respectueux ne marche pas sur les pieds,
-                     ne vous emmène pas en force vers un endroit tentant, ne bouge pas au montoir et répond de façon positive à nos aides.
-                     </p>
-                </div>
+		<div class="navigation-haras">
+			<div class="btn-group col-12 position-fixed-top" role="group">
+				<a class="btn btn-primary rounded-0 text-light" href="#">Principes</a>
+				<a class="btn btn-primary rounded-0 text-light" href="#goal">Objectifs</a>
+				<a class="btn btn-primary rounded-0 text-light" href="#director">Direction</a>
+			</div>
+		</div>
 
-            </div>
+		<div id="principes" class="haras-principes-body p-1 p-lg-4">
+			<h1 id "principe_title" class="title text-center text-white pt-3 m-lg-1">Les principes de l'éthologie</h1>
+			<div id="principe_row" class="row align-items-center">
+				<div class="col-4 col-sm-3 col-mg-2 mt-2 col-lg-3" style="text-align-last: center;">
+					<div id="principe_button" class="btn-group-vertical" style="opacity: .8;">
+						<a data-target="confiance_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Confiance</a>
+						<a data-target="confort_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Confort</a>
+						<a data-target="sensibilisation_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Sensibilisation</a>
+						<a data-target="savoir_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Savoir-être</a>
+						<a data-target="reflex_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Réflexes</a>
+						<a data-target="fuite_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">La fuite</a>
+						<a data-target="instinct_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Instincts</a>
+						<a data-target="defense_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Défenses</a>
+						<a data-target="apprentissage_text" class="btn btn-primary btn-sm rounded text-light mb-1 border border-light" href="#">Apprentissage</a>
+					</div>
+				</div>
+
+				<div id="principe_text" class="col-8 col-sm-8 mt-3 pr-lg-3 pr-mg-4 col-mg-10 col-lg-8">
+
+					<p id="confiance_text" class="p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">L'éducation du couple homme/cheval est basée sur la confiance et le respect mutuel, gage indispensable à la sécurité.<br>
+						Cette confiance est basée sur la sécurité et le confort que vous apportez au cheval. Il ne vous craint pas et sait s'en remettre à vous même dans les situations les plus délicates. 
+																		                    Il apprend à ne pas avoir peur des choses qui ne le concernent pas (l'oiseau qui s'envole soudainement, le chien qui arrive en courant, le cycliste, le tracteur et bien d'autres encore). 
+																		                    Il doit savoir qu'avec vous, rien de fâcheux ne peut lui arriver et que vous serez toujours là pour lui. Cette confiance s'obtient progressivement et peut être très grande. Il vous 
+																		                    appartient ensuite de ne pas la trahir.<br>
+						Un cheval fiable et sûr donne de l'assurance au cavalier et apporte la sécurité.<br>
+						Le respect, c'est avant tout faire bouger les pieds de l'autre! Avoir le contrôle des pieds du cheval c'est agir sur son physique, son mental et son émotionnel. Cela  permet également 
+																		                    d'accroitre la sécurité. Le cheval ne me bouscule pas, il apprend à respecter « mon espace » à pied comme à cheval. A titre d'exemple, un cheval respectueux ne marche pas sur les pieds,
+																		                     ne vous emmène pas en force vers un endroit tentant, ne bouge pas au montoir et répond de façon positive à nos aides.
+					</p>
+
+					<p id="confort_text" class="d-none p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">Après la sécurité, l'élément le plus important pour une proie est le confort. Le cheval recherche toujours le confort. Pour son apprentissage, l'homme utilise avec le cheval des stimuli d'inconfort progressif (ce qu'on appelle le renforcement négatif) pour le motiver à chercher...le confort. Ces stimuli s'exercent sous forme de pression tactile ou encore par le langage du corps (geste, mental, intention, énergie). Le cheval cherche la bonne réponse. A l'instant même ou il la trouve, l'inconfort cesse amenant à nouveau du confort. On peut augmenter le confort par du renforcement positif comme la récompense sous forme de caresse ou de friandise.
+					</p>
+
+					<p id="sensibilisation_text" class="d-none p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">La désensibilisation: diminution progressive des réactions (de peur ou d'inquiétude le plus souvent) à un stimulus que l'on répète et que l'on augmente peu à peu quand le cheval n'a plus peur. Contrairement à une surexposition, le cheval garde un contrôle sur la situation. En effet, l'homme l'aide en utilisant notamment la technique approche/retrait et cesse le stimulus dès que le cheval commence à l'accepter sans fuite ou le diminue si le cheval est trop inquiet. La désensibilisation, c'est apprendre au cheval à ne pas se sentir concerné par des stimuli qui le mettent initialement en insécurité.
+																		 La sensibilisation: c'est avoir une réponse à un stimulus donné. Elle fait appel à l'expérience. Le cheval se sent concerné par une demande et donne une réponse appropriée. L'idéal étant d'arriver à une grande légèreté et finesse de réponse.
+					</p>
+
+					<p id="savoir_text" class="d-none p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">Votre langage corporel exprime vos émotions et votre intention. Vous ne pouvez pas mentir à votre cheval car il possède la capacité de vous lire parfaitement. Votre regard, vos gestes et votre mental exprime votre intention. L'intention est le plus puissant outil de communication: vous apprenez à développer la visualisation positive, une grande concentration et à moduler votre énergie suivant la situation.
+												 Le savoir être n'est donc pas qu'un ensemble de technique pure (savoir faire) mais une posture mentale adaptée à l'observation, la compréhension et la communication avec le cheval. Il s'agit d' une attitude positive, progressive et naturelle, être en cohérence pour savoir se faire comprendre mais aussi savoir motiver. Les outils et les exercices ne sont jamais une fin en soi mais au service des concepts et vous permettent d'avancer sur le chemin. Cette philosophie de l'homme de cheval va bien au delà de sa relation avec le cheval, c'est un art de vivre au quotidien.
+					</p>
+
+					<p id="reflex_text" class="d-none p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">Naturellement, le cheval résiste à la pression. Pour travailler ensemble, vous devez lui apprendre à cesser de résister à cette pression pour qu'il puisse notamment répondre à vos aides. Ensuite, vous obtiendrez des réflexes positifs: sa réponse sans hésitation aussi léger et doux que possible, aussi bien à pied que monté.
+												 Aussi doux que possible, aussi ferme que nécessaire: c'est la fameuse « main de fer dans un gant de velours »on utilise 4 phases progressives dans chacune de nos demandes qui correspondent à suggérer, demander, dire, promettre. Elles permettent au cheval de réfléchir et de chercher des réponses. La séquence des phases est quelque chose de naturel pour le cheval car il y recourt avec les autres membre du troupeau. Chacune de ces phases est menée avec fluidité, sans brusquerie, de façon à être prêt à cesser et à supprimer toute pression à tout moment.
+												 La pression motive, le relâchement enseigne: ce qui compte, c'est moins ce que vous faîtes mais l'instant ou vous cesser de le faire.
+					</p>
+
+					<p id="fuite_text" class="d-none p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">L'instinct de survie du cheval réside dans sa capacité à fuir. Il le pousse à avoir cette réaction de proie devant tout ce qu'il lui apparaît comme un danger potentiel. Le cheval détecte des stimuli sensoriels trop faibles pour que nous puissions les percevoir. Le réflexe de fuite instantanée déclenché par un stimulus n'est pas de la stupidité, c'est une réaction naturelle.
+												 Ce comportement d'auto préservation se manifeste lorsque sa sécurité est remise en cause. Vous ne pouvez pas en vouloir à un cheval de détaler le plus vite et le plus loin possible quand il se sent en danger de mort. On ne peut pas reprocher à un cheval de se comporter comme un cheval. Par contre, vous pouvez lui apprendre à gérer sa peur, à rester cool en s'en remettant à vous (le leader).
+					</p>
+
+					<p id="instinct_text" class="d-none p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">Par nature, le cheval est sociable et grégaire. Sa sécurité repose sur le fait d'être avec ou de rester près du troupeau. Moins un cheval est confiant, plus il est bas dans la hiérarchie des préférences, plus il aura tendance à être grégaire. Il n'aime pas être seul et s'attachera à n'importe quel être vivant si celui ci n'est ni un rival, ni une menace. Pourquoi pas vous?
+					</p>
+
+					<p id="defense_text" class="d-none p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">Se cabrer, grincer des dents, coucher les oreilles, refuser de bouger sont des réactions d'autodéfenses. Ces attitudes ne sont pas dirigées contre vous pour vous embêter ou vous contrarier. Elles traduisent un manque de respect, qui est la conséquence d'un manque de confiance et d'estime envers l'homme. Ces défenses ont bien souvent été induites par l'homme sans qu'il en ait pris conscience. Et c'est seulement lorsqu'elles sont bien installées qu'elles sont prise en compte comme étant un problème. Bien souvent, le problème n'est pas le problème mais juste la partie visible de l'iceberg.
+					</p>
+
+					<p id="apprentissage_text" class="d-none p-3 text-light bg-primary rounded border border-light" style="opacity: .8;">Il faut avant tout reconnaître et respecter l'ordre des étapes d'apprentissage. Andy Booth parle de «compréhension,  fondation, équitation et compétition ». On se doit d'apprendre à connaître le cheval (son point de vue, son langage, ses principes d'apprentissages) pour développer des bases solides afin de pratiquer une équitation claire et sûre. La compétition est l'étape ultime.
+												 C'est à pied que vous apprendrez 80% de ce dont vous avez besoin vous et votre cheval. Avant d'être monté, le cheval a besoin de vous faire confiance et vous comprendre, évitant ainsi des problèmes et craintes non fondées. Sans ce travail au sol, certaines lacunes vont voir le jour: ennuis de contrôle, de résistance et de sécurité.
+												 Il n'y a pas de notion de temps parfait dans la fréquence et la durée des séances. Tout apprentissage doit être progressif et adapté à chaque cheval. C'est le respect et la compréhension des principes d'apprentissages qui développera une bonne relation homme/cheval. Observez votre cheval, essayez d'être simple et clair, prenez votre temps, laisser votre cheval réfléchir, ne vous énervez jamais et faites preuve de calme, de patience et de persévérance.Il convient toujours d'arrêter une séance sur une bonne réponse, un effort supplémentaire du cheval sur un objectif donné avant qu'il en ait marre ou soit inattentif. Car le plus important n'est pas ce que vous demandez mais le moment ou vous arrêter de demander.
+												 On entend souvent dire qu'il faut beaucoup de temps, c'est vrai et faux à la fois!!! Tout dépend de ce que vous voulez obtenir et quel est le degré de relation actuel avec votre cheval. Parfois, on a l'impression de passer beaucoup de temps sur une ou deux petites choses qui peuvent paraître sans grande importance. Si c'est une étape essentielle, vous devez consacrer le temps nécessaire pour faire les choses correctement la 1ére fois, ensuite vous y passerez 2 fois moins de temps, et encore moins par la suite. C'est la meilleure façon de ne pas perdre ensuite beaucoup de temps à refaire indéfiniment le même exercice et en traînant le problème pendant des années.
+												Prenez le temps qu'il faut pour gagner du temps ensuite.
+					</p>
+
+				</div>
+
+			</div>
 
 		</div>
 
-        <div id="goal" class="haras-objectif-body">
-            <h1 id="goal_title" class="title text-center text-white pt-2 pt-lg-4 pb-lg-3 pb-5" >Les objectifs de l'éthologie</h1>
-            <div id="goal_box" class="container bt-3 pt-2 pt-lg-5 pb-lg-5 ">
-                <div id="goal_row" class="row text-white text-center">
-                    <div class="col-1" style="align-self: center;">
-                        <img src="/recup_photos/logo-check.png">
-                    </div>
-                    <div class="col-5" style="align-self: center;">
-                        <p id="goal1" class="col-sm col-lg-12 m-lg-0 align-middle">Construire une relation basée sur la confiance et la complicité grâce à une meilleure compréhension du cheval.
-                        </p>
-                    </div>
-                    <div class="col-1" style="align-self: center;">
-                        <img src="/recup_photos/logo-check.png">
-                    </div>
-                    <div class="col-5" style="align-self: center;">
-                        <p id="goal2" class="col-sm col-lg-12 align-middle">​Mettre en place un mode de communication avec votre cheval que ce soit pour du loisir ou de la compétition.
-                        </p>
-                     </div>
-                     <div class="col-1" style="align-self: center;">
-                        <img src="/recup_photos/logo-check.png">
-                    </div>
-                    <div class="col-5" style="align-self: center;">
-                        <p id="goal3" class="col-sm col-lg-12 align-middle">Avoir un cheval attentif dans tout environnement.
-                        </p>
-                     </div>
-                     <div class="col-1" style="align-self: center;">
-                        <img src="/recup_photos/logo-check.png">
-                    </div>
-                    <div class="col-5" style="align-self: center;">
-                        <p id="goal4" class="col-sm col-lg-12 align-middle">Optimiser la locomotion et le fonctionnement de votre cheval dans le respect de l'inné locomoteur.
-                        </p>
-                     </div>
-                </div>
-            </div>
+		<div id="goal" class="haras-objectif-body">
+			<h1 id="goal_title" class="title text-center text-white pt-2 pt-lg-4 pb-lg-3 pb-5">Les objectifs de l'éthologie</h1>
 
-            <div id="director_message"class="container pt-lg-5">
-                <div id="director_p" class="col-12">
-                    <p class="text-white text-center">Notre directrice, Vanessa JORE, souhaite:
-                    </p>
-                </div>
+			<div id="goal_box" class="container bt-3 pt-2 pt-lg-5 pb-lg-5 ">
+				<div id="goal_row" class="row text-white text-center">
+					<div class="col-1" style="align-self: center;">
+						<img src="/recup_photos/logo-check.png">
+					</div>
+					<div class="col-5" style="align-self: center;">
+						<p id="goal1" class="col-sm col-lg-12 m-lg-0 align-middle">Construire une relation basée sur la confiance et la complicité grâce à une meilleure compréhension du cheval.
+						</p>
+					</div>
+					<div class="col-1" style="align-self: center;">
+						<img src="/recup_photos/logo-check.png">
+					</div>
+					<div class="col-5" style="align-self: center;">
+						<p id="goal2" class="col-sm col-lg-12 align-middle">​Mettre en place un mode de communication avec votre cheval que ce soit pour du loisir ou de la compétition.
+						</p>
+					</div>
+					<div class="col-1" style="align-self: center;">
+						<img src="/recup_photos/logo-check.png">
+					</div>
+					<div class="col-5" style="align-self: center;">
+						<p id="goal3" class="col-sm col-lg-12 align-middle">Avoir un cheval attentif dans tout environnement.
+						</p>
+					</div>
+					<div class="col-1" style="align-self: center;">
+						<img src="/recup_photos/logo-check.png">
+					</div>
+					<div class="col-5" style="align-self: center;">
+						<p id="goal4" class="col-sm col-lg-12 align-middle">Optimiser la locomotion et le fonctionnement de votre cheval dans le respect de l'inné locomoteur.
+						</p>
+					</div>
+				</div>
+			</div>
 
-                <div id="talk_title" class="col-12">
-                    <p class="text-white">S'adresser à tous les cavaliers
-                    </p>
-                </div>
-                <div id="talk_text" class="col-11 m-3">
-                    <p class="text-white ">- Cavaliers de tout niveau,</br>
-                        - Enseignants,</br>
-                        - Professionnels du cheval : éleveurs, vétérinaires, maréchaux ferrant, lads jockeys, transporteurs, soigneurs…</br>
-                        - Particuliers possédant des installations
-                    </p>
-                </div>
+			<div id="director_message" class="container pt-lg-2">
+				<div id="director_p" class="col-12">
+					<p class="text-white text-center">Notre directrice, Vanessa JORE, souhaite:
+					</p>
+				</div>
 
-                <div id="talk_title" class="col-12">
-                    <p class="text-white">Vous accompagner dans vos démarches
-                    </p>
-                </div>
-                <div id="talk_text" class="col-11 m-3">
-                    <p class="text-white ">- Amélioration des performances sportives,</br>
-                        - Gestion du stress et des émotions,</br>
-                        - Harmonisation du couple cavalier-cheval
-                    </p>
-                </div>
+				<div class="d-flex flex-wrap col-12 mt-5" style="text-align: -webkit-center;">
 
-                <div id="talk_title" class="col-12">
-                    <p class="text-white">Vous partager ses connaissances
-                    </p>
-                </div>
-                <div id="talk_text" class="col-11 m-3">
-                    <p class="text-white ">- Toutes disciplines (CSO, Dressage, CCE, Endurance, TREC, Western, Attelage, Courses...),</br>
-                        - Enseignants,</br>
-                        - Toutes races, âge ou sexe</br>
-                        - Tous niveaux
-                    </p>
-                </div>
+					<div class="col-6">
+						<div id="talk_title" class="col-6 align-self-center">
+							<p class="text-white">S'adresser à tous les cavaliers
+							</p>
+						</div>
+					
+						<div id="talk_text" class="m-3">
+							<p class="text-white ">
+								- Cavaliers de tout niveau,
+								- Enseignants,</br>
+								- Professionnels du cheval : éleveurs, vétérinaires, maréchaux ferrant, lads jockeys, transporteurs, soigneurs…</br>
+								- Particuliers possédant des installations
+							</p>
+						</div>
 
-            </div>
+					</div>
+					
+					<div class="col-6">
+						<div id="talk_title" class="">
+							<p class="text-white">Vous accompagner dans vos démarches</p>
+						</div>
+				
+						<div id="talk_text" class="col-12">
+							<p class="text-white ">
+								- Amélioration des performances sportives,</br>
+								- Gestion du stress et des émotions,</br>
+								- Harmonisation du couple cavalier-cheval</p>
+						</div>
+
+					</div>
+					
+					<div id="talk_title" class="col-12 pt-3">
+						<p class="text-white">Vous partager ses connaissances</p>
+					</div>
+
+					<div id="talk_text" class="col-12">
+						<p class="text-white ">
+							- Toutes disciplines (CSO, Dressage, CCE, Endurance, TREC, Western, Attelage, Courses...),</br>
+							- Enseignants,</br>- Toutes races, âge ou sexe</br>- Tous niveaux</p>
+					</div>
+				</div>
+			</div>
+		
 		</div>
-
-        <div id="director" class="haras-directrice-body">
-            <h1 id="director_title" class="title text-center text-white pt-3 p-lg-5"  id="directrice" >Vanessa JORE - Directrice</h1>
-            <div class="container justify-items-center">
-                <p class="text-white  pt-4 m-4 col-lg-10">Vanessa JORE a toujours eu des chevaux et poneys à la maison, qu’elle s’amusait à dresser dès son plus jeune âge.
-                En primaire, Vanessa avait appris à sa ponette shetland « Pâquerette » à effectuer des lançades montées, et à l’étalon shetland de la maison « P’tit Gris » à se coucher à la demande.
-                </p>
-                <p class="text-white m-4">Ensuite, chaque équidé qui passait par la maison avait droit à l’apprentissage de dressage de base, que ce soit chevaux de randonnée, d’attelage, de loisirs ou de compétition…
-                </p>
-                <p class="text-white m-4">En 1996, elle découvre le dressage en faisant un stage chez Sylvie CORELLOU, cavalière de dressage ayant participé au championnat d’Europe 1999 avec Vison d’Or. Vanessa achètera le propre frère de Vison d'Or, Emhan d’Or, qu’elle emmènera jusqu’au Grand Prix de dressage avec l’aide de Jean-Noël MYCHALYSIN.
-                </p>
-                <p class="text-white m-4">Elle dressera également Habib des Tours (vendu en 2006) et Darwin (vendu en 2018) jusqu’au Grand Prix, avec l’aide de ses mentors en dressage, Jean-Noël Mychalisyn et Marina Caplain Saint André.
-                </p>
-                <p class="text-white m-4">Début 2019, elle rachète deux jeunes chevaux, jamais manipulés, tout juste castrés, sauvages, non licolés, en se donnant le défi de les rendre comme tous ses autres chevaux : gentils, éduqués, agréables à côtoyer, « safe ».
-                </p>
-                <p class="text-white m-4">Aujourd’hui, les deux jeunes chevaux, Jaguar, 7ans et Kingston, 6ans, suivent une formation de dressage avec Vanessa, aidé par Christophe MAYER, BEES2, instructeur, cavalier et entraineur de dressage émérite. Ils sont doux, faciles à manipuler, montés par d’autres cavaliers régulièrement, sans aucun problème et en toute sécurité.
-                </p>
-                <p class="text-white m-4">Toute la cavalerie de club (plus d’une trentaine d’équidé) démontre la foi de Vanessa d’avoir des animaux en bonne santé, sains d’esprit et de corps, manipulés dans le respect de l’animal (sans verser non plus dans l’anthropomorphisme).
-                </p>
-                <p class="text-white m-4">L’école d’équitation le Haras du Val de Loire, avec sa monitrice, Céline MESLAND, également formée aux savoirs éthologiques, laisse le temps ou l'opportunité à chaque élève d'apprendre à être un « homme de cheval ».
-                </p>
-            </div>
+	</content>
+            
+	<div id="director" class="haras-directrice-body">
+		<h1 id="director_title" class="title text-center text-white pt-3 p-lg-5" id="directrice">Vanessa JORE - Directrice</h1>
+		<div id="director_text" class="container justify-items-center">
+			<p class="text-white  pt-4 m-4 col-lg-10">Vanessa JORE a toujours eu des chevaux et poneys à la maison, qu’elle s’amusait à dresser dès son plus jeune âge. En primaire, Vanessa avait appris à sa ponette shetland « Pâquerette » à effectuer des lançades montées, et à l’étalon shetland de la maison « P’tit Gris » à se coucher à la demande.</p>
+				<p class="text-white m-4">Ensuite, chaque équidé qui passait par la maison avait droit à l’apprentissage de dressage de base, que ce soit chevaux de randonnée, d’attelage, de loisirs ou de compétition…</p>
+				<p class="text-white m-4">En 1996, elle découvre le dressage en faisant un stage chez Sylvie CORELLOU, cavalière de dressage ayant participé au championnat d’Europe 1999 avec Vison d’Or. Vanessa achètera le propre frère de Vison d'Or, Emhan d’Or, qu’elle emmènera jusqu’au Grand Prix de dressage avec l’aide de Jean-Noël MYCHALYSIN.</p>
+				<p class="text-white m-4">Elle dressera également Habib des Tours (vendu en 2006) et Darwin (vendu en 2018) jusqu’au Grand Prix, avec l’aide de ses mentors en dressage, Jean-Noël Mychalisyn et Marina Caplain Saint André.</p>
+				<p class="text-white m-4">Début 2019, elle rachète deux jeunes chevaux, jamais manipulés, tout juste castrés, sauvages, non licolés, en se donnant le défi de les rendre comme tous ses autres chevaux : gentils, éduqués, agréables à côtoyer, « safe ».</p>
+				<p class="text-white m-4">Aujourd’hui, les deux jeunes chevaux, Jaguar, 7ans et Kingston, 6ans, suivent une formation de dressage avec Vanessa, aidé par Christophe MAYER, BEES2, instructeur, cavalier et entraineur de dressage émérite. Ils sont doux, faciles à manipuler, montés par d’autres cavaliers régulièrement, sans aucun problème et en toute sécurité.</p>
+				<p class="text-white m-4">Toute la cavalerie de club (plus d’une trentaine d’équidé) démontre la foi de Vanessa d’avoir des animaux en bonne santé, sains d’esprit et de corps, manipulés dans le respect de l’animal (sans verser non plus dans l’anthropomorphisme).</p>
+				<p class="text-white m-4">L’école d’équitation le Haras du Val de Loire, avec sa monitrice, Céline MESLAND, également formée aux savoirs éthologiques, laisse le temps ou l'opportunité à chaque élève d'apprendre à être un « homme de cheval ».</p>
 		</div>
+	</div> 
+{% endblock %}
+							
+							
+							
+{% block javascript %} 
+	<script>
+		document.querySelectorAll('#principe_button a').forEach(element => {
+		element.addEventListener('click', event => {
+		event.preventDefault();
 
-   
-    </content>
+		document.querySelectorAll('#principe_text p').forEach(element => {
+		element.classList.add('d-none');
+	});
 
-{% endblock %}    
+		const divToToggle = event.currentTarget.dataset.target;
+		document.getElementById(divToToggle).classList.remove('d-none');
+	});
+		})
+	</script>
+{% endblock %}
+

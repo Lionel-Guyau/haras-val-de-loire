@@ -35,7 +35,7 @@
     max-height: 103vh!important;
 } */
 @media (min-width: 1300px){
-  #principe_text_area{
+  #principe_text p{
     font-size: calc(1vh + .5vw)!important;
     height: 80%;
   }
@@ -50,7 +50,7 @@
     height: 103vh;
 }
 #goal_row{
-    font-size: calc(1vh + 1vw); 
+    font-size: calc(1vh + .6vw); 
 }
 @media (min-width: 1300px){
   #goal_row{
@@ -93,7 +93,7 @@
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
 #director p{
-    font-size: calc(1vh + .6vw)!important;
+    font-size: calc(1vh + .5vw)!important;
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
 
