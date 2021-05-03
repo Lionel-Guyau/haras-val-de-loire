@@ -15,7 +15,11 @@ use App\Model\EquipmentManager;
 use App\Model\ActivityManager;
 use App\Service\SecurityService;
 
-
+/**
+ * Suppress all warnings from these two rules.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 class AdminController extends AbstractController
 {
     private SecurityService $securityService;

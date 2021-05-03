@@ -54,5 +54,4 @@ class EquipmentManager extends AbstractManager
         $query->bindValue(':description', $description);
         $query->execute();
     }
-
 }
