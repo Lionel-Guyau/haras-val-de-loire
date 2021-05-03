@@ -9,11 +9,10 @@ class PlanningManager extends AbstractManager
         public const TABLE = 'planning';
 
         /**
-         * Renvoi la liste des créneau du planning pour une activité.
+         * Renvoi la liste des créneau du planning pour une activité
          */
         public function selectByActivity(int $id)
         {
-                // $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE activity_id = :activity_id");
                 $query = "SELECT activity.capacity, planning.start_at,  
                         COUNT(customer_planning.customer_id) AS nb_register
                 FROM planning
