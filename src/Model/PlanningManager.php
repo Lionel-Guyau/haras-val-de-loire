@@ -9,11 +9,11 @@ class PlanningManager extends AbstractManager
     public const TABLE = 'planning';
 
     /**
-     * Renvoi la liste des créneau du planning pour une activité
+     * Renvoi la liste des créneau du planning pour une activité.
      */
     public function selectByActivity(int $id)
     {
-        $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE activity_id = :activity_id");
+        $statement = $this->pdo->prepare('SELECT * FROM ' . static::TABLE . ' WHERE activity_id = :activity_id');
         $statement->bindValue(':activity_id', $id, PDO::PARAM_INT);
         $statement->execute();
 
@@ -22,8 +22,8 @@ class PlanningManager extends AbstractManager
 
     public function registerToActivity(array $registerInfos)
     {
-        $query= "INSERT INTO customer  ('firstname', 'lastname', 'email')
-        VALUES (:firstname, :lastname, :email)" ;
+        $query = "INSERT INTO customer  ('firstname', 'lastname', 'email')
+        VALUES (:firstname, :lastname, :email)";
 
         $statement = $this->pdo->prepare($query);
 
@@ -33,5 +33,4 @@ class PlanningManager extends AbstractManager
 
         return $statement->execute();
     }
-
 }

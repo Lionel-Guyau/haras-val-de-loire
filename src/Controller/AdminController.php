@@ -9,26 +9,28 @@
 
 namespace App\Controller;
 
-use App\Model\AdminManager;
 use App\Service\AuthService;
+use App\Model\NewsManager;
+use App\Model\EquipmentManager;
+use App\Model\ActivityManager;
+use App\Service\SecurityService;
 
 class AdminController extends AbstractController
 {
+    private SecurityService $securityService;
+
     /**
      * Display home page
      *
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * On appelle le construct parent et on initialise la class AuthService et la méthode checkSession
+     * checkSession : Si pas connecté, on redirige vers /login
+     * Cela permet de sécuriser les méthodes afin d'éviter d'y accéder depuis l'URL
      */
-
-    // On appelle le construct parent et on initialise la class AuthService et la méthode checkSession
-    // checkSession : Si pas connecté, on redirige vers /login
-    // Cela permet de sécuriser les méthodes afin d'éviter d'y accéder depuis l'URL
     public function __construct()
     {
         parent::__construct();
+        $this->securityService = new SecurityService();
+
         (new AuthService())->checkSession();
     }
 
@@ -37,62 +39,44 @@ class AdminController extends AbstractController
         return $this->twig->render('/Admin/admin.html.twig');
     }
 
-    public function controlDataPost($input): bool
-    {
-        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-            if (!empty($input)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function controlDataGet(string $input): bool
-    {
-        if ($_SERVER["REQUEST_METHOD"] === 'GET') {
-            if (!empty($input)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function sanitizeInput($data)
-    {
-        $data = trim($data);
-        return $data;
-    }
-
     public function news()
     {
-        $adminManager = new AdminManager();
-        $selectNews = $adminManager->selectNews();
+        $newsManager = new NewsManager();
+        $selectNews = $newsManager->selectNews();
 
         return $this->twig->render('/Admin/adminNews.html.twig', ['selectnews' => $selectNews]);
     }
 
     public function addNews()
     {
-        $adminManager = new AdminManager();
+        $activity = $_POST;
 
-        if ($this->controlDataPost($_POST['description'])) {
-            $description = $this->sanitizeInput($_POST['description']);
+        $newsManager = new NewsManager();
 
-            if (strlen($description) < 50) {
-                $adminManager->insertNews($description);
+        if (!empty($activity)) {
+            if ($this->securityService->controlData($_POST['description'])) {
+                $description = $this->securityService->sanitizeInput($_POST['description']);
+
+                if (strlen($description) < 50) {
+                    $newsManager->insertNews($description);
+                }
             }
+            header('Location: /admin/news');
         }
-        header('Location: /admin/news');
     }
 
     public function delNews()
     {
-        $adminManager = new AdminManager();
+        $activity = $_GET;
 
-        if ($this->controlDataGet($_GET['id'])) {
-            $id = $this->sanitizeInput($_GET['id']);
-            if (filter_var($id, FILTER_VALIDATE_INT)) {
-                $adminManager->deleteNews($id);
+        $newsManager = new NewsManager();
+
+        if (!empty($activity)) {
+            if ($this->securityService->controlData($_GET['id'])) {
+                $id = $this->securityService->sanitizeInput($_GET['id']);
+                if (filter_var($id, FILTER_VALIDATE_INT)) {
+                    $newsManager->deleteNews($id);
+                }
             }
             header('Location: /admin/news');
         }
@@ -100,38 +84,64 @@ class AdminController extends AbstractController
 
     public function majNews()
     {
-        $adminManager = new AdminManager();
+        $activity = $_POST;
 
-        if ($this->controlDataPost($_POST['description']) && $this->controlDataPost($_POST['id'])) {
-            $id = $this->sanitizeInput($_POST['id']);
-            $description = $this->sanitizeInput($_POST['description']);
+        $newsManager = new NewsManager();
 
-            if (strlen($description) < 50 && filter_var($id, FILTER_VALIDATE_INT)) {
-                $adminManager->updateNews($id, $description);
+        if (!empty($activity)) {
+            if (
+                $this->securityService->controlData($_POST['description']) &&
+                $this->securityService->controlData($_POST['id'])
+            ) {
+                $id = $this->securityService->sanitizeInput($_POST['id']);
+                $description = $this->securityService->sanitizeInput($_POST['description']);
+
+                if (strlen($description) < 50 && filter_var($id, FILTER_VALIDATE_INT)) {
+                    $newsManager->updateNews($id, $description);
+                }
+                header('Location: /admin/news');
             }
         }
-        header('Location: /admin/news');
     }
 
     public function activity()
     {
-        $adminManager = new AdminManager();
-        $selectActivity = $adminManager->selectActivity();
+        $adminManager = new ActivityManager();
+        $activities = $adminManager->selectActivity();
 
-        return $this->twig->render('/Admin/adminActivity.html.twig', ['selectactivity' => $selectActivity]);
+        return $this->twig->render('/Admin/adminActivity.html.twig', [
+            'activities' => $activities,
+            'equipments' => (new EquipmentManager())->selectAll("description")
+        ]);
     }
 
-    public function addActivity()
+    public function saveActivity()
     {
-        $adminManager = new AdminManager();
+        $activity = $_POST;
 
-        if ($this->controlDataPost($_POST['name'])) {
-            $name = $this->sanitizeInput($_POST['name']);
+        $adminManager = new ActivityManager();
 
-            if (strlen($name) < 50) {
-                $adminManager->insertActivity($name);
+        if (!empty($activity)) {
+            $adminManager->saveActivity($activity);
+        }
+
+        header('Location: /admin/activity');
+    }
+
+    public function delActivity()
+    {
+        $activity = $_GET;
+
+        $adminManager = new ActivityManager();
+
+        if (!empty($activity)) {
+            if ($this->securityService->controlData($_GET['id'])) {
+                $id = $this->securityService->sanitizeInput($_GET['id']);
+                if (filter_var($id, FILTER_VALIDATE_INT)) {
+                    $adminManager->deleteActivity($id);
+                }
+                header('Location: /admin/activity');
             }
         }
-        header('Location: /admin/activity');
     }
 }

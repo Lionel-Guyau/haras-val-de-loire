@@ -2,6 +2,9 @@
 
 namespace App\Model;
 
+use App\Model\Connection;
+use PDO;
+
 class ContactManager extends AbstractManager
 {
 
