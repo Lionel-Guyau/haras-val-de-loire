@@ -18,8 +18,6 @@
 			</div>
 		</div>
 
-		<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
 		<div id="principes" class="haras-principes-body p-1 p-lg-4">
 			<h1 id "principe_title" class="title text-center text-white pt-3 m-lg-1">Les principes de l'éthologie</h1>
 			<div id="principe_row" class="row align-items-center">
@@ -141,7 +139,7 @@
 					
 						<div id="talk_text" class="m-3">
 							<p class="text-white ">
-								- Cavaliers de tout niveau,
+								- Cavaliers de tout niveau,</br>
 								- Enseignants,</br>
 								- Professionnels du cheval : éleveurs, vétérinaires, maréchaux ferrant, lads jockeys, transporteurs, soigneurs…</br>
 								- Particuliers possédant des installations
@@ -209,27 +207,9 @@
 		const divToToggle = event.currentTarget.dataset.target;
 		document.getElementById(divToToggle).classList.remove('d-none');
 	});
-		})
+})
 
-		//Get the button:
-		mybutton = document.getElementById("myBtn");
 
-		// When the user scrolls down 20px from the top of the document, show the button
-		window.onscroll = function() {scrollFunction()};
-
-		function scrollFunction() {
-		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 700) {
-			mybutton.style.display = "block";
-		} else {
-			mybutton.style.display = "none";
-		}
-		}
-
-		// When the user clicks on the button, scroll to the top of the document
-		function topFunction() {
-		document.body.scrollTop = 0; // For Safari
-		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-		}
 	</script>
 {% endblock %}
 
