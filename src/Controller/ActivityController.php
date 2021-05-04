@@ -56,36 +56,29 @@ class ActivityController extends AbstractController
         $activity = new ActivityManager();
         $activityType = $activity->selectActivity();
         $plannedActivity = $activity->selectPlannedActivity();
-        $plannedActivityOrdered = $this->orderingActivitiesByType($plannedActivity);
+        $plannedActivityTyped = $this->orderingActivitiesByType($plannedActivity);
         $planning = isset($_GET['activity']) ? (new PlanningManager())->selectByActivity($_GET['activity']) : [];
 
         $errors = [];
-        
         // Vérification de l'existence de la request en methode POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             // Validation des données
             $errors = $this->validateForm();
 
             // Insertion des données dans la DB si pas d'erreurs
             if (empty($errors)) {
                 $register = new RegisterManager();
-                
                 $customer = $register->getCustomer($_POST);
-                if (empty($customer))
-                {
+                if (empty($customer)) {
                     $register-> addCustomer($_POST);
                     $customer = $register->getCustomer($_POST);
                 }
                 $customerId = $customer['id'];
                 $planningId = $_POST['datetime'];
-                $customerPlanning = $register->getCustomerPlanning($customerId , $planningId);
-                if (empty($customerPlanning))
-                {
-                    $register-> addCustomerPlanning($customerId , $planningId);
-
+                $customerPlanning = $register->getCustomerPlanning($customerId, $planningId);
+                if (empty($customerPlanning)) {
+                    $register-> addCustomerPlanning($customerId, $planningId);
                 } else {
-
                     // A faire : Alert si déjà enregistré et retour sur /activity
                 }
 
@@ -97,13 +90,11 @@ class ActivityController extends AbstractController
 
         return $this->twig->render('/Activity/register.html.twig', [
             'activityType' => $activityType,
-            'plannedActivityOrdered' => $plannedActivityOrdered,
+            'plannedActivityOrdered' => $plannedActivityTyped,
             'selectedActivity' => isset($_GET['activity']) ? $_GET['activity'] : null,
             'planning' => $planning,
             'errors' => $errors
         ]);
-
-
     }
 
     public function validateForm(): array
@@ -119,7 +110,6 @@ class ActivityController extends AbstractController
                     $errors[] = 'Veuillez remplir TOUS les champs pour l\'inscription';
                 }
                 $_POST[$key] = htmlspecialchars(trim($value));
-                
             }
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 if (empty($errors)) {
@@ -149,7 +139,6 @@ class ActivityController extends AbstractController
 
         //ajoute les tableau dans $typedActivity selon une indéxation par une clé
         foreach ($plannedActivity as $activity) {
-
             //défini la clé qui va servir à indexer
             $type = $activity['type'];
             $date = explode(' ', $activity['start_at'])[0];
@@ -158,11 +147,9 @@ class ActivityController extends AbstractController
 
             // vérifie qu'il existe déjà ou non une indéxation avec la clé sélectionnée, sinon créé cette indéxation
             if (!isset($typedActivity[$type][$date])) {
-
                 //créer l'indéxation et ajout le tableau à l'intérieur
                 $typedActivity[$type][$date] = [$activity];
             } else {
-
                 //ajoute le tableau à l'intérieur
                 $typedActivity[$type][$date][] = $activity;
                 // array_push($typedActivity[$type][$date], $activity);

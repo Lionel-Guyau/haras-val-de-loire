@@ -22,8 +22,8 @@ class PlanningManager extends AbstractManager
 
     public function registerToActivity(array $registerInfos)
     {
-        $query= "INSERT INTO customer  ('firstname', 'lastname', 'email')
-        VALUES (:firstname, :lastname, :email)" ;
+        $query = "INSERT INTO customer  ('firstname', 'lastname', 'email')
+                VALUES (:firstname, :lastname, :email)" ;
 
         $statement = $this->pdo->prepare($query);
 
@@ -33,5 +33,4 @@ class PlanningManager extends AbstractManager
 
         return $statement->execute();
     }
-
 }
