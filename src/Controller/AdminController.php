@@ -220,22 +220,22 @@ class AdminController extends AbstractController
     {
         $planningManager = new PlanningManager();
         $planning = $planningManager->selectPlanning();
-        $activities = (new ActivityManager())->selectActivities();
+        $activityType = (new ActivityManager())->selectActivities();
 
         return $this->twig->render('/Admin/adminPlanning.html.twig', [
             'planning' => $planning,
-            'activities' => $activities
+            'activityType' => $activityType
         ]);
     }
 
     public function savePlanning()
     {
-        $activity = $_POST;
+        $planning = $_POST;
 
         $adminManager = new PlanningManager();
 
-        if (!empty($activity)) {
-            $adminManager->savePlanning($activity);
+        if (!empty($planning)) {
+            $adminManager->savePlanning($planning);
         }
 
         header('Location: /admin/planning');
@@ -243,11 +243,11 @@ class AdminController extends AbstractController
 
     public function delPlanning()
     {
-        $activity = $_GET;
+        $planning = $_GET;
 
         $adminManager = new PlanningManager();
 
-        if (!empty($activity)) {
+        if (!empty($planning)) {
             if ($this->securityService->controlData($_GET['id'])) {
                 $id = $this->securityService->sanitizeInput($_GET['id']);
                 if (filter_var($id, FILTER_VALIDATE_INT)) {
