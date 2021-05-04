@@ -128,7 +128,10 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+#navbarNavDropdown{
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+}
 .info {
   margin-top: 10px;
 }
