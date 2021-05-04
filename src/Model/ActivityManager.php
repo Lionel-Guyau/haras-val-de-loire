@@ -66,7 +66,6 @@ class ActivityManager extends AbstractManager
         return $this->pdo->query($query)->fetchAll();
     }
 
-
     /**
      * Select Activity in database
      */
@@ -90,8 +89,6 @@ class ActivityManager extends AbstractManager
 
         return $activities;
     }
-
-
 
     /**
      * Insert/Update Activity in database
