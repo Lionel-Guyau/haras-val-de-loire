@@ -35,7 +35,7 @@
     max-height: 103vh!important;
 } */
 @media (min-width: 1300px){
-  #principe_text_area{
+  #principe_text p{
     font-size: calc(1vh + .5vw)!important;
     height: 80%;
   }
@@ -50,7 +50,7 @@
     height: 103vh;
 }
 #goal_row{
-    font-size: calc(1vh + 1vw); 
+    font-size: calc(1vh + .6vw); 
 }
 @media (min-width: 1300px){
   #goal_row{
@@ -93,7 +93,7 @@
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
 #director p{
-    font-size: calc(1vh + .6vw)!important;
+    font-size: calc(1vh + .5vw)!important;
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
 }
 
@@ -198,4 +198,23 @@
 .button{
   color:rgb(3, 3, 117);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; 
+}
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  top: 350px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #00034A; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
 }
