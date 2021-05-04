@@ -8,7 +8,7 @@ use PDO;
 class ActivityManager extends AbstractManager
 {
 
-    public const TABLE_ACTIVITY = 'activity';
+    public const TABLE = 'activity';
 
     /**
      * Ajouter les informations de contact issues du formulaire dans la base de données
@@ -66,7 +66,6 @@ class ActivityManager extends AbstractManager
         return $this->pdo->query($query)->fetchAll();
     }
 
-
     /**
      * Select Activity in database
      */
@@ -91,19 +90,17 @@ class ActivityManager extends AbstractManager
         return $activities;
     }
 
-
-
     /**
      * Insert/Update Activity in database
      */
     public function saveActivity(array $activity)
     {
-        $query = "INSERT INTO " . static::TABLE_ACTIVITY . " (`type`,`capacity`,`price`) 
+        $query = "INSERT INTO " . static::TABLE . " (`type`,`capacity`,`price`) 
         VALUES (:type, :capacity, :price)";
 
         // Cas d'un udpate car l'id de l'activité est présent
         if (!empty($activity['id'])) {
-            $query = "UPDATE " . static::TABLE_ACTIVITY . " SET type = :type, capacity = :capacity, price = :price 
+            $query = "UPDATE " . static::TABLE . " SET type = :type, capacity = :capacity, price = :price 
             WHERE id = :id";
         }
         $statement = $this->pdo->prepare($query);

@@ -10,8 +10,8 @@ class RegisterManager extends AbstractManager
     public function addCustomer(array $customerInfo)
     {
         $query = "INSERT INTO customer (`firstname`, `lastname`, `email`) 
-                VALUES (:firstname, :lastname, :email)";
-
+                VALUES (:firstname, :lastname, :email)
+        ";
         $statement = $this->pdo->prepare($query);
 
         $statement->bindValue(':firstname', $customerInfo['firstname'], \PDO::PARAM_STR);
@@ -26,20 +26,19 @@ class RegisterManager extends AbstractManager
         $firstname = $customerInfo['firstname'];
         $lastname = $customerInfo['lastname'];
         $email = $customerInfo['email'];
-
         $query =
                 "SELECT *
                 FROM customer
-                WHERE firstname = '$firstname' AND lastname = '$lastname' AND email = '$email'";
-
+                WHERE firstname = '$firstname' AND lastname = '$lastname' AND email = '$email'
+        ";
         return $this->pdo->query($query)->fetch();
     }
 
     public function addCustomerPlanning(int $customerId, int $planningId)
     {
         $query = "INSERT INTO customer_planning (`customer_id`, `planning_id`, `register`) 
-                VALUES (:customerId, :planningId, 1)";
-
+                VALUES (:customerId, :planningId, 1)
+        ";
         $statement = $this->pdo->prepare($query);
 
         $statement->bindValue(':customerId', $customerId, \PDO::PARAM_INT);
@@ -54,8 +53,8 @@ class RegisterManager extends AbstractManager
                 "SELECT customer_id,
                         planning_id
                 FROM customer_planning
-                WHERE customer_id = '$customerId' AND planning_id = '$planningId'";
-
+                WHERE customer_id = '$customerId' AND planning_id = '$planningId'
+        ";
         return $this->pdo->query($query)->fetch();
     }
 }
