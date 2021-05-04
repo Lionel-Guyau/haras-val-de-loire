@@ -13,18 +13,30 @@
 planningModal.addEventListener('show.bs.modal', function (event) { // Récupération du bouton associé à la modale
 const button = event.relatedTarget;
 
-// Récupération des infos sur la activity cliquée
-const planningType = button.dataset.bsType;
+// Récupération des infos sur le créneau cliqué
+const planningId = button.dataset.bsId;
+const planningActivityId = button.dataset.bsIdtwo;
 const planningDescription = button.dataset.bsDescription;
-const planningStartAt = button.dataset.bsStartat;
-const planningEndAt = button.dataset.bsEndat;
+const planningStartAtDate = button.dataset.bsStartatdate;
+const planningStartAtTime = button.dataset.bsStartattime;
+const planningEndAtDate = button.dataset.bsEndatdate;
+const planningEndAtTime = button.dataset.bsEndattime;
+console.log("id " + planningId);
+console.log("idtwo " + planningActivityId);
+console.log("description " + planningDescription);
+console.log("start date " + planningStartAtDate);
+console.log("start time " + planningStartAtTime);
+console.log("end date " + planningEndAtDate);
+console.log("end time " + planningEndAtTime);
 
 // On remplit les champs du formulaire avec les données récupérées depuis le bouton (cf ci-dessus)
-planningModal.querySelector('[name="type"]').setAttribute('value', planningType);
+planningModal.querySelector('[name="id"]').setAttribute('value', planningId);
+planningModal.querySelector('[name="type"]').setAttribute('value', planningActivityId);
 planningModal.querySelector('[name="description"]').setAttribute('value', planningDescription);
-planningModal.querySelector('[name="start_at"]').setAttribute('value', planningStartAt);
-planningModal.querySelector('[name="end_at"]').setAttribute('value', planningEndAt);
-
+planningModal.querySelector('[name="start_at-date"]').setAttribute('value', planningStartAtDate);
+planningModal.querySelector('[name="start_at-time"]').setAttribute('value', planningStartAtTime);
+planningModal.querySelector('[name="end_at-date"]').setAttribute('value', planningEndAtDate);
+planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planningEndAtTime);
 
 });
 	</script>
@@ -36,7 +48,14 @@ planningModal.querySelector('[name="end_at"]').setAttribute('value', planningEnd
 	<!-- Buttons -->
 	<div>
 		<a class="my-3 btn btn-warning" href="/admin">Retour</a>
-		<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-planning-modal" data-bs-type="{{ planning.id }}" data-bs-description="{{ planning.description }}" data-bs-startat="{{ planning.start_at }}" data-bs-endat="{{ planning.end_at }}">
+		<button type="button" 
+				class="btn btn-success" 
+				data-bs-toggle="modal"
+				data-bs-target="#add-planning-modal" 
+				data-bs-type="{{ planning.id }}" 
+				data-bs-description="{{ planning.description }}" 
+				data-bs-startat="{{ planning.start_at }}" 
+				data-bs-endat="{{ planning.end_at }}">
 			Ajouter
 		</button>
 	</div>
@@ -56,28 +75,23 @@ planningModal.querySelector('[name="end_at"]').setAttribute('value', planningEnd
 						<input type="hidden" name="id"/>
 
 						<div class="mb-3">
-
 							<label for="type" class="col-form-label">Type :</label>
-							<select class="form-select" id="type" name="type" aria-label="Default select example" required>
-								{% if activities is not empty %}
-									<option selected value="">Choisissez votre date et créneau</option>
-									{% for activity in activities %}
-										<option value="{{ activity.id }}">{{ activity.type }}</option>
-									{% endfor %}
-								{% else %}
-									<option selected>Veuillez créer l'activité au préalable</option>
-								{% endif %}
+							<select class="form-select" id="type" aria-label="Default select example" name="type" required>
+								{% for activity in activityType %}
+									<option value="{{ activity.id }}">{{ activity.type }}</option>
+								{% endfor %}
 							</select>
+
 							<label for="description" class="col-form-label">Description :</label>
 							<input type="text" class="form-control" id="description" name="description" maxlength="100" required>
-							<label for="start_at" class="col-form-label">Date de début :</label>
-							<input type="date" class="form-control" id="start_at" name="start_at" required>
-							<input type="time" class="form-control" id="start_at" name="start_at" required>
-							<label for="end_at" class="col-form-label">Date de fin :</label>
-							<input type="date" class="form-control" id="end_at" name="end_at" required>
-							<input type="time" class="form-control" id="end_at" name="end_at" required>
 
-
+							<label for="start_at-date" class="col-form-label">Date de début :</label>
+							<input type="date" class="form-control" id="start_at-date" name="start_at-date" required>
+							<input type="time" class="form-control" id="start_at-time" name="start_at-time" required>
+							
+							<label for="end_at-date" class="col-form-label">Date de fin :</label>
+							<input type="date" class="form-control" id="end_at-date" name="end_at-date" required>
+							<input type="time" class="form-control" id="end_at-time" name="end_at-time" required>
 						</div>
 					</div>
 
@@ -107,27 +121,27 @@ planningModal.querySelector('[name="end_at"]').setAttribute('value', planningEnd
 
 					<div class="modal-body">
 						<input type="hidden" name="id"/>
-
+						
 						<div class="mb-3">
 							<label for="type" class="col-form-label">Type :</label>
 							<select class="form-select" id="type" name="type" aria-label="Default select example" required>
-								{% if activities is not empty %}
-									<option selected value="">Choisissez votre date et créneau</option>
-									{% for activity in activities %}
+								{% if activityType is not empty %}
+									<option selected value="">Choisissez type d'activité</option>
+									{% for activity in activityType %}
 										<option value="{{ activity.id }}">{{ activity.type }}</option>
 									{% endfor %}
 								{% else %}
-									<option selected>Veuillez créer l'activité au préalable</option>
+									<option selected value="">Veuillez créer l'activité au préalable</option>
 								{% endif %}
 							</select>
 							<label for="description" class="col-form-label">Description :</label>
 							<input type="text" class="form-control" id="description" name="description" maxlength="100" required>
-							<label for="start_at" class="col-form-label">Date de début :</label>
-							<input type="date" class="form-control" id="start_at" name="start_at" required>
-							<input type="time" class="form-control" id="start_at" name="start_at" required>
-							<label for="end_at" class="col-form-label">Date de fin :</label>
-							<input type="date" class="form-control" id="end_at" name="end_at" required>
-							<input type="time" class="form-control" id="end_at" name="end_at" required>
+							<label for="start_at-date" class="col-form-label">Date de début :</label>
+							<input type="date" class="form-control" id="start_at-date" name="start_at-date" required>
+							<input type="time" class="form-control" id="start_at-time" name="start_at-time" value="{{ 'now'|date('H:i') }}" required>
+							<label for="end_at-date" class="col-form-label">Date de fin :</label>
+							<input type="date" class="form-control" id="end_at-date" name="end_at-date" required>
+							<input type="time" class="form-control" id="end_at-time" name="end_at-time" value="{{ 'now'|date('H:i') }}" required>
 						</div>
 					</div>
 
@@ -157,13 +171,29 @@ planningModal.querySelector('[name="end_at"]').setAttribute('value', planningEnd
 
 		<tbody>
 			{% for activity in planning %}
+				{# {{ activity.id2}}<br>
+				{{ activity.description }}	<br>
+				{{ activity.start_at|date('Y-m-d')}}<br>
+				{{ activity.start_at|date('H:i') }}<br>
+				{{ activity.end_at|date('Y-m-d') }}<br>
+				{{ activity.end_at|date('H:i') }} <br> #}
 				<tr>
 					<td>{{activity.type }}</td>
 					<td>{{activity.description}}</td>
 					<td>{{activity.start_at}}</td>
 					<td>{{activity.end_at}}</td>
 					<td>
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#maj-planning-modal" data-bs-type="{{ planning.type }}" data-bs-description="{{ planning.description }}" data-bs-startat="{{ planning.start_at }}" data-bs-endat="{{ planning.end_at }}">
+						<button type="button" 
+								class="btn btn-primary" 
+								data-bs-toggle="modal" 
+								data-bs-target="#maj-planning-modal" 
+								data-bs-id="{{ activity.id }}" 
+								data-bs-idtwo="{{ activity.id2 }}" 
+								data-bs-description="{{ activity.description }}" 
+								data-bs-startatdate="{{ activity.start_at|date('Y-m-d') }}"
+								data-bs-startattime="{{ activity.start_at|date('H:i') }}"
+								data-bs-endatdate="{{ activity.end_at|date('Y-m-d') }}"
+								data-bs-endattime="{{ activity.end_at|date('H:i') }}">
 							Modifier
 						</button>
 

@@ -150,38 +150,38 @@ class AdminController extends AbstractController
     {
         $planningManager = new PlanningManager();
         $planning = $planningManager->selectPlanning();
-        $activities = (new ActivityManager())->selectActivities();
+        $activityType = (new ActivityManager())->selectActivities();
 
         return $this->twig->render('/Admin/adminPlanning.html.twig', [
             'planning' => $planning,
-            'activities' => $activities
+            'activityType' => $activityType
         ]);
     }
 
     public function savePlanning()
     {
-        $activity = $_POST;
+        $planning = $_POST;
 
-        $adminManager = new ActivityManager();
+        $planningManager = new PlanningManager();
 
-        if (!empty($activity)) {
-            $adminManager->saveActivity($activity);
+        if (!empty($planning)) {
+            $planningManager->savePlanning($planning);
         }
 
-        header('Location: /admin/activity');
+        header('Location: /admin/planning');
     }
 
     public function delPlanning()
     {
-        $activity = $_GET;
+        $planning = $_GET;
 
-        $adminManager = new ActivityManager();
+        $planningManager = new PlanningManager();
 
-        if (!empty($activity)) {
+        if (!empty($planning)) {
             if ($this->securityService->controlData($_GET['id'])) {
                 $id = $this->securityService->sanitizeInput($_GET['id']);
                 if (filter_var($id, FILTER_VALIDATE_INT)) {
-                    $adminManager->deleteActivity($id);
+                    $planningManager->deletePlanning($id);
                 }
                 header('Location: /admin/activity');
             }
