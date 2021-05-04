@@ -45,7 +45,7 @@
 											</div>
 											<div class="col-md-12">
 												<div class="form-group text-center">
-													<input type="submit" value="Envoyer" class="mt-5 btn btn-primary">
+													<input type="submit" value="Envoyer" onclick="myFunction()" class="mt-5 btn btn-primary">
 													<div class="submitting"></div>
 												</div>
 											</div>
@@ -84,4 +84,19 @@
 			</div>
 		</div>
 	</section>
+
+{% block javascript %}
+
+	<script>
+		var form = document.getElementById('contactForm');
+
+		function myFunction() {
+			if (form.checkValidity()) {
+				alert("Votre message a été envoyer à l'équipe du Haras");
+			}
+		}
+	</script>
+
+{% endblock %}
+
 {% endblock %}
