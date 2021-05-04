@@ -253,8 +253,8 @@ class AdminController extends AbstractController
                 if (filter_var($id, FILTER_VALIDATE_INT)) {
                     $adminManager->deletePlanning($id);
                 }
-                header('Location: /admin/planning');
             }
         }
+        header('Location: /admin/planning');
     }
 }
