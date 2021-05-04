@@ -8,14 +8,14 @@ use PDO;
 class NewsManager extends AbstractManager
 {
 
-    public const TABLE_NEWS = 'news';
+    public const TABLE = 'news';
 
     /**
      * Select last news in database
      */
     public function selectNews()
     {
-        $query = "SELECT * FROM " . static::TABLE_NEWS . " ORDER BY news_date DESC";
+        $query = "SELECT * FROM " . static::TABLE . " ORDER BY news_date DESC";
 
         return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -27,7 +27,7 @@ class NewsManager extends AbstractManager
     public function insertNews(string $item)
     {
         $query = $this->pdo->prepare("
-        INSERT INTO " . static::TABLE_NEWS . " (`description`,`news_date`) 
+        INSERT INTO " . static::TABLE . " (`description`,`news_date`) 
         VALUES (:description, NOW())");
         $query->bindValue(':description', $item);
 
@@ -39,7 +39,7 @@ class NewsManager extends AbstractManager
      */
     public function deleteNews(int $id): void
     {
-        $query = $this->pdo->prepare("DELETE FROM " . static::TABLE_NEWS . " WHERE news.id = :id");
+        $query = $this->pdo->prepare("DELETE FROM " . static::TABLE . " WHERE news.id = :id");
         $query->bindValue(':id', $id, \PDO::PARAM_INT);
 
         $query->execute();
@@ -50,7 +50,7 @@ class NewsManager extends AbstractManager
      */
     public function updateNews(int $id, string $description): void
     {
-        $query = $this->pdo->prepare("UPDATE " . static::TABLE_NEWS . " 
+        $query = $this->pdo->prepare("UPDATE " . static::TABLE . " 
         SET description = :description, news_date = now() WHERE id = :id");
         $query->bindValue(':id', $id, \PDO::PARAM_INT);
         $query->bindValue(':description', $description);
