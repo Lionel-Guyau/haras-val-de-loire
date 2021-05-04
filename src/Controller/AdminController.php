@@ -232,28 +232,28 @@ class AdminController extends AbstractController
     {
         $activity = $_POST;
 
-        $adminManager = new ActivityManager();
+        $adminManager = new PlanningManager();
 
         if (!empty($activity)) {
-            $adminManager->saveActivity($activity);
+            $adminManager->savePlanning($activity);
         }
 
-        header('Location: /admin/activity');
+        header('Location: /admin/planning');
     }
 
     public function delPlanning()
     {
         $activity = $_GET;
 
-        $adminManager = new ActivityManager();
+        $adminManager = new PlanningManager();
 
         if (!empty($activity)) {
             if ($this->securityService->controlData($_GET['id'])) {
                 $id = $this->securityService->sanitizeInput($_GET['id']);
                 if (filter_var($id, FILTER_VALIDATE_INT)) {
-                    $adminManager->deleteActivity($id);
+                    $adminManager->deletePlanning($id);
                 }
-                header('Location: /admin/activity');
+                header('Location: /admin/planning');
             }
         }
     }
