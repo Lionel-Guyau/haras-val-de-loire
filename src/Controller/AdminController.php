@@ -243,17 +243,17 @@ class AdminController extends AbstractController
 
     public function delPlanning()
     {
-        $activity = $_GET;
+        $planning = $_GET;
 
-        $adminManager = new PlanningManager();
+        $planningManager = new PlanningManager();
 
-        if (!empty($activity)) {
+        if (!empty($planning)) {
             if ($this->securityService->controlData($_GET['id'])) {
                 $id = $this->securityService->sanitizeInput($_GET['id']);
                 if (filter_var($id, FILTER_VALIDATE_INT)) {
-                    $adminManager->deletePlanning($id);
+                    $planningManager->deletePlanning($id);
                 }
-                header('Location: /admin/planning');
+                header('Location: /admin/activity');
             }
         }
     }

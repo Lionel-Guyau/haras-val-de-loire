@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use PDO;
+use PhpParser\Node\Expr\Print_;
 
 class PlanningManager extends AbstractManager
 {
@@ -79,13 +80,14 @@ class PlanningManager extends AbstractManager
         }
 
         /**
-         * Delete planning in database
+         * Delete Planning in database
          */
-        public function deletePlanning(int $id)
+        public function deletePlanning(int $id): void
         {
-                $query = "DELETE FROM " . static::TABLE . " WHERE id = :id";
-                $statement = $this->pdo->prepare($query);
-
+                $statement = $this->pdo->prepare("
+        DELETE  
+        FROM " . static::TABLE . "
+        WHERE id = :id");
                 $statement->bindValue(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
         }
