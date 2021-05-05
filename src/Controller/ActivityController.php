@@ -39,7 +39,7 @@ class ActivityController extends AbstractController
         $eventsByDays = $calendar->getEventsBetweenByDay($start, $end);
 
         $activity = new ActivityManager();
-        $activityType = $activity->selectActivity();
+        $activityType = $activity->selectActivities();
 
         return $this->twig->render(
             '/Activity/activity.html.twig',

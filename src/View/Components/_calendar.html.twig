@@ -27,14 +27,6 @@
 
 						<td
 							class="{{sameMonth ? '' : 'calendar__othermonth'}} {{firstDayModified|date('d/m/Y') == "now"|date('d/m/Y') ? 'calendar__today' : ''}}">
-							{# {% if i == 0 %}
-														
-																						<div class="calendar__weekday d-none d-sm-block align-start">
-																							{{ day }}
-																						</div>
-														
-																					{% endif %} #}
-
 							<div class="d-flex flex-column h-100 justify-content-between">
 								<div class="calendar__day">
 									{{ firstDayModified|date('d') }}
