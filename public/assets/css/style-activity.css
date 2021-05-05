@@ -7,7 +7,7 @@ body {
 body {
   background: #eee;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  /* font-size: 14px; */
   color: #000;
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@ body {
 
 .swiper-slide {
   text-align: center;
-  font-size: 18px;
+  /* font-size: 18px; */
   background: #fff;
 
   /* Center slide text vertically */
@@ -42,6 +42,22 @@ body {
   background-image: url("/recup_photos/horses-5896935_1920.jpg")
 }
 
+#activity_body{
+  font-size: calc(1vh + 1.2vw)!important;
+  font-family: 'Dancing Script', cursive;
+}
+
+.register-body h1{
+  font-size: calc(1vh + 1.8vw)!important;
+  font-family: 'Dancing Script', cursive;
+}
+.register-body{
+  font-family: 'Dancing Script', cursive;
+}
+#register-form{
+  font-family: 'Dancing Script', cursive;
+}
+
 @media (max-width : 576px ) {
   
   #lessons_cards{
@@ -56,6 +72,7 @@ body {
     display: none;
   }
 }
+
 @media (max-width : 576px ) {
   
   #courses_cards{

@@ -33,7 +33,14 @@ hasRegisteredModal.show();{% endif %}
 	</script>
 {% endblock %}
 
-{% block content %}
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/style-activity.css">
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css.map">
+	<link rel="stylesheet" href="../package/swiper-bundle.min.css">
+	<link rel="stylesheet" href="/assets/css/style-calendar.css">
+{% endblock %}
 
 	<h1 class=" inscription my-3 mt-5 text-center text-secondary">Inscription</h1>
 	<p class="text-primary mx-4 fs-5 my-3" style="text-align:center">Choisissez une activité à laquelle vous souhaitez vous inscrire</p>
@@ -92,7 +99,6 @@ hasRegisteredModal.show();{% endif %}
 							</select>
 						</div>
 					</div>
-
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="label" for="firstname"></label>
@@ -127,7 +133,6 @@ hasRegisteredModal.show();{% endif %}
 					</div>
 				</div>
 			</form>
-
 			<div class="col-md-5 d-flex align-items-stretch">
 				<div class="info-wrap w-100 p-5 img"></div>
 			</div>
