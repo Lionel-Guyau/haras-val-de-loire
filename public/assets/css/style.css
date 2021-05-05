@@ -77,6 +77,7 @@
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
     font-size: calc(1vh + 1vw);
 }
+
 #talk_title p{
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
     font-size: calc(1vh + .8vw);
@@ -224,4 +225,8 @@
 
 #myBtn:hover {
   background-color: #555; /* Add a dark-grey background on hover */
+}
+
+.r-i-title{
+  font-family: "Roboto", sans-serif;
 }
