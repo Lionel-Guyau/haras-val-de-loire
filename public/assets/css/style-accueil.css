@@ -1,6 +1,6 @@
 
 .text-responsive-p {
-    font-size: min(calc(5% + 1vw + 1vh), 22px);
+    font-size: min(calc(5% + 1vw + 1vh), 20px);
 }
 
 .text-responsive-titre {
@@ -17,7 +17,7 @@
 }
 
 .accueil-page {
-    height: calc(100vh - 94px - 690px);
+    height: calc(100vh - 94px);
 }
 
 #accueil-titre {

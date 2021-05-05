@@ -5,13 +5,14 @@
     background-size: cover;
 }
 .haras-objectif-body{
-    background-image: url("/recup_photos/pexels-pixabay-210237-filter.jpg");
+    background-image: url("/recup_photos/pexels-pixabay-210237.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     height: 100vh;
 }
 .haras-directrice-body{
-    background-image: url("/recup_photos/pexels-tatiana-614521.jpg");
+    background-image: url("/recup_photos/girl-1149933.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -29,6 +30,7 @@
 }
 #principes h1{
     text-shadow:  1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+    font-family: 'Dancing Script', cursive;
 }
 
 /* #principe_text_area{
@@ -36,13 +38,15 @@
 } */
 @media (min-width: 1300px){
   #principe_text p{
-    font-size: calc(1vh + .5vw)!important;
+    font-size: calc(1vh + .8vw)!important;
     height: 80%;
+    font-family: 'Dancing Script', cursive;
   }
 }
 #principe_row{
-    font-size: calc(1vh + .8vw)!important;
+    font-size: calc(1vh + 1.2vw)!important;
     height:calc(100vh - 94px - 38px - 64px)!important;
+    font-family: 'Dancing Script', cursive;
     
 }
 
@@ -54,14 +58,18 @@
 }
 @media (min-width: 1300px){
   #goal_row{
-    font-size: calc(1vh + .5vw)!important;
+    font-size: calc(1vh + 1vw)!important;
   }
 }
 #goal h1{
-    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+  text-shadow:  1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+  font-family: 'Dancing Script', cursive;
+  font-size: calc(1vh + 1.2vw);
 }
 #goal_row p{
-    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+  text-shadow:  1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+  font-family: 'Dancing Script', cursive;
+  font-size: calc(1vh + .8vw);
 }
 
 .col-1 img{
@@ -76,31 +84,37 @@
 #director_p{
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
     font-size: calc(1vh + 1vw);
+    font-family: 'Dancing Script', cursive;
 }
 
 #talk_title p{
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
     font-size: calc(1vh + .8vw);
+    font-family: 'Dancing Script', cursive;
 }
 #talk_title{
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+    font-family: 'Dancing Script', cursive;
 }
 #talk_text{
-    font-size: calc(1vh + .3vw)!important;
+    font-size: calc(1vh + .7vw)!important;
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+    font-family: 'Dancing Script', cursive;
 }
 
 #director_title{
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+    font-family: 'Dancing Script', cursive;
 }
 #director p{
-    font-size: calc(1vh + .5vw)!important;
+    font-size: calc(1vh + .7vw)!important;
     text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+    font-family: 'Dancing Script', cursive;
 }
 
 @media (min-width: 1300px){
   #director p{
-    font-size: calc(1vh + .5vw)!important;
+    font-size: calc(1vh + .6vw)!important;
   }
 }
 
@@ -234,4 +248,9 @@
 
 .r-i-title{
   font-family: "Roboto", sans-serif;
+}
+#haras-nav a{
+  font-family: 'Dancing Script', cursive;
+  text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a;
+  font-size: calc(1vh + .8vw)!important;
 }
