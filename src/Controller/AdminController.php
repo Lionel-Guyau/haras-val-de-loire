@@ -14,6 +14,7 @@ use App\Model\NewsManager;
 use App\Model\EquipmentManager;
 use App\Model\ActivityManager;
 use App\Service\SecurityService;
+use App\Model\PlanningManager;
 
 /**
  * Suppress all warnings from these two rules.
@@ -213,5 +214,47 @@ class AdminController extends AbstractController
                 header('Location: /admin/equipments');
             }
         }
+    }
+
+    public function planning()
+    {
+        $planningManager = new PlanningManager();
+        $planning = $planningManager->selectPlanning();
+        $activityType = (new ActivityManager())->selectActivities();
+
+        return $this->twig->render('/Admin/adminPlanning.html.twig', [
+            'planning' => $planning,
+            'activityType' => $activityType
+        ]);
+    }
+
+    public function savePlanning()
+    {
+        $planning = $_POST;
+
+        $adminManager = new PlanningManager();
+
+        if (!empty($planning)) {
+            $adminManager->savePlanning($planning);
+        }
+
+        header('Location: /admin/planning');
+    }
+
+    public function delPlanning()
+    {
+        $planning = $_GET;
+
+        $adminManager = new PlanningManager();
+
+        if (!empty($planning)) {
+            if ($this->securityService->controlData($_GET['id'])) {
+                $id = $this->securityService->sanitizeInput($_GET['id']);
+                if (filter_var($id, FILTER_VALIDATE_INT)) {
+                    $adminManager->deletePlanning($id);
+                }
+            }
+        }
+        header('Location: /admin/planning');
     }
 }
