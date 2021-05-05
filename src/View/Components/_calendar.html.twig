@@ -1,56 +1,63 @@
-
 <div class="calendar">
 	<div class="d-flex flex-row align-items-center justify-content-center my-2 mx-3">
-			<a href="/activity?month={{calendarInfo.previousMonth}}&year={{calendarInfo.previousYear}}" class="btn btn-outline-primary btn-shadow">&lt;</a>
-			<a href="/activity" class="btn btn-outline-primary btn-shadow w-50 mx-3">{{ calendarInfo.selectedMonthYear }}</a>
-			<a href="/activity?month={{calendarInfo.nextMonth}}&year={{calendarInfo.nextYear}}" class="btn btn-outline-primary btn-shadow">&gt;</a>
+		<a href="/activity?month={{calendarInfo.previousMonth}}&year={{calendarInfo.previousYear}}" class="btn btn-outline-primary btn-shadow">&lt;</a>
+		<a href="/activity" class="btn btn-outline-primary btn-shadow w-50 mx-3">{{ calendarInfo.selectedMonthYear }}</a>
+		<a href="/activity?month={{calendarInfo.nextMonth}}&year={{calendarInfo.nextYear}}" class="btn btn-outline-primary btn-shadow">&gt;</a>
 	</div>
 
 	<table class="calendar__table">
-		{% for i in 0..(calendarInfo.weeks - 1) %}
-
+		<thead>
 			<tr>
 				{% for day in calendarInfo.days %}
+					<th class="calendar__weekday d-none d-sm-table-cell">
+						{{ day }}
+					</th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in 0..(calendarInfo.weeks - 1) %}
+				<tr>
+					{% for day in calendarInfo.days %}
 
-					{% set addDays = loop.index0 + i*7 %}
-					{% set firstDayModified = calendarInfo.firstDay|date_modify("+" ~ addDays ~ " day") %}
-					{% set sameMonth = firstDayModified|date('m') == calendarInfo.actualMonth|date('m') %}
-					{% set eventsForDay = eventsByDays[firstDayModified|date('Y-m-d')] ?? null %}
+						{% set addDays = loop.index0 + i*7 %}
+						{% set firstDayModified = calendarInfo.firstDay|date_modify("+" ~ addDays ~ " day") %}
+						{% set sameMonth = firstDayModified|date('m') == calendarInfo.actualMonth|date('m') %}
+						{% set eventsForDay = eventsByDays[firstDayModified|date('Y-m-d')] ?? null %}
 
-					<td class="{{sameMonth ? '' : 'calendar__othermonth'}} {{firstDayModified|date('d/m/Y') == "now"|date('d/m/Y') ? 'calendar__today' : ''}}">
-						{% if i == 0 %}
+						<td
+							class="{{sameMonth ? '' : 'calendar__othermonth'}} {{firstDayModified|date('d/m/Y') == "now"|date('d/m/Y') ? 'calendar__today' : ''}}">
+							{# {% if i == 0 %}
+														
+																						<div class="calendar__weekday d-none d-sm-block align-start">
+																							{{ day }}
+																						</div>
+														
+																					{% endif %} #}
 
-							<div class="calendar__weekday d-none d-sm-block align-start">
-								{{ day }} 
-							</div>
+							<div class="d-flex flex-column h-100 justify-content-between">
+								<div class="calendar__day">
+									{{ firstDayModified|date('d') }}
+								</div>
 
-						{% endif %}
+								<div class="d-flex flex-column align-items-stretch align-items-sm-start w-sm-50">
+									{% if eventsForDay|length != 0 %}
+										<button type="button" class="btn btn-sm btn-primary py-0 calendar__event btn-shadow" data-bs-toggle="modal" data-bs-target="#show-modal-{{loop.index0}}-{{i}}">
+											{{eventsForDay|length}}
+										</button>
 
-						<div class="d-flex flex-column h-100 justify-content-between">
-							<div class="calendar__day">
-								{{ firstDayModified|date('d') }}
-							</div>
-
-							<div class="d-flex flex-column align-items-stretch align-items-sm-start w-sm-50">
-								{% if eventsForDay|length != 0 %}
-									<button type="button" 
-											class="btn btn-sm btn-primary py-0 calendar__event btn-shadow" 
-											data-bs-toggle="modal" 
-											data-bs-target="#show-modal-{{loop.index0}}-{{i}}">
-										{{eventsForDay|length}}
-									</button>
-
-									{% include 'Components/_calendar_modal.html.twig' with {
+										{% include 'Components/_calendar_modal.html.twig' with {
 										'modalId': loop.index0 ~ "-" ~ i,
 										'eventsForDay': eventsForDay
 									}%}
-								{% endif %}
+									{% endif %}
+								</div>
 							</div>
-						</div>
-					</td>
+						</td>
 
-				{% endfor %}
-			</tr>
+					{% endfor %}
+				</tr>
+			</tbody>
 
 		{% endfor %}
 	</table>
