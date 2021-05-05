@@ -1,5 +1,9 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+	Inscription
+{% endblock %}
+
 {% block javascript %}
 	<script>
 		document.querySelector('[name="activity"]').addEventListener('change', e => {
@@ -12,6 +16,7 @@ var myInput = document.getElementById('myInput')
 contactForm.addEventListener('shown.bs.modal', function () {
 myInput.focus()
 })
+
 	</script>
 {% endblock %}
 
@@ -43,9 +48,10 @@ myInput.focus()
 					<div class="form-group">
 						<select class="form-select" name="datetime" aria-label="Default select example" required>
 							{% if planning is not empty %}
-								<option selected value="">Choisissez votre date et créneau</option>
+
+								<option selected value="">Choisissez votre date et créneau horaire</option>
 								{% for date in planning %}
-									<option value="{{ date.id }}">{{ date.start_at|format('d/m/Y') }}</option>
+									<option value="{{ date.id }}">{{ "le " ~ date.start_at|date('d/m/Y à H:i') ~ " - " ~ (date.capacity - date.nb_register) ~ " place(s) restante(s)" }}</option>
 								{% endfor %}
 							{% else %}
 								<option selected>Veuillez sélectionner un type d'activité</option>
@@ -112,6 +118,5 @@ myInput.focus()
 			</div>
 		</div>
 	</div>
-
 
 {% endblock %}

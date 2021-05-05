@@ -58,8 +58,8 @@ class ActivityController extends AbstractController
         $plannedActivity = $activity->selectPlannedActivity();
         $planActivityOrd = $this->orderingActivitiesByType($plannedActivity);
         $planning = isset($_GET['activity']) ? (new PlanningManager())->selectByActivity($_GET['activity']) : [];
-
         $errors = [];
+
         // Vérification de l'existence de la request en methode POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validation des données
@@ -68,6 +68,7 @@ class ActivityController extends AbstractController
             // Insertion des données dans la DB si pas d'erreurs
             if (empty($errors)) {
                 $register = new RegisterManager();
+
                 $customer = $register->getCustomer($_POST);
                 if (empty($customer)) {
                     $register->addCustomer($_POST);
@@ -143,8 +144,6 @@ class ActivityController extends AbstractController
             $type = $activity['type'];
             $date = explode(' ', $activity['start_at'])[0];
 
-            // $activity = $this->orderingActivitiesByDate($activity);
-
             // vérifie qu'il existe déjà ou non une indéxation avec la clé sélectionnée, sinon créé cette indéxation
             if (!isset($typedActivity[$type][$date])) {
                 //créer l'indéxation et ajout le tableau à l'intérieur
@@ -152,7 +151,6 @@ class ActivityController extends AbstractController
             } else {
                 //ajoute le tableau à l'intérieur
                 $typedActivity[$type][$date][] = $activity;
-                // array_push($typedActivity[$type][$date], $activity);
             }
         }
 

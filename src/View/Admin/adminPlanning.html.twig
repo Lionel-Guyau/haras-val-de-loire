@@ -1,0 +1,181 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Administration
+{% endblock %}
+
+
+{% block javascript %}
+	<!-- Récupération du bouton associé, de la valeur et l'enregistrement de la nouvelle valeur -->
+	<script>
+		const planningModal = document.getElementById('maj-planning-modal');
+
+planningModal.addEventListener('show.bs.modal', function (event) { // Récupération du bouton associé à la modale
+const button = event.relatedTarget;
+
+// Récupération des infos sur le créneau cliqué
+const planningId = button.dataset.bsId;
+const planningActivityId = button.dataset.bsIdtwo;
+const planningDescription = button.dataset.bsDescription;
+const planningStartAtDate = button.dataset.bsStartatdate;
+const planningStartAtTime = button.dataset.bsStartattime;
+const planningEndAtDate = button.dataset.bsEndatdate;
+const planningEndAtTime = button.dataset.bsEndattime;
+
+// On remplit les champs du formulaire avec les données récupérées depuis le bouton (cf ci-dessus)
+planningModal.querySelector('[name="id"]').setAttribute('value', planningId);
+planningModal.querySelector('[name="type"]').setAttribute('value', planningActivityId);
+planningModal.querySelector('[name="description"]').setAttribute('value', planningDescription);
+planningModal.querySelector('[name="start_at-date"]').setAttribute('value', planningStartAtDate);
+planningModal.querySelector('[name="start_at-time"]').setAttribute('value', planningStartAtTime);
+planningModal.querySelector('[name="end_at-date"]').setAttribute('value', planningEndAtDate);
+planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planningEndAtTime);
+
+});
+	</script>
+{% endblock %}
+
+
+{% block content %}
+
+	<!-- Buttons -->
+	<div>
+		<a class="my-3 btn btn-warning" href="/admin">Retour</a>
+		<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-planning-modal">
+			Ajouter
+		</button>
+	</div>
+
+
+	<!-- Modal Form Update -->
+	<div class="modal fade" id="maj-planning-modal" tabindex="-1" aria-labelledby="maj-planning-modal-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form method="post" action="/admin/savePlanning">
+					<div class="modal-header">
+						<h5 class="modal-title" id="maj-planning-modal-label">Modification du créneau</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+
+					<div class="modal-body">
+						<input type="hidden" name="id"/>
+
+						<div class="mb-3">
+							<label for="type" class="col-form-label">Type :</label>
+							<select class="form-select" id="type" aria-label="Default select example" name="type" required>
+								{% for activity in activityType %}
+									<option value="{{ activity.id }}">{{ activity.type }}</option>
+								{% endfor %}
+							</select>
+
+							<label for="description" class="col-form-label">Description :</label>
+							<input type="text" class="form-control" id="description" name="description" maxlength="100" required>
+
+							<label for="start_at-date" class="col-form-label">Date de début :</label>
+							<input type="date" class="form-control" id="start_at-date" name="start_at-date" required>
+							<input type="time" class="form-control" id="start_at-time" name="start_at-time" required>
+
+							<label for="end_at-date" class="col-form-label">Date de fin :</label>
+							<input type="date" class="form-control" id="end_at-date" name="end_at-date" required>
+							<input type="time" class="form-control" id="end_at-time" name="end_at-time" required>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+							Annuler
+						</button>
+
+						<button type="submit" class="btn btn-danger">
+							Modifier
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Form Add -->
+	<div class="modal fade" id="add-planning-modal" tabindex="-1" aria-labelledby="add-planning-modal-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form method="post" action="/admin/savePlanning">
+					<div class="modal-header">
+						<h5 class="modal-title" id="add-planning-modal-label">Ajout d'un créneau</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+
+					<div class="modal-body">
+						<input type="hidden" name="id"/>
+
+						<div class="mb-3">
+							<label for="type" class="col-form-label">Type :</label>
+							<select class="form-select" id="type" name="type" aria-label="Default select example" required>
+								{% if activityType is not empty %}
+									<option selected value="">Choisissez type d'activité</option>
+									{% for activity in activityType %}
+										<option value="{{ activity.id }}">{{ activity.type }}</option>
+									{% endfor %}
+								{% else %}
+									<option selected value="">Veuillez créer l'activité au préalable</option>
+								{% endif %}
+							</select>
+
+							<label for="description" class="col-form-label">Description :</label>
+							<input type="text" class="form-control" id="description" name="description" maxlength="100" required>
+
+							<label for="start_at-date" class="col-form-label">Date de début :</label>
+							<input type="date" class="form-control" id="start_at-date" name="start_at-date" required>
+							<input type="time" class="form-control" id="start_at-time" name="start_at-time" value="{{ 'now'|date('H:i') }}" required>
+
+							<label for="end_at-date" class="col-form-label">Date de fin :</label>
+							<input type="date" class="form-control" id="end_at-date" name="end_at-date" required>
+							<input type="time" class="form-control" id="end_at-time" name="end_at-time" value="{{ 'now'|date('H:i') }}" required>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+							Annuler
+						</button>
+
+						<button type="submit" class="btn btn-success">
+							Ajouter
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Affichage rendu de la base de données -->
+	<table class="my-4 table table-sm table-striped table-bordered">
+		<thead>
+			<th>Type</th>
+			<th>Description</th>
+			<th>Date de début</th>
+			<th>Date de fin</th>
+			<th>Actions</th>
+		</thead>
+
+		<tbody>
+			{% for activity in planning %}
+				<tr>
+					<td>{{activity.type }}</td>
+					<td>{{activity.description}}</td>
+					<td>{{activity.start_at}}</td>
+					<td>{{activity.end_at}}</td>
+					<td>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#maj-planning-modal" data-bs-id="{{ activity.id }}" data-bs-idtwo="{{ activity.id2 }}" data-bs-description="{{ activity.description }}" data-bs-startatdate="{{ activity.start_at|date('Y-m-d') }}" data-bs-startattime="{{ activity.start_at|date('H:i') }}" data-bs-endatdate="{{ activity.end_at|date('Y-m-d') }}" data-bs-endattime="{{ activity.end_at|date('H:i') }}">
+							Modifier
+						</button>
+
+						<a class="btn btn-danger" href="/admin/delPlanning?id={{activity.id}}">
+							Supprimer
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
