@@ -9,6 +9,14 @@
 		document.querySelector('[name="activity"]').addEventListener('change', e => {
 document.location = '/activity/register?activity=' + e.currentTarget.value;
 })
+
+var myModal = document.getElementById('contactForm')
+var myInput = document.getElementById('myInput')
+
+contactForm.addEventListener('shown.bs.modal', function () {
+myInput.focus()
+})
+
 	</script>
 {% endblock %}
 
@@ -40,6 +48,7 @@ document.location = '/activity/register?activity=' + e.currentTarget.value;
 					<div class="form-group">
 						<select class="form-select" name="datetime" aria-label="Default select example" required>
 							{% if planning is not empty %}
+
 								<option selected value="">Choisissez votre date et créneau horaire</option>
 								{% for date in planning %}
 									<option value="{{ date.id }}">{{ "le " ~ date.start_at|date('d/m/Y à H:i') ~ " - " ~ (date.capacity - date.nb_register) ~ " place(s) restante(s)" }}</option>
@@ -78,10 +87,13 @@ document.location = '/activity/register?activity=' + e.currentTarget.value;
 
 				<div class="col-md-12">
 					<div class="form-group text-center">
-						<input type="submit" value="Envoyer" class="mt-3 btn btn-primary">
-						<div class="submitting"></div>
+						<button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Envoyer
+						</button>
 					</div>
+
 				</div>
+
 			</div>
 		</form>
 		<div class="col-md-5 d-flex align-items-stretch">
@@ -89,5 +101,22 @@ document.location = '/activity/register?activity=' + e.currentTarget.value;
 		</div>
 	</div>
 
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Inscription</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Merci pour votre inscription, nous avons hâte de vous voir !
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}
