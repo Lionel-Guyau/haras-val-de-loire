@@ -64,7 +64,7 @@ planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planni
 							<label for="type" class="col-form-label">Type :</label>
 							<select class="form-select" id="type" aria-label="Default select example" name="type" required>
 								{% for activity in activityType %}
-									<option value="{{ activity.id }}">{{ activity.type }}</option>
+									<option value="{{ activity.id }}">[{{ activity.type }}] {{ activity.name }}</option>
 								{% endfor %}
 							</select>
 
@@ -114,7 +114,7 @@ planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planni
 								{% if activityType is not empty %}
 									<option selected value="">Choisissez type d'activité</option>
 									{% for activity in activityType %}
-										<option value="{{ activity.id }}">{{ activity.type }}</option>
+										<option value="{{ activity.id }}">[{{ activity.type }}] {{ activity.name }}</option>
 									{% endfor %}
 								{% else %}
 									<option selected value="">Veuillez créer l'activité au préalable</option>
@@ -152,6 +152,7 @@ planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planni
 	<table class="my-4 table table-sm table-striped table-bordered">
 		<thead>
 			<th>Type</th>
+			<th>Nom</th>
 			<th>Description</th>
 			<th>Date de début</th>
 			<th>Date de fin</th>
@@ -162,6 +163,7 @@ planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planni
 			{% for activity in planning %}
 				<tr>
 					<td>{{activity.type }}</td>
+					<td>{{activity.name }}</td>
 					<td>{{activity.description}}</td>
 					<td>{{activity.start_at}}</td>
 					<td>{{activity.end_at}}</td>
