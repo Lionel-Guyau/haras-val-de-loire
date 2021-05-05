@@ -14,14 +14,13 @@ class PlanningManager extends AbstractManager
      */
     public function selectByActivity(int $id)
     {
-        $query = "SELECT activity.capacity, planning.start_at,  
-                        COUNT(customer_planning.customer_id) AS nb_register
-                FROM planning
-                INNER JOIN customer_planning ON customer_planning.planning_id = planning.id
-                INNER JOIN activity ON activity.id = planning.activity_id
-                WHERE planning.activity_id = :activity_id AND planning.start_at >= now()
-                GROUP BY customer_planning.planning_id
-                HAVING activity.capacity > nb_register;";
+        $query = "
+            SELECT planning.*, activity.capacity
+            FROM planning
+            LEFT JOIN activity ON activity.id = planning.activity_id
+            WHERE planning.activity_id = :activity_id AND planning.start_at >= now()
+        ";
+
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':activity_id', $id, PDO::PARAM_INT);
         $statement->execute();
@@ -34,10 +33,12 @@ class PlanningManager extends AbstractManager
      */
     public function selectPlanning()
     {
-        $activities = $this->pdo->query("SELECT planning.*,activity.id AS id2, activity.type 
-                FROM planning 
-                INNER JOIN activity ON activity.id = planning.activity_id 
-                ORDER BY planning.start_at ASC")->fetchAll();
+        $activities = $this->pdo->query("
+            SELECT planning.*,activity.id AS id2, activity.type, activity.name
+            FROM planning 
+            INNER JOIN activity ON activity.id = planning.activity_id 
+            ORDER BY planning.start_at ASC
+        ")->fetchAll();
 
         return $activities;
     }

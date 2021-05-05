@@ -20,14 +20,13 @@ class ActivityManager extends AbstractManager
      */
     public function selectPlannedActivity(): array
     {
-        $query =
-            "SELECT *, COUNT(customer_planning.customer_id) AS nb_register
-                FROM activity
-                    INNER JOIN planning ON activity.id = planning.activity_id
-                    INNER JOIN customer_planning ON planning.id = customer_planning.planning_id
-                WHERE customer_planning.register=1 AND planning.start_at >= now()
-                GROUP BY planning.id
-                ORDER BY activity.type, planning.start_at ASC";
+        $query = "
+            SELECT DISTINCT(activity.id), activity.*
+            FROM activity
+            INNER JOIN planning ON activity.id = planning.activity_id
+            WHERE planning.start_at >= now()
+            ORDER BY activity.type ASC
+        ";
 
         return $this->pdo->query($query)->fetchAll();
     }
