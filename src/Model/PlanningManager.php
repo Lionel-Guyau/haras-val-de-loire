@@ -20,17 +20,18 @@ class PlanningManager extends AbstractManager
         return $statement->fetchAll();
     }
 
-    public function registerToActivity(array $registerInfos)
-    {
-        $query = "INSERT INTO customer  ('firstname', 'lastname', 'email')
-        VALUES (:firstname, :lastname, :email)";
+    // public function registerToActivity(array $registerInfos)
+    // {
+    //     $query = "INSERT INTO customer  ('firstname', 'lastname', 'email')
+    //     VALUES (:firstname, :lastname, :email)";
 
-        $statement = $this->pdo->prepare($query);
+    //     $statement = $this->pdo->prepare($query);
 
-        $statement->bindValue(':fistname', $registerInfos['firstname'], PDO::PARAM_STR);
-        $statement->bindValue(':lastname', $registerInfos['lastname'], PDO::PARAM_STR);
-        $statement->bindValue(':email', $registerInfos['email'], PDO::PARAM_STR);
+    //     $statement->bindValue(':fistname', $registerInfos['firstname'], PDO::PARAM_STR);
+    //     $statement->bindValue(':lastname', $registerInfos['lastname'], PDO::PARAM_STR);
+    //     $statement->bindValue(':email', $registerInfos['email'], PDO::PARAM_STR);
 
-        return $statement->execute();
-    }
+    //     return $statement->execute();
+    // }
+
 }

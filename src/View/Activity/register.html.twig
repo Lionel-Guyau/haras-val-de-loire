@@ -3,8 +3,15 @@
 {% block javascript %}
 	<script>
 		document.querySelector('[name="activity"]').addEventListener('change', e => {
-			document.location = '/activity/register?activity=' + e.currentTarget.value;
-		})
+document.location = '/activity/register?activity=' + e.currentTarget.value;
+})
+
+var myModal = document.getElementById('contactForm')
+var myInput = document.getElementById('myInput')
+
+contactForm.addEventListener('shown.bs.modal', function () {
+myInput.focus()
+})
 	</script>
 {% endblock %}
 
@@ -24,7 +31,7 @@
 								<option selected value="">Choisissez votre type d'activité</option>
 							{% endif %}
 							{% for activity in activityType %}
-								<option value="{{ activity.id }}" {% if selectedActivity and selectedActivity == activity.id %} selected{% endif %}>
+								<option value="{{ activity.id }}" {% if selectedActivity and selectedActivity == activity.id %} selected {% endif %}>
 									{{ activity.type }}
 								</option>
 							{% endfor %}
@@ -32,21 +39,21 @@
 					</div>
 				</div>
 
-					<div class="col-md-12 my-4">
-						<div class="form-group">
-							<select class="form-select" name="datetime" aria-label="Default select example" required>
-								{% if planning is not empty %}
-									<option selected value="">Choisissez votre date et créneau</option>
-									{% for date in planning %}
-										<option value="{{ date.id }}">{{ date.start_at|format('d/m/Y') }}</option>
-									{% endfor %}
-								{% else %}
-									<option selected>Veuillez sélectionner un type d'activité</option>
-								{% endif %}
-							</select>
-						</div>
+				<div class="col-md-12 my-4">
+					<div class="form-group">
+						<select class="form-select" name="datetime" aria-label="Default select example" required>
+							{% if planning is not empty %}
+								<option selected value="">Choisissez votre date et créneau</option>
+								{% for date in planning %}
+									<option value="{{ date.id }}">{{ date.start_at|format('d/m/Y') }}</option>
+								{% endfor %}
+							{% else %}
+								<option selected>Veuillez sélectionner un type d'activité</option>
+							{% endif %}
+						</select>
 					</div>
-				
+				</div>
+
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="label" for="firstname"></label>
@@ -74,10 +81,13 @@
 
 				<div class="col-md-12">
 					<div class="form-group text-center">
-						<input type="submit" value="Envoyer" class="mt-3 btn btn-primary">
-						<div class="submitting"></div>
+						<button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Envoyer
+						</button>
 					</div>
+
 				</div>
+
 			</div>
 		</form>
 		<div class="col-md-5 d-flex align-items-stretch">
@@ -85,8 +95,23 @@
 		</div>
 	</div>
 
-		
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Inscription</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Merci pour votre inscription, nous avons hâte de vous voir !
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-	
 {% endblock %}

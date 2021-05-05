@@ -70,7 +70,7 @@ class ActivityController extends AbstractController
                 $register = new RegisterManager();
                 $customer = $register->getCustomer($_POST);
                 if (empty($customer)) {
-                    $register-> addCustomer($_POST);
+                    $register->addCustomer($_POST);
                     $customer = $register->getCustomer($_POST);
                 }
                 $customerId = $customer['id'];
