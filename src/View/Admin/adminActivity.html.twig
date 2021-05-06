@@ -16,6 +16,8 @@ const button = event.relatedTarget;
 // Récupération des infos sur la activity cliquée
 const activityId = button.dataset.bsId;
 const activityType = button.dataset.bsType;
+const activityName = button.dataset.bsName;
+const activityDescription = button.dataset.bsDescription;
 const activityCapacity = button.dataset.bsCapacity;
 const activityPrice = button.dataset.bsPrice;
 const activityEquipment = JSON.parse(button.dataset.bsEquipment);
@@ -23,6 +25,8 @@ const activityEquipment = JSON.parse(button.dataset.bsEquipment);
 // On rempli les champs du formulaire avec les données récupérées depuis le bouton (cf ci-dessus)
 activityModal.querySelector('[name="id"]').setAttribute('value', activityId);
 activityModal.querySelector('[name="type"]').setAttribute('value', activityType);
+activityModal.querySelector('[name="name"]').setAttribute('value', activityName);
+activityModal.querySelector('[name="description"]').setAttribute('value', activityDescription);
 activityModal.querySelector('[name="capacity"]').setAttribute('value', activityCapacity);
 activityModal.querySelector('[name="price"]').setAttribute('value', activityPrice);
 
@@ -42,7 +46,14 @@ checkbox.setAttribute('checked', true);
 	<!-- Butons -->
 	<div>
 		<a class="my-3 btn btn-warning" href="/admin">Retour</a>
-		<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-activity-modal" data-bs-id="{{ activity.id }}" data-bs-type="{{ activity.type }}" data-bs-capacity="{{ activity.capacity }}" data-bs-price="{{ activity.price }}" data-bs-equipment="{{ activity.equipment }}">
+		<button type="button" class="btn btn-success" data-bs-toggle="modal" 
+		data-bs-target="#add-activity-modal" data-bs-id="{{ activity.id }}" 
+		data-bs-type="{{ activity.type }}"
+		data-bs-name="{{ activity.name }}"
+		data-bs-description="{{ activity.description }}" 
+		data-bs-capacity="{{ activity.capacity }}" 
+		data-bs-price="{{ activity.price }}" 
+		data-bs-equipment="{{ activity.equipment }}">
 			Ajouter
 		</button>
 	</div>
@@ -64,6 +75,10 @@ checkbox.setAttribute('checked', true);
 						<div class="mb-3">
 							<label for="name" class="col-form-label">Type :</label>
 							<input type="text" class="form-control" id="type" name="type" maxlength="50" required>
+							<label for="name" class="col-form-label">Nom :</label>
+							<input type="text" class="form-control" id="name" name="name" maxlength="50" required>
+							<label for="name" class="col-form-label" aria-label="With textarea">Description :</label>
+							<input type="textarea" class="form-control" aria-label="With textarea" id="description" name="description" maxlength="100" required></textarea>
 							<label for="name" class="col-form-label">Capacité :</label>
 							<input type="number" class="form-control" id="capacity" name="capacity" maxlength="50" required>
 							<label for="name" class="col-form-label">Prix :</label>
@@ -114,6 +129,10 @@ checkbox.setAttribute('checked', true);
 						<div class="mb-3">
 							<label for="name" class="col-form-label">Type :</label>
 							<input type="text" class="form-control" id="type" name="type" maxlength="50" required>
+							<label for="name" class="col-form-label">Nom :</label>
+							<input type="text" class="form-control" id="name" name="name" maxlength="50" required>
+							<label for="name" class="col-form-label" aria-label="With textarea">Description :</label>
+							<input type="textarea" class="form-control" aria-label="With textarea" id="description" name="description" maxlength="100" required></textarea>
 							<label for="name" class="col-form-label">Capacité :</label>
 							<input type="number" class="form-control" id="capacity" name="capacity" maxlength="50" required>
 							<label for="name" class="col-form-label">Prix :</label>
@@ -152,6 +171,8 @@ checkbox.setAttribute('checked', true);
 	<table class="my-4 table table-sm table-striped table-bordered">
 		<thead>
 			<th>Type</th>
+			<th>Nom</th>
+			<th>Description</th>
 			<th>Capacité</th>
 			<th>Prix</th>
 			<th>Equipement</th>
@@ -162,6 +183,8 @@ checkbox.setAttribute('checked', true);
 			{% for activity in activities %}
 				<tr>
 					<td>{{activity.type }}</td>
+					<td>{{activity.name }}</td>
+					<td>{{activity.description }}</td>
 					<td>{{activity.capacity}}</td>
 					<td>{{activity.price}}</td>
 					<td>
@@ -171,7 +194,15 @@ checkbox.setAttribute('checked', true);
 					</td>
 
 					<td>
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#maj-activity-modal" data-bs-id="{{ activity.id }}" data-bs-type="{{ activity.type }}" data-bs-capacity="{{ activity.capacity }}" data-bs-price="{{ activity.price }}" data-bs-equipment="{{ activity.equipments|json_encode() }}">
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+						data-bs-target="#maj-activity-modal" 
+						data-bs-id="{{ activity.id }}" 
+						data-bs-type="{{ activity.type }}"
+						data-bs-name="{{ activity.name }}" 
+						data-bs-description="{{ activity.description }}"  
+						data-bs-capacity="{{ activity.capacity }}" 
+						data-bs-price="{{ activity.price }}" 
+						data-bs-equipment="{{ activity.equipments|json_encode() }}">
 							Modifier
 						</button>
 
