@@ -37,6 +37,12 @@
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
+													<label class="label" for="number"></label>
+													<input type="text" class="form-control" name="number" id="number" placeholder="Numéro de téléphone" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
 													<label class="label" for="subject"></label>
 													<input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet" required>
 												</div>
@@ -89,18 +95,18 @@
 		</div>
 	</section>
 
-{% block javascript %}
+	{% block javascript %}
 
-	<script>
-		var form = document.getElementById('contactForm');
+		<script>
+			var form = document.getElementById('contactForm');
 
-		function myFunction() {
-			if (form.checkValidity()) {
-				alert("Votre message a été envoyer à l'équipe du Haras");
-			}
-		}
-	</script>
+function myFunction() {
+if (form.checkValidity()) {
+alert("Votre message a été envoyer à l'équipe du Haras");
+}
+}
+		</script>
 
-{% endblock %}
+	{% endblock %}
 
 {% endblock %}
