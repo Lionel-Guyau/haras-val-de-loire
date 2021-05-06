@@ -45,4 +45,17 @@ class ContactManager extends AbstractManager
 
         return $this->pdo->query($query)->fetchAll();
     }
+
+    /**
+     * Delete Message in database
+     */
+    public function delMessage(int $id): void
+    {
+        $statement = $this->pdo->prepare("
+        DELETE  
+        FROM contact
+        WHERE contact.id = :id");
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }

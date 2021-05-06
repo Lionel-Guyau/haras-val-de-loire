@@ -22,6 +22,7 @@
 			<th>Coordonnées</th>
 			<th>Sujet</th>
 			<th>Message</th>
+			<th>Action</th>
 		</thead>
 
 		<tbody>
@@ -31,6 +32,11 @@
 					<td>{{contact.email ~ " - 0" ~ contact.number}}</td>
 					<td>{{contact.subject}}</td>
 					<td>{{contact.message}}</td>
+					<td>
+						<a class="btn btn-danger" href="/admin/delMessage?id={{contact.id}}">
+							Supprimer
+						</a>
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>

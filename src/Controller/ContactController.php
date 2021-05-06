@@ -60,4 +60,21 @@ class ContactController extends AbstractController
         // retourne sur la page Contact
         header("Location: /contact");
     }
+
+    public function delMessage()
+    {
+        $contact = $_GET;
+
+        $delMessage = new ContactManager();
+
+        if (!empty($contact)) {
+            if ($this->securityService->controlData($_GET['id'])) {
+                $id = $this->securityService->sanitizeInput($_GET['id']);
+                if (filter_var($id, FILTER_VALIDATE_INT)) {
+                    $delMessage->delMessage($id);
+                }
+            }
+        }
+        header('Location: /admin/showContact');
+    }
 }

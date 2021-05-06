@@ -276,15 +276,4 @@ class AdminController extends AbstractController
             // 'nbContacts' => $nbContacts,
         ]);
     }
-
-    // public function countContact(): int
-    // {
-    //     $contactManager = new ContactManager();
-
-    //     $nbContacts = $contactManager->countContact();
-
-    //     return $this->twig->render('/admin.html.twig', [
-    //         'nbContacts' => $nbContacts,
-    //     ]);
-    // }
 }
