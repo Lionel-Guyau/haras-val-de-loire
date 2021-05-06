@@ -11,13 +11,17 @@
 
 	<div>
 		<div>
-			<div class="my-5 text-center">
+			<div class="mt-5 mb-2 text-center">
 				<h3>Mon espace de gestion</h3>
-				{{nbContacts}}
-				<a type="button" class="btn btn-primary" href="/admin/showContact">
-					<i class="fas fa-envelope-open-text"></i>
-				</a>
-				<p></p>
+				<div class="d-flex justify-content-end mt-5">
+					<p class="my-auto">Vous avez
+						<strong>{{nbMessage}}</strong>
+						message(s) dans votre messagerie</p>
+					<a type="button" class="btn btn-primary mx-2" href="/admin/showContact">
+						<i class="fas fa-envelope-open-text"></i>
+					</a>
+				</div>
+
 			</div>
 		</div>
 

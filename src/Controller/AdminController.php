@@ -43,7 +43,13 @@ class AdminController extends AbstractController
 
     public function index()
     {
-        return $this->twig->render('/Admin/admin.html.twig');
+        $contacts = new ContactManager();
+        $nbContacts = $contacts->selectContact();
+        $nbMessage = count($nbContacts);
+
+        return $this->twig->render('/Admin/admin.html.twig', [
+            'nbMessage' => $nbMessage,
+        ]);
     }
 
     public function news()
