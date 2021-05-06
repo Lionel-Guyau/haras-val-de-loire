@@ -34,24 +34,8 @@
     height: 30% i !important;
 }
 
-.calendar__baby-poney {
-    background-color: lightpink;
-}
-
-.calendar__eveil-poney {
-    background-color: lightgreen;
-}
-
-.calendar__6\+ {
+.calendar__cours {
     background-color: lightblue;
-}
-
-.calendar__adulte {
-    background-color:lightcoral;
-}
-
-.calendar__privilege {
-    background-color: lightgrey;
 }
 
 .calendar__formation {
@@ -59,7 +43,7 @@
 }
 
 .calendar__stage {
-    background-color: lightgoldenrodyellow;
+    background-color: lightgreen;
 }
 
 .selector {

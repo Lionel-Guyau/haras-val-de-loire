@@ -32,22 +32,21 @@
 		</div>
 
 
-		<div class="col-12 my-5" style="text-align:center">
+		<div class="col-12 col-md-5 my-3 mx-auto" style="text-align:center; width: 90%;">
 
-			<div class="row justify-content-evenly ">
+			<div class="row justify-content-between ">
 				{% for activity in activityType %}
-					<div
-						class="col-4 col-sm-4 col-md-3 mx-1 mx-sm-2 mb-3 p-0 bg-primary" style="box-shadow: 4px 4px 10px black;">
+					
+					{% include 'Components/_card_activity.html.twig' with {
+						'src': 'assets/images/' ~ activity.type ~ '-' ~ activity.name ~ '.png',
+						'type': activity.type,
+						'description': activity.description,
+						'price': activity.price,
+						'name': activity.name,
+						'loopIndex': loop.index,
+						'id': activity.id
+						} %}
 
-						{# <img src="/recup_photos/pexels-alexander-dummer-1364073.jpg"> #}
-						<div class="bg-primary text-light p-1">
-							<p class="text-capitalize">{{activity.type}}</p>
-							<p>Tarif :
-								{{activity.price}}
-								€</p>
-						</div>
-
-					</div>
 				{% endfor %}
 			</div>
 		</div>
