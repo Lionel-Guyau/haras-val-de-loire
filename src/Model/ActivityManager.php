@@ -94,12 +94,17 @@ class ActivityManager extends AbstractManager
      */
     public function saveActivity(array $activity)
     {
-        $query = "INSERT INTO " . static::TABLE . " (`type`,`capacity`,`price`) 
-        VALUES (:type, :capacity, :price)";
+        $query = "INSERT INTO " . static::TABLE . " (`type`,`name`,`description`,`capacity`,`price`) 
+        VALUES (:type, :name, :description, :capacity, :price)";
 
         // Cas d'un udpate car l'id de l'activité est présent
         if (!empty($activity['id'])) {
-            $query = "UPDATE " . static::TABLE . " SET type = :type, capacity = :capacity, price = :price 
+            $query = "UPDATE " . static::TABLE . " SET 
+            type = :type, 
+            name = :name, 
+            description = :description, 
+            capacity = :capacity, 
+            price = :price 
             WHERE id = :id";
         }
         $statement = $this->pdo->prepare($query);
@@ -110,6 +115,8 @@ class ActivityManager extends AbstractManager
         }
 
         $statement->bindValue(':type', $activity['type']);
+        $statement->bindValue(':name', $activity['name']);
+        $statement->bindValue(':description', $activity['description']);
         $statement->bindValue(':capacity', $activity['capacity'], PDO::PARAM_INT);
         $statement->bindValue(':price', $activity['price'], PDO::PARAM_INT);
         $statement->execute();
