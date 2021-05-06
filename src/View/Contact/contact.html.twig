@@ -49,8 +49,9 @@
 											</div>
 											<div class="col-md-12">
 												<div class="form-group text-center">
-													<input type="submit" value="Envoyer" onclick="myFunction()" class="mt-5 btn btn-primary">
-													<div class="submitting"></div>
+													<button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+														Envoyer
+													</button>
 												</div>
 											</div>
 										</div>
@@ -66,6 +67,23 @@
 			</div>
 		</div>
 	</section>
+	
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Message envoyé</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Merci pour votre message, nous vous répondrons dans les plus brefs délais !
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<section class="bottom col-12">
 		<div class="row container-fluid bg-secondary col-12">
@@ -92,13 +110,20 @@
 {% block javascript %}
 
 	<script>
-		var form = document.getElementById('contactForm');
+		{# var form = document.getElementById('contactForm');
 
 		function myFunction() {
 			if (form.checkValidity()) {
 				alert("Votre message a été envoyer à l'équipe du Haras");
 			}
-		}
+		} #}
+
+		var myModal = document.getElementById('contactForm')
+		var myInput = document.getElementById('myInput')
+
+		contactForm.addEventListener('shown.bs.modal', function () {
+		myInput.focus()
+		})
 	</script>
 
 {% endblock %}
