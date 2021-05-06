@@ -34,28 +34,30 @@ class ContactController extends AbstractController
         $email = $_POST['email'];
         $subject = $_POST['subject'];
         $message = $_POST['message'];
+        $hasSentMessage = false;
 
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             // test des valeurs d'entrées ($_POST)
-            if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($subject) && !empty($message)) {
-                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($subject) && !empty($message) && filter_var($email, FILTER_VALIDATE_EMAIL)){
                     // intégrer les valeurs dans une table $contactInfos
-                    $contactInfos = [
-                        'firstname' => $firstname,
-                        'lastname' => $lastname,
-                        'email' => $email,
-                        'subject' => $subject,
-                        'message' => $message,
-                    ];
+                $contactInfos = [
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'email' => $email,
+                    'subject' => $subject,
+                    'message' => $message,
+                ];
 
-                    // appeler la requête SQL $this->addContactInfo($contactInfos)
-                    $objetModel = new ContactManager();
-                    $objetModel->addContactInfo($contactInfos);
+                // appeler la requête SQL $this->addContactInfo($contactInfos)
+                $objetModel = new ContactManager();
+                $objetModel->addContactInfo($contactInfos);
+                $hasSentMessage = true;
                         // est égal à (new ContactManager())-> addContactInfo($contactInfos);
-                }
             }
         }
+        return $this->twig->render('/Contact/contact.html.twig',[
+            'hasSentMessage' =>$hasSentMessage,
+        ]);
         // retourne sur la page Contact
-        header("Location: /contact");
     }
 }

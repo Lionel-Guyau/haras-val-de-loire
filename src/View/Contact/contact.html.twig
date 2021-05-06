@@ -4,6 +4,31 @@
 	Contact
 {% endblock %}
 
+{% block javascript %}
+
+	<script>
+		
+		var myModal = document.getElementById('contactForm')
+		var myInput = document.getElementById('myInput')
+
+		contactForm.addEventListener('shown.bs.modal', function () {
+		myInput.focus()
+		})
+
+		{% if hasSentMessage %}
+		const hasSentMessageModalElement = document.getElementById('sentMessageModal');
+		const hasSentMessageModal = new bootstrap.Modal(hasSentMessageModalElement);
+
+		// Redirection vers la page des activité à la fermeture de la modale de confirmation d'inscription
+		hasSentMessageModalElement.addEventListener('hide.bs.modal', event => {
+		document.location = '/contact';
+		});
+
+		hasSentMessageModal.show();{% endif %}
+	</script>
+
+{% endblock %}
+
 {% block content %}
 	<section class="ftco-section" style="background-image: url('../recup_photos/pexels-arthur-krijgsman-4019299.jpg');">
 		<div class="container">
@@ -47,9 +72,16 @@
 													<textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message" required></textarea>
 												</div>
 											</div>
+
+											{% for error in errors %}
+												<div class="alert alert-danger mt-3 text-center" role="alert">
+													{{error}}
+												</div>
+											{% endfor %}
+
 											<div class="col-md-12">
 												<div class="form-group text-center">
-													<button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+													<button type="submit" class="btn btn-primary mt-3">
 														Envoyer
 													</button>
 												</div>
@@ -68,23 +100,6 @@
 		</div>
 	</section>
 	
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Message envoyé</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					Merci pour votre message, nous vous répondrons dans les plus brefs délais !
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<section class="bottom col-12">
 		<div class="row container-fluid bg-secondary col-12">
 			<div class="info col-sm-12 col-md-6 text-center text-primary">
@@ -107,25 +122,24 @@
 		</div>
 	</section>
 
-{% block javascript %}
+		<!-- Modal -->
+	<div class="modal fade" id="sentMessageModal" tabindex="-1" aria-labelledby="sentMessageModalLabel" aria-hidden="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="sentMessageLabel"></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Merci pour votre message, nous vous répondrons dans les plus brefs délais !
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<script>
-		{# var form = document.getElementById('contactForm');
 
-		function myFunction() {
-			if (form.checkValidity()) {
-				alert("Votre message a été envoyer à l'équipe du Haras");
-			}
-		} #}
-
-		var myModal = document.getElementById('contactForm')
-		var myInput = document.getElementById('myInput')
-
-		contactForm.addEventListener('shown.bs.modal', function () {
-		myInput.focus()
-		})
-	</script>
-
-{% endblock %}
 
 {% endblock %}
