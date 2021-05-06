@@ -25,14 +25,12 @@
 		</thead>
 
 		<tbody>
-			{{dump(contacts)}}
 			{% for contact in contacts %}
 				<tr>
 					<td>{{contact.firstname ~ " " ~ contact.lastname }}</td>
-					<td>{{contact.email ~ " - " ~ contact.number}}</td>
+					<td>{{contact.email ~ " - 0" ~ contact.number}}</td>
 					<td>{{contact.subject}}</td>
 					<td>{{contact.message}}</td>
-
 				</tr>
 			{% endfor %}
 		</tbody>
