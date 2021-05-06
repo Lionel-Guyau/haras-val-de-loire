@@ -32,8 +32,8 @@ class EquipmentManager extends AbstractManager
         WHERE activity.id = :id");
 
         $query->bindValue(':id', $id);
-
-        return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
