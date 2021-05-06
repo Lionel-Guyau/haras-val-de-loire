@@ -8,29 +8,28 @@
 	<script>
 		const activitySelect = document.querySelector('[name="activity"]');
 
-		if (activitySelect) {
-			activitySelect.addEventListener('change', e => {
-				let location = '/activity/register';
+if (activitySelect) {
+activitySelect.addEventListener('change', e => {
+let location = '/activity/register';
 
-				if (e.currentTarget.value) {
-					location += '?activity=' + e.currentTarget.value;
-				}
+if (e.currentTarget.value) {
+location += '?activity=' + e.currentTarget.value;
+}
 
-				document.location = location;
-			})
-		}
+document.location = location;
+})
+}
 
-		{% if hasRegistered %}
-			const hasRegisteredModalElement = document.getElementById('registerModal');
-			const hasRegisteredModal = new bootstrap.Modal(hasRegisteredModalElement);
+{% if hasRegistered %}
+const hasRegisteredModalElement = document.getElementById('registerModal');
+const hasRegisteredModal = new bootstrap.Modal(hasRegisteredModalElement);
 
-			// Redirection vers la page des activité à la fermeture de la modale de confirmation d'inscription
-			hasRegisteredModalElement.addEventListener('hide.bs.modal', event => {
-				document.location = '/activity';
-			});
+// Redirection vers la page des activité à la fermeture de la modale de confirmation d'inscription
+hasRegisteredModalElement.addEventListener('hide.bs.modal', event => {
+document.location = '/activity';
+});
 
-			hasRegisteredModal.show();
-		{% endif %}
+hasRegisteredModal.show();{% endif %}
 	</script>
 {% endblock %}
 
@@ -39,77 +38,99 @@
 	<h1 class=" inscription my-3 text-center text-secondary">Inscription</h1>
 	<p class="text-primary mx-4 fs-5 my-3" style="text-align:center">Choisissez une activité à laquelle vous souhaitez vous inscrire</p>
 
-	<div class="container col-11 col-lg-5">
-		<form method="POST" id="contactForm" class="contactForm">
-			<div class="row">
-				<div class="col-md-12 my-4">
-					<div class="form-group">
-						<select id="select-activity" name="activity" class="form-select" aria-label="Default select example" required>
-							<option selected value="">Choisissez votre type d'activité</option>
+	<div class="container row mx-auto">
+		<div class="{{ planning ? '' : 'd-none' }} col-11 col-xl-6 my-2 mx-auto" style="">
+			<div class="row justify-content-between ">
+				{% for activity in activityType %}
 
-							{% for activity in activityType %}
-								<option value="{{ activity.id }}" {% if selectedActivity and selectedActivity == activity.id %} selected {% endif %}>
-									[{{ activity.type }}] {{ activity.name }}
-								</option>
-							{% endfor %}
-						</select>
-					</div>
-				</div>
+					{% if selectedActivity and selectedActivity == activity.id %}
+						{% include 'Components/_card_activity_register.html.twig' with {
+							'src': 'assets/images/' ~ activity.type ~ '-' ~ activity.name ~ '.png',
+							'type': activity.type,
+							'description': description[activity.id],
+							'price': activity.price,
+							'name': activity.name,
+							'loopIndex': loop.index,
+							'id': activity.id
+							} %}
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
 
-				<div class="col-md-12 my-4">
-					<div class="form-group">
-						<select class="form-select" name="datetime" aria-label="Default select example" required>
-							{% if planning is not empty %}
-								<option selected value="">Choisissez votre date et créneau horaire</option>
-								{% for date in planning %}
-									<option value="{{ date.id }}">
-										{{ "le " ~ date.start_at|date('d/m/Y à H:i') ~ " - " ~ (date.capacity - date.nb_register) ~ " places" }}
+		<div class="col-11 col-xl-6 my-2 mx-auto">
+			<form method="POST" id="contactForm" class="contactForm">
+				<div class="row">
+					<div class="col-md-12 mb-4">
+						<div class="form-group">
+							<select id="select-activity" name="activity" class="form-select" aria-label="Default select example" required>
+								<option selected value="">Choisissez votre type d'activité</option>
+
+								{% for activity in activityType %}
+									<option value="{{ activity.id }}" {% if selectedActivity and selectedActivity == activity.id %} selected {% endif %}>
+										[{{ activity.type }}]
+										{{ activity.name }}
 									</option>
 								{% endfor %}
-							{% else %}
-								<option selected>Veuillez sélectionner un type d'activité</option>
-							{% endif %}
-						</select>
+							</select>
+						</div>
 					</div>
-				</div>
 
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="label" for="firstname"></label>
-						<input type="text" class="form-control" name="firstname" id="firstname" placeholder="Prénom" required>
+					<div class="col-md-12 my-4">
+						<div class="form-group">
+							<select class="form-select" name="datetime" aria-label="Default select example" required>
+								{% if planning is not empty %}
+									<option selected value="">Choisissez votre date et créneau horaire</option>
+									{% for date in planning %}
+										<option value="{{ date.id }}">
+											{{ "le " ~ date.start_at|date('d/m/Y à H:i') ~ " - " ~ (date.capacity - date.nb_register) ~ " places" }}
+										</option>
+									{% endfor %}
+								{% else %}
+									<option selected>Veuillez sélectionner un type d'activité</option>
+								{% endif %}
+							</select>
+						</div>
 					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="label" for="lastname"></label>
-						<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Nom" required>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="form-group">
-						<label class="label" for="email"></label>
-						<input type="email" class="form-control" name="email" id="email" placeholder="Adresse email">
-					</div>
-				</div>
 
-				{% for error in errors %}
-					<div class="alert alert-danger mt-3 text-center" role="alert">
-						{{error}}
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="label" for="firstname"></label>
+							<input type="text" class="form-control" name="firstname" id="firstname" placeholder="Prénom" required>
+						</div>
 					</div>
-				{% endfor %}
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="label" for="lastname"></label>
+							<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Nom" required>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="label" for="email"></label>
+							<input type="email" class="form-control" name="email" id="email" placeholder="Adresse email">
+						</div>
+					</div>
 
-				<div class="col-md-12">
-					<div class="form-group text-center">
-						<button type="submit" class="btn btn-primary mt-3">
-							Envoyer
-						</button>
+					{% for error in errors %}
+						<div class="alert alert-danger mt-3 text-center" role="alert">
+							{{error}}
+						</div>
+					{% endfor %}
+
+					<div class="col-md-12">
+						<div class="form-group text-center">
+							<button type="submit" class="btn btn-primary mt-3">
+								Envoyer
+							</button>
+						</div>
 					</div>
 				</div>
+			</form>
+
+			<div class="col-md-5 d-flex align-items-stretch">
+				<div class="info-wrap w-100 p-5 img"></div>
 			</div>
-		</form>
-
-		<div class="col-md-5 d-flex align-items-stretch">
-			<div class="info-wrap w-100 p-5 img"></div>
 		</div>
 	</div>
 
