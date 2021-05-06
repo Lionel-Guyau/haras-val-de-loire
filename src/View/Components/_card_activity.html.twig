@@ -1,0 +1,18 @@
+<div class="card mb-4 {{ loopIndex is odd ? 'text-md-end' : 'text-md-start' }} mxh mxw mx-auto">
+	<div class="row no-gutters">
+		<div class="col-md-4 m-auto p-0 {{ loopIndex is odd ? 'd-md-none' : 'd-md-flex' }} mxh">
+			<img class="card-img" src="{{ src }}" alt="Card image cap">
+		</div>
+		<div class="col-md-8">
+			<div class="card-body justify-content-evenly">
+				<h5 class="card-title">{{type}}{{ name ? ' - ' ~ name : '' }}</h5>
+				<p class="card-text">{{description}}</p>
+				<p class="card-text">Coût de l'activité : {{price}}€/p</p>
+				<a href="/activity/register?activity={{id}}" class="btn btn-primary">Voir les créneaux</a>
+			</div>
+		</div>
+		<div class="col-md-4 m-auto p-0 d-none {{ loopIndex is even ? '' : 'd-md-flex' }} mxh">
+			<img class="card-img" src="{{ src }}" alt="Card image cap">
+		</div>
+	</div>
+</div>

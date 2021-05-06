@@ -1,0 +1,12 @@
+<div class="card border-primary mb-3 mx-auto">
+	<div class="row no-gutters">
+		<div class="card-body justify-content-evenly">
+			<h5 class="card-title text-center text-primary">{{type}}{{ name ? ' - ' ~ name : '' }}</h5>
+			{% for text in description %}
+				<p class="card-text text-justify m-1">{{text}}</p>
+			{% endfor %}
+			<p class="card-text text-center mt-2 text-primary">Coût de l'activité :
+				{{price}}€/p</p>
+		</div>
+	</div>
+</div>
