@@ -32,6 +32,7 @@ class ContactController extends AbstractController
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
+        $number = $_POST['number'];
         $subject = $_POST['subject'];
         $message = $_POST['message'];
         $hasSentMessage = false;
