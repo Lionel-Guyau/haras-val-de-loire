@@ -39,15 +39,20 @@ body {
 }
 
 #activity_body{
-  background-image: url("/recup_photos/horses-5896935_1920.jpg")
+  background-image: url("/recup_photos/horses-5896935_1920.jpg");
+  
 }
 
 #activity_body{
-  font-size: calc(1vh + 1.2vw)!important;
-  font-family: 'Dancing Script', cursive;
+  font-size: calc(1vh + .4vw)!important;
+  font-family: "Roboto", sans-serif;
 }
 
 .register-body h1{
+  font-size: calc(1vh + 1.8vw)!important;
+  font-family: 'Dancing Script', cursive;
+}
+.register-body h2{
   font-size: calc(1vh + 1.8vw)!important;
   font-family: 'Dancing Script', cursive;
 }
