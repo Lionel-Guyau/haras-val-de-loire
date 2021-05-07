@@ -1,21 +1,21 @@
 
 .haras-principes-body{
-    background-image: url("/recup_photos/pexels-kaboompics-com-6468.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("/recup_photos/pexels-pixabay-460991.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .haras-objectif-body{
-    background-image: url("/recup_photos/pexels-pixabay-210237.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
+  background-image: url("/recup_photos/cave-828604_1920.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 .haras-directrice-body{
-    background-image: url("/recup_photos/girl-1149933.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
+  background-image: url("/recup_photos/girl-1149933.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 .col-8{
     max-height: 50vh;
@@ -64,7 +64,6 @@
 #goal h1{
   text-shadow:  1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
   font-family: 'Dancing Script', cursive;
-  font-size: calc(1vh + 1.2vw);
 }
 #goal_row p{
   text-shadow:  1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
@@ -103,8 +102,8 @@
 }
 
 #director_title{
-    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
-    font-family: 'Dancing Script', cursive;
+  text-shadow:  1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a!important;
+  font-family: 'Dancing Script', cursive;
 }
 #director p{
     font-size: calc(1vh + .7vw)!important;
@@ -143,8 +142,8 @@
   margin-bottom: 10px;
 }
 #navbarNavDropdown{
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.8rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
 }
 .info {
   margin-top: 10px;
@@ -253,13 +252,13 @@
   font-family: "Roboto", sans-serif;
 }
 #haras-nav a{
-  font-family: 'Dancing Script', cursive;
+  font-family: "Roboto", sans-serif;
   text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a;
-  font-size: calc(1vh + .8vw)!important;
+  font-size: calc(1vh + .5vw)!important;
 }
 
 #contactForm{
-  font-family: 'Dancing Script', cursive;
+  font-family: "Roboto", sans-serif;
   font-size: calc(1vh + .8vw)!important;
 }
 
