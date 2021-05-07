@@ -1,61 +1,74 @@
 {% extends 'layout.html.twig' %}
-{% block title %} Administration {% endblock %}
+{% block title %}
+	Administration
+{% endblock %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" href="/assets/css/style-admin.css"> 
+	<link rel="stylesheet" href="/assets/css/style-admin.css">
 {% endblock %}
 
 {% block content %}
 
-<div>
-  <div class="my-5 text-center">
-  <h3>Mon espace de gestion</h3><p></p>
-  </div>
+	<div>
+		<div>
+			<div class="mt-5 mb-2 text-center">
+				<h3>Mon espace de gestion</h3>
+				<div class="d-flex justify-content-end mt-5">
+					<p class="my-auto">Vous avez
+						<strong>{{nbMessage}}</strong>
+						message(s) dans votre messagerie</p>
+					<a type="button" class="btn btn-primary mx-2" href="/admin/showContact">
+						<i class="fas fa-envelope-open-text"></i>
+					</a>
+				</div>
 
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-      <img src="../assets/images/Accueil.jpg" class="card-img-top">
-        <h5 class="card-title">Page Accueil</h5>
-        <p class="card-text">Gestion de mes informations.</p>
-        <a href="/admin/news" class="btn btn-success">Informations Accueil</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-      <img src="../assets/images/logo-activites-sportives.png" class="card-img-top">
-         <h5 class="card-title">Mes activités</h5>
-        <p class="card-text">Gestion de mes activités.</p>
-        <a href="/admin/activity" class="btn btn-success">Mes activités</a>
-      </div>
-    </div>
-  </div>
-    <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-      <img src="../assets/images/equipements.jpg" class="card-img-top">
-        <h5 class="card-title">Mes équipements</h5>
-        <p class="card-text">Gestion de mes équipements.</p>
-        <a href="/admin/equipments" class="btn btn-success">Mes équipements</a>
-      </div>
-    </div>
-  </div>
-    <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-       <img src="../assets/images/planning.png" class="card-img-top">
-        <h5 class="card-title">Mon planning</h5>
-        <p class="card-text">Plannification des mes activités.</p>
-        <a href="/admin/planning" class="btn btn-success">Mon planning</a>
-      </div>
-    </div>
-  </div>
-</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="card">
+					<div class="card-body">
+						<img src="../assets/images/Accueil.jpg" class="card-img-top">
+						<h5 class="card-title">Informations Accueil</h5>
+						<p class="card-text">Ajout, modification, suppression des informations.</p>
+						<a href="/admin/news" class="btn btn-success">Informations Accueil</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card">
+					<div class="card-body">
+						<img src="../assets/images/logo-activites-sportives.png" class="card-img-top">
+						<h5 class="card-title">Mes activités</h5>
+						<p class="card-text">Ajout, modification, suppression des activités.</p>
+						<a href="/admin/activity" class="btn btn-success">Mes activités</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card">
+					<div class="card-body">
+						<img src="../assets/images/equipements.jpg" class="card-img-top">
+						<h5 class="card-title">Mes équipements</h5>
+						<p class="card-text">Ajout, modification, suppression de mes équipements.</p>
+						<a href="/admin/equipments" class="btn btn-success">Mes équipements</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card">
+					<div class="card-body">
+						<img src="../assets/images/planning.png" class="card-img-top">
+						<h5 class="card-title">Mon planning</h5>
+						<p class="card-text">Voir mon planning</p>
+						<a href="/admin/planning" class="btn btn-success">Mon planning</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
-</div>
+	</div>
 
 {% endblock %}

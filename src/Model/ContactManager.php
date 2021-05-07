@@ -4,6 +4,8 @@ namespace App\Model;
 
 use App\Model\Connection;
 use DateTime;
+use PDO;
+
 
 class ContactManager extends AbstractManager
 {
@@ -16,6 +18,8 @@ class ContactManager extends AbstractManager
      */
     public function addContactInfo(array $contactInfos)
     {
+        $now = (new DateTime("NOW"))->format('Y-m-d H:i:s');
+
         $query = "INSERT INTO contact (`firstname`, `lastname`, `email`, `number`, `subject`, `message`, `date`) 
                 VALUES (:firstname, :lastname, :email, :number, :subject, :message, :date)";
         $statement = $this->pdo->prepare($query);
@@ -23,11 +27,23 @@ class ContactManager extends AbstractManager
         $statement->bindValue(':firstname', $contactInfos['firstname'], \PDO::PARAM_STR);
         $statement->bindValue(':lastname', $contactInfos['lastname'], \PDO::PARAM_STR);
         $statement->bindValue(':email', $contactInfos['email'], \PDO::PARAM_STR);
-        $statement->bindValue(':number', "0000000000", \PDO::PARAM_STR);
+        $statement->bindValue(':number', $contactInfos['number'], \PDO::PARAM_INT);
         $statement->bindValue(':subject', $contactInfos['subject'], \PDO::PARAM_STR);
         $statement->bindValue(':message', $contactInfos['message'], \PDO::PARAM_STR);
-        $statement->bindValue(':date', (new DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_STR);
+        $statement->bindValue(':date', $now);
 
         return $statement->execute();
+    }
+
+    /**
+     * Récupérer les infos de contact issues du formulaire
+     */
+    public function selectContact(): array
+    {
+        $query =
+            "SELECT * FROM contact
+            ORDER BY date DESC";
+
+        return $this->pdo->query($query)->fetchAll();
     }
 }

@@ -15,6 +15,7 @@ use App\Model\EquipmentManager;
 use App\Model\ActivityManager;
 use App\Service\SecurityService;
 use App\Model\PlanningManager;
+use App\Model\ContactManager;
 
 /**
  * Suppress all warnings from these two rules.
@@ -42,7 +43,13 @@ class AdminController extends AbstractController
 
     public function index()
     {
-        return $this->twig->render('/Admin/admin.html.twig');
+        $contacts = new ContactManager();
+        $nbContacts = $contacts->selectContact();
+        $nbMessage = count($nbContacts);
+
+        return $this->twig->render('/Admin/admin.html.twig', [
+            'nbMessage' => $nbMessage,
+        ]);
     }
 
     public function news()
@@ -257,4 +264,27 @@ class AdminController extends AbstractController
         }
         header('Location: /admin/planning');
     }
+
+    public function showContact()
+    {
+        $contactManager = new ContactManager();
+        $contacts = $contactManager->selectContact();
+        // $nbContacts = $contactManager->countContact();
+
+        return $this->twig->render('/Admin/adminContact.html.twig', [
+            'contacts' => $contacts,
+            // 'nbContacts' => $nbContacts,
+        ]);
+    }
+
+    // public function countContact(): int
+    // {
+    //     $contactManager = new ContactManager();
+
+    //     $nbContacts = $contactManager->countContact();
+
+    //     return $this->twig->render('/admin.html.twig', [
+    //         'nbContacts' => $nbContacts,
+    //     ]);
+    // }
 }

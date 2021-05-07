@@ -14,6 +14,7 @@ use App\Controller\Activity\ActivityDescription;
 use App\Model\ActivityManager;
 use App\Model\PlanningManager;
 use App\Model\RegisterManager;
+use App\Model\EquipmentManager;
 
 class ActivityController extends AbstractController
 {
@@ -57,6 +58,7 @@ class ActivityController extends AbstractController
         $activity = new ActivityManager();
         $activityType = $activity->selectPlannedActivity();
         $planning = isset($_GET['activity']) ? (new PlanningManager())->selectByActivity($_GET['activity']) : [];
+        $equipment = isset($_GET['activity']) ? (new EquipmentManager())->selectEquipmentById($_GET['activity']) : [];
         $description = (new ActivityDescription())->getDescription();
         $errors = [];
         $hasRegistered = false;
@@ -95,7 +97,8 @@ class ActivityController extends AbstractController
             'planning' => $planning,
             'errors' => $errors,
             'hasRegistered' => $hasRegistered,
-            'description' => $description
+            'description' => $description,
+            'equipment' => $equipment
         ]);
     }
 
