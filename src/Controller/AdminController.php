@@ -294,5 +294,4 @@ class AdminController extends AbstractController
         }
         header('Location: /admin/showContact');
     }
-
 }
