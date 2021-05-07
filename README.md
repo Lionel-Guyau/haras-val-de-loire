@@ -1,4 +1,4 @@
-# Simple MVC
+# Haras Val de Loire
 
 ## Déploiement
 Your project master branch will be deployed on https://harasvaldeloire.mydevprojects.io/
