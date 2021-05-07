@@ -32,6 +32,7 @@ class ContactController extends AbstractController
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
+        $number = $_POST['number'];
         $subject = $_POST['subject'];
         $message = $_POST['message'];
         $hasSentMessage = false;
@@ -39,11 +40,12 @@ class ContactController extends AbstractController
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             // test des valeurs d'entrées ($_POST)
             if (
-                !empty($firstname) && 
-                !empty($lastname) && 
-                !empty($email) && 
-                !empty($subject) && 
-                !empty($message) && 
+                !empty($firstname) &&
+                !empty($lastname) &&
+                !empty($email) &&
+                !empty($subject) &&
+                !empty($message) &&
+                !empty($number) &&
                 filter_var($email, FILTER_VALIDATE_EMAIL)
             ) {
                 // intégrer les valeurs dans une table $contactInfos
@@ -53,6 +55,7 @@ class ContactController extends AbstractController
                     'email' => $email,
                     'subject' => $subject,
                     'message' => $message,
+                    'number' => $number,
                 ];
 
                 // appeler la requête SQL $this->addContactInfo($contactInfos)

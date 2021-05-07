@@ -10,13 +10,30 @@ class EquipmentManager extends AbstractManager
     public const TABLE = 'equipment';
 
     /**
-     * Select last news in database
+     * Select equipments in database
      */
     public function selectEquipments()
     {
         $query = "SELECT * FROM " . static::TABLE . " ORDER BY description DESC";
 
         return $this->pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Select equipments by id
+     */
+    public function selectEquipmentById(int $id)
+    {
+
+        $query = $this->pdo->prepare("SELECT e.description 
+        FROM equipment AS e 
+        JOIN activity_equipment on e.id = activity_equipment.equipment_id 
+        JOIN activity on activity.id = activity_equipment.activity_id
+        WHERE activity.id = :id");
+
+        $query->bindValue(':id', $id);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
