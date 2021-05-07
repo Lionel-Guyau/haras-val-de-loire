@@ -19,10 +19,10 @@ un planning et quelques fonctionnalités supplémentaires...
 
 ## L'équipe 
 
+[Quentin BURTY](https://github.com/Quentin-BURTY)
+
 [Lionel GUYAU](https://github.com/Lionel-Guyau)
 
 [Pierre JEAN](https://github.com/Pj-Touraille)
-
-[Quentin BURTY](https://github.com/Quentin-BURTY)
 
 [Stéphanie MARIANI](https://github.com/stephaniem31)
