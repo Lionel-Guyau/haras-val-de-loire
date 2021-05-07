@@ -20,7 +20,7 @@ use App\Model\ContactManager;
 /**
  * Suppress all warnings from these two rules.
  *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD)
  */
 class AdminController extends AbstractController
 {
