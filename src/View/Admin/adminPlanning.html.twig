@@ -40,7 +40,7 @@ planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planni
 
 	<!-- Buttons -->
 	<div>
-		<a class="my-3 btn btn-warning" href="/admin">Retour</a>
+		<a class="ms-2 my-3 btn btn-warning" href="/admin">Retour</a>
 		<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-planning-modal">
 			Ajouter
 		</button>
@@ -64,7 +64,8 @@ planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planni
 							<label for="type" class="col-form-label">Type :</label>
 							<select class="form-select" id="type" aria-label="Default select example" name="type" required>
 								{% for activity in activityType %}
-									<option value="{{ activity.id }}">[{{ activity.type }}] {{ activity.name }}</option>
+									<option value="{{ activity.id }}">[{{ activity.type }}]
+										{{ activity.name }}</option>
 								{% endfor %}
 							</select>
 
@@ -114,7 +115,8 @@ planningModal.querySelector('[name="end_at-time"]').setAttribute('value', planni
 								{% if activityType is not empty %}
 									<option selected value="">Choisissez type d'activité</option>
 									{% for activity in activityType %}
-										<option value="{{ activity.id }}">[{{ activity.type }}] {{ activity.name }}</option>
+										<option value="{{ activity.id }}">[{{ activity.type }}]
+											{{ activity.name }}</option>
 									{% endfor %}
 								{% else %}
 									<option selected value="">Veuillez créer l'activité au préalable</option>

@@ -20,7 +20,7 @@ use App\Model\ContactManager;
 /**
  * Suppress all warnings from these two rules.
  *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD)
  */
 class AdminController extends AbstractController
 {
@@ -277,14 +277,21 @@ class AdminController extends AbstractController
         ]);
     }
 
-    // public function countContact(): int
-    // {
-    //     $contactManager = new ContactManager();
 
-    //     $nbContacts = $contactManager->countContact();
+    public function delMessage()
+    {
+        $contact = $_GET;
 
-    //     return $this->twig->render('/admin.html.twig', [
-    //         'nbContacts' => $nbContacts,
-    //     ]);
-    // }
+        $delMessage = new ContactManager();
+
+        if (!empty($contact)) {
+            if ($this->securityService->controlData($_GET['id'])) {
+                $id = $this->securityService->sanitizeInput($_GET['id']);
+                if (filter_var($id, FILTER_VALIDATE_INT)) {
+                    $delMessage->delMessage($id);
+                }
+            }
+        }
+        header('Location: /admin/showContact');
+    }
 }
