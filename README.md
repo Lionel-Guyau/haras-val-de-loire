@@ -10,7 +10,9 @@ Contexte : Le projet s’est déroulé sur 10 jours repartis sur 5 semaines à 4
 
 ## Langages
 
-PHP, Bootstrap, SQL, MVC, Twig, Git, Agile/Scrum/Backlog/Sprint planning. Ajout d’une base de données, d’un espace Admin pour gestion de certaines informations, un planning et quelques fonctionnalités supplémentaires...
+PHP, Bootstrap, SQL, MVC, Twig, Git, Agile/Scrum/Backlog/Sprint planning. 
+Ajout d’une base de données, d’un espace Admin pour gestion de certaines informations, 
+un planning et quelques fonctionnalités supplémentaires...
 
 ## L'équipe 
 
