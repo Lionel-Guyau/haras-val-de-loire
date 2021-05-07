@@ -40,7 +40,6 @@ class ContactController extends AbstractController
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             // test des valeurs d'entrées ($_POST)
             if (
-
                 !empty($firstname) &&
                 !empty($lastname) &&
                 !empty($email) &&
