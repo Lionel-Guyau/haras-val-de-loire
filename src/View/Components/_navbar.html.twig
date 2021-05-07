@@ -44,17 +44,18 @@
 					<a class="nav-link" href="/contact">Contact</a>
 				</li>
 
+				<li class="flex-grow-1"></li>
 				<!-- Menu Session -->
 				{% if is_logged %}
-					<div><a class="nav-link" href="/logout">Se déconnecter</a></div>
-					<div><p class="nav-link disabled">{{user.email}} </p></div>	
-				{% else %}
+					<div>
+						<a class="nav-link" href="/logout">Se déconnecter</a>
+					</div>
+					<div>
+						<p class="nav-link disabled">{{user.email}}
+						</p>
+					</div>
+					{% else %}
 				{% endif %}
-
-				<li class="flex-grow-1"></li>
-				<li class="nav-item">
-					<a class="nav-link" href="/shop">Boutique</a>
-				</li>
 
 			</ul>
 		</div>
