@@ -39,10 +39,10 @@ LOCK TABLES `activity` WRITE;
 /*!40000 ALTER TABLE `activity` DISABLE KEYS */;
 INSERT INTO `activity` (`id`, `type`, `capacity`, `price`, `name`, `description`) VALUES
 (1, "cours", 10, 40, "baby-poney", "À poney, c'est l'enfant qui joue le coup de la séparation avec son parent, c'est lui qui le lâche."),
-(2, "cours", 10, 20, "eveil-poney", "Les enfants prendront un premier contact avec les poneys en les brossant."),
-(3, "cours", 15, 50, "6+", "Pendant la première année d'équitation, l’objectif est d’arriver à se déplacer au pas et au trot."),
-(4, "cours", 8, 65, "adulte", "Découvrez, recommencez ou perfectionnez-vous, il n’y pas d’âge pour profiter du cheval."),
-(5, "cours", 5, 80, "privilege", "A partir du Galop 3 : Vous avez la possibilité de monter votre équidé préféré."),
+(2, "cours", 10, 25, "eveil-poney", "Les enfants prendront un premier contact avec les poneys en les brossant."),
+(3, "cours", 15, 25, "6+", "Pendant la première année d'équitation, l’objectif est d’arriver à se déplacer au pas et au trot."),
+(4, "cours", 8, 30, "adulte", "Découvrez, recommencez ou perfectionnez-vous, il n’y pas d’âge pour profiter du cheval."),
+(5, "cours", 5, 18, "privilege", "A partir du Galop 3 : Vous avez la possibilité de monter votre équidé préféré."),
 (6, "stage", 12, 249, "", "Il s'agit de s'immerger dans le monde des équidés en participant à la vie du Haras."),
 (7, "formation", 2, 7500, "", "L’Animateur Equitation est un titre professionnel permettant de travailler en tant que salarié.");
 /*!40000 ALTER TABLE `activity` ENABLE KEYS */;
