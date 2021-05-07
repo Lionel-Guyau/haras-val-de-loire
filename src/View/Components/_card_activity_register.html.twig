@@ -5,6 +5,15 @@
 			{% for text in description %}
 				<p class="card-text text-justify m-1">{{text}}</p>
 			{% endfor %}
+			<p></p>
+			<strong>Equipement nécessaire :</strong>
+			{% for item in equipment %}
+				<p class="card-text text-justify m-1">
+					<ul>
+						<li>{{item.description}}</li>
+					</ul>
+				</p>
+			{% endfor %}
 			<p class="card-text text-center mt-2 text-primary">Coût de l'activité :
 				{{price}}€/p</p>
 		</div>

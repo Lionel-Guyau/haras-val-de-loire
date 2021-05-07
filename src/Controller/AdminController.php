@@ -277,6 +277,7 @@ class AdminController extends AbstractController
         ]);
     }
 
+
     public function delMessage()
     {
         $contact = $_GET;
@@ -293,4 +294,5 @@ class AdminController extends AbstractController
         }
         header('Location: /admin/showContact');
     }
+
 }
