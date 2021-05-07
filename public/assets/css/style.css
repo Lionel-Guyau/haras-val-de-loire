@@ -195,7 +195,6 @@
   padding-bottom: 20px;
   font-size: calc(1vh + 1.8vw)!important;
   font-family: 'Dancing Script', cursive;
-  text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a;
 }
 
 .login-form  {
