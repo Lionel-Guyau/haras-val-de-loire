@@ -45,6 +45,7 @@ class ContactController extends AbstractController
                 !empty($email) &&
                 !empty($subject) &&
                 !empty($message) &&
+                !empty($number) &&
                 filter_var($email, FILTER_VALIDATE_EMAIL)
             ) {
                 // intégrer les valeurs dans une table $contactInfos
@@ -54,6 +55,7 @@ class ContactController extends AbstractController
                     'email' => $email,
                     'subject' => $subject,
                     'message' => $message,
+                    'number' => $number,
                 ];
 
                 // appeler la requête SQL $this->addContactInfo($contactInfos)
