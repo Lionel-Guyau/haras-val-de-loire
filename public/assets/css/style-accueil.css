@@ -1,10 +1,10 @@
 
 .text-responsive-p {
-    font-size: min(calc(5% + 1vw + 1vh), 22px);
+    font-size: min(calc(5% + 1vw + 1vh), 20px);
 }
 
 .text-responsive-titre {
-    font-size: min(calc(80% + 1vw + 1vh), 42px);
+    font-size: min(calc(80% + 1vw + 1vh), 60px);
 }
 
 
@@ -13,6 +13,7 @@
 .accueil {
     /* A modifier quand la police sera définie */
     /* font: var(--text-content) var(--color-content); */
+    font-family: 'Dancing Script', cursive;
 }
 
 .accueil-page {
@@ -20,8 +21,7 @@
 }
 
 #accueil-titre {
-    font-family: "Roboto", sans-serif;
-    text-shadow: 1px 1px 2px #00034a, 0 0 1em#00034a, 0 0 0.2em #00034a;
+    font-family: 'Dancing Script', cursive;
 }
 
 .accueil-intro {
@@ -30,7 +30,7 @@
 }
 
 .accueil-intro::before {
-    background-image: url("../../recup_photos/etho2.png");
+    background-image: url("../../recup_photos/eveilponey.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -38,14 +38,18 @@
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    filter: grayscale(100%) brightness(50%);
+    filter: grayscale(50%) brightness(50%);
 }
 
 .accueil-intro > h1, .accueil-intro > p{
     position: relative;
     color: white;
-    margin: min(1%, 20px) 5% !important;
     text-align:justify;
+    text-shadow: 0 5px 10px black;
+}
+.acceuil-text {
+    color: white;
+    position: relative;
     text-shadow: 0 5px 10px black;
 }
 
