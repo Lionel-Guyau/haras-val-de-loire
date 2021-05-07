@@ -7,7 +7,9 @@ Le projet est déployé sur https://harasvaldeloire.mydevprojects.io/
 
 Thème : Refonte du Haras Val de Loire.
 https://www.harasduvaldeloire.fr/
-Contexte : Le projet s’est déroulé sur 10 jours repartis sur 5 semaines à 4 personnes.
+
+## Contexte
+Le projet s’est déroulé sur 10 jours repartis sur 5 semaines à 4 personnes.
 
 ## Langages
 
