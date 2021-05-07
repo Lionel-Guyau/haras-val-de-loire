@@ -36,9 +36,9 @@
 
 			<div class="row justify-content-between ">
 				{% for activity in activityType %}
-					
+					{% set name = activity.name ? '-' ~ activity.name : '' %}
 					{% include 'Components/_card_activity.html.twig' with {
-						'src': 'assets/images/' ~ activity.type ~ '-' ~ activity.name ~ '.png',
+						'src': 'assets/images/' ~ activity.type ~ name ~ '.png',
 						'type': activity.type,
 						'description': activity.description,
 						'price': activity.price,
