@@ -1,118 +1,104 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %} Administration {% endblock %}
-
+{% block title %}
+	Administration
+{% endblock %}
 
 
 {% block javascript %}
-<!-- Récupération du bouton asoscié, de la valeur et l'enregistrement de la nouvelle valeur -->
-  <script>
-    const equipModal = document.getElementById('add-equip-modal');
+	<!-- Récupération du bouton asoscié, de la valeur et l'enregistrement de la nouvelle valeur -->
+	<script>
+		const equipModal = document.getElementById('add-equip-modal');
 
-    equipModal.addEventListener('show.bs.modal', function (event) {
-      // Récupération du bouton associé à la modale
-      const button = event.relatedTarget;
+equipModal.addEventListener('show.bs.modal', function (event) { // Récupération du bouton associé à la modale
+const button = event.relatedTarget;
 
-      // Récupération des infos sur la news cliquée
-      const equipId = button.dataset.bsId;
-      const equipDescription = button.dataset.bsDescription;
+// Récupération des infos sur la news cliquée
+const equipId = button.dataset.bsId;
+const equipDescription = button.dataset.bsDescription;
 
-      // On rempli les champs du formulaire avec les données récupérées depuis le bouton (cf ci-dessus)
-      equipModal.querySelector('[name="id"]').setAttribute('value', equipId);
-      equipModal.querySelector('[name="description"]').setAttribute('value', equipDescription);
-    });
-  </script>
+// On rempli les champs du formulaire avec les données récupérées depuis le bouton (cf ci-dessus)
+equipModal.querySelector('[name="id"]').setAttribute('value', equipId);
+equipModal.querySelector('[name="description"]').setAttribute('value', equipDescription);
+});
+	</script>
 {% endblock %}
 
 
 {% block content %}
 
-<!-- Back buton -->
-<div>
-  <a class="my-3 btn btn-warning" href="/admin">Retour</a>
-</div>
+	<!-- Back buton -->
+	<div>
+		<a class="ms-2 my-3 btn btn-warning" href="/admin">Retour</a>
+	</div>
 
-<!-- Add Form -->
-<nav class="my-1 navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <form class="d-flex w-100" method="post" action="/admin/addEquip">
-      <input 
-        type="text" 
-        class="me-4 form-control" 
-        name="description"
-        placeholder="Ajouter votre information"
-        required
-        maxlength="150" 
-      />
+	<!-- Add Form -->
+	<nav class="my-1 navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<form class="d-flex w-100" method="post" action="/admin/addEquip">
+				<input type="text" class="me-4 form-control" name="description" placeholder="Ajouter votre information" required maxlength="150"/>
 
-      <button class="btn btn-success" type="submit">Enregistrer</button>
-    </form>
-  </div>
-</nav>
+				<button class="btn btn-success me-2" type="submit">Enregistrer</button>
+			</form>
+		</div>
+	</nav>
 
-<!-- Modal Form -->
-<div class="modal fade" id="add-equip-modal" tabindex="-1" aria-labelledby="add-equip-modal-label" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form method="post" action="/admin/majEquip">
-        <div class="modal-header">
-          <h5 class="modal-title" id="add-equip-modal-label">Modification de l'information</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+	<!-- Modal Form -->
+	<div class="modal fade" id="add-equip-modal" tabindex="-1" aria-labelledby="add-equip-modal-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form method="post" action="/admin/majEquip">
+					<div class="modal-header">
+						<h5 class="modal-title" id="add-equip-modal-label">Modification de l'information</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
 
-        <div class="modal-body">
-          <input type="hidden" name="id" />
+					<div class="modal-body">
+						<input type="hidden" name="id"/>
 
-          <div class="mb-3">
-            <label for="description" class="col-form-label">Contenu :</label>
-            <input type="text" class="form-control" id="description" name="description" maxlength="50" required>
-          </div>
-        </div>
+						<div class="mb-3">
+							<label for="description" class="col-form-label">Contenu :</label>
+							<input type="text" class="form-control" id="description" name="description" maxlength="50" required>
+						</div>
+					</div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Annuler
-          </button>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+							Annuler
+						</button>
 
-          <button type="submit" class="btn btn-danger">
-            Modifier
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+						<button type="submit" class="btn btn-danger">
+							Modifier
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-<!-- Database rows -->
-<table class="my-4 table table-sm table-striped table-bordered">
-    <thead>
-      <th>Description</th>
-      <th>Actions</th>
-    </thead>
+	<!-- Database rows -->
+	<table class="my-4 table table-sm table-striped table-bordered">
+		<thead>
+			<th>Description</th>
+			<th>Actions</th>
+		</thead>
 
-    <tbody>
-        {% for equip in equipments %}
-          <tr>
-            <td>{{equip.description }}</td>
-            <td>
-              <button 
-                type="button" 
-                class="btn btn-primary" 
-                data-bs-toggle="modal"
-                data-bs-target="#add-equip-modal"
-                data-bs-id="{{ equip.id }}"
-                data-bs-description="{{ equip.description }}"
-              >
-                Modifier
-              </button>
+		<tbody>
+			{% for equip in equipments %}
+				<tr>
+					<td>{{equip.description }}</td>
+					<td>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-equip-modal" data-bs-id="{{ equip.id }}" data-bs-description="{{ equip.description }}">
+							Modifier
+						</button>
 
-              <a class="btn btn-danger" href="/admin/delEquip?id={{equip.id}}">
-                Supprimer
-              </a>
-            </td>
-          </tr>
-        {% endfor %}
-    </tbody>
-</table>
+						<a class="btn btn-danger" href="/admin/delEquip?id={{equip.id}}">
+							Supprimer
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
 {% endblock %}

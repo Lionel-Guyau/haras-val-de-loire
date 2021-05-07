@@ -45,15 +45,8 @@ checkbox.setAttribute('checked', true);
 
 	<!-- Butons -->
 	<div>
-		<a class="my-3 btn btn-warning" href="/admin">Retour</a>
-		<button type="button" class="btn btn-success" data-bs-toggle="modal" 
-		data-bs-target="#add-activity-modal" data-bs-id="{{ activity.id }}" 
-		data-bs-type="{{ activity.type }}"
-		data-bs-name="{{ activity.name }}"
-		data-bs-description="{{ activity.description }}" 
-		data-bs-capacity="{{ activity.capacity }}" 
-		data-bs-price="{{ activity.price }}" 
-		data-bs-equipment="{{ activity.equipment }}">
+		<a class="my-3 ms-2 btn btn-warning" href="/admin">Retour</a>
+		<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-activity-modal" data-bs-id="{{ activity.id }}" data-bs-type="{{ activity.type }}" data-bs-name="{{ activity.name }}" data-bs-description="{{ activity.description }}" data-bs-capacity="{{ activity.capacity }}" data-bs-price="{{ activity.price }}" data-bs-equipment="{{ activity.equipment }}">
 			Ajouter
 		</button>
 	</div>
@@ -79,140 +72,125 @@ checkbox.setAttribute('checked', true);
 							<input type="text" class="form-control" id="name" name="name" maxlength="50" required>
 							<label for="name" class="col-form-label" aria-label="With textarea">Description :</label>
 							<input type="textarea" class="form-control" aria-label="With textarea" id="description" name="description" maxlength="100" required></textarea>
-							<label for="name" class="col-form-label">Capacité :</label>
-							<input type="number" class="form-control" id="capacity" name="capacity" maxlength="50" required>
-							<label for="name" class="col-form-label">Prix :</label>
-							<p><input type="number" class="form-control" id="price" name="price" maxlength="50" required></p>
+						<label for="name" class="col-form-label">Capacité :</label>
+						<input type="number" class="form-control" id="capacity" name="capacity" maxlength="50" required>
+						<label for="name" class="col-form-label">Prix :</label>
+						<p><input type="number" class="form-control" id="price" name="price" maxlength="50" required></p>
 
-							<p>
-								<label>Equipements :
+						<p>
+							<label>Equipements :
+							</label>
+						</p>
+						{% for equipment in equipments %}
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="equipments[]" value="{{ equipment.id }}" id="equipment-{{ equipment.id }}">
+								<label class="form-check-label" for="equipment-{{ equipment.id }}">
+									{{ equipment.description }}
 								</label>
-							</p>
-							{% for equipment in equipments %}
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" name="equipments[]" value="{{ equipment.id }}" id="equipment-{{ equipment.id }}">
-									<label class="form-check-label" for="equipment-{{ equipment.id }}">
-										{{ equipment.description }}
-									</label>
-								</div>
-							{% endfor %}
-						</div>
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-							Annuler
-						</button>
-
-						<button type="submit" class="btn btn-danger">
-							Modifier
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal Form Add -->
-	<div class="modal fade" id="add-activity-modal" tabindex="-1" aria-labelledby="add-activity-modal-label" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form method="post" action="/admin/saveActivity">
-					<div class="modal-header">
-						<h5 class="modal-title" id="add-activity-modal-label">Ajout d'une activité</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-
-					<div class="modal-body">
-						<input type="hidden" name="id"/>
-
-						<div class="mb-3">
-							<label for="name" class="col-form-label">Type :</label>
-							<input type="text" class="form-control" id="type" name="type" maxlength="50" required>
-							<label for="name" class="col-form-label">Nom :</label>
-							<input type="text" class="form-control" id="name" name="name" maxlength="50" required>
-							<label for="name" class="col-form-label" aria-label="With textarea">Description :</label>
-							<input type="textarea" class="form-control" aria-label="With textarea" id="description" name="description" maxlength="100" required></textarea>
-							<label for="name" class="col-form-label">Capacité :</label>
-							<input type="number" class="form-control" id="capacity" name="capacity" maxlength="50" required>
-							<label for="name" class="col-form-label">Prix :</label>
-							<p><input type="number" class="form-control" id="price" name="price" maxlength="50" required></p>
-
-							<p>
-								<label>Equipements :
-								</label>
-							</p>
-							{% for equipment in equipments %}
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" name="equipments[]" value="{{ equipment.id }}" id="equipment-{{ equipment.id }}">
-									<label class="form-check-label" for="equipment-{{ equipment.id }}">
-										{{ equipment.description }}
-									</label>
-								</div>
-							{% endfor %}
-						</div>
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-							Annuler
-						</button>
-
-						<button type="submit" class="btn btn-success">
-							Ajouter
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<!-- Database rows -->
-	<table class="my-4 table table-sm table-striped table-bordered">
-		<thead>
-			<th>Type</th>
-			<th>Nom</th>
-			<th>Description</th>
-			<th>Capacité</th>
-			<th>Prix</th>
-			<th>Equipement</th>
-			<th>Actions</th>
-		</thead>
-
-		<tbody>
-			{% for activity in activities %}
-				<tr>
-					<td>{{activity.type }}</td>
-					<td>{{activity.name }}</td>
-					<td>{{activity.description }}</td>
-					<td>{{activity.capacity}}</td>
-					<td>{{activity.price}}</td>
-					<td>
-						{% for equipment in activity.equipments %}
-							{{ equipment.description }}<br/>
+							</div>
 						{% endfor %}
-					</td>
+					</div>
+				</div>
 
-					<td>
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" 
-						data-bs-target="#maj-activity-modal" 
-						data-bs-id="{{ activity.id }}" 
-						data-bs-type="{{ activity.type }}"
-						data-bs-name="{{ activity.name }}" 
-						data-bs-description="{{ activity.description }}"  
-						data-bs-capacity="{{ activity.capacity }}" 
-						data-bs-price="{{ activity.price }}" 
-						data-bs-equipment="{{ activity.equipments|json_encode() }}">
-							Modifier
-						</button>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+						Annuler
+					</button>
 
-						<a class="btn btn-danger" href="/admin/delActivity?id={{activity.id}}">
-							Supprimer
-						</a>
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+					<button type="submit" class="btn btn-danger">
+						Modifier
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
-{% endblock %}
+<!-- Modal Form Add -->
+<div class="modal fade" id="add-activity-modal" tabindex="-1" aria-labelledby="add-activity-modal-label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="post" action="/admin/saveActivity">
+				<div class="modal-header">
+					<h5 class="modal-title" id="add-activity-modal-label">Ajout d'une activité</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+
+				<div class="modal-body">
+					<input type="hidden" name="id"/>
+
+					<div class="mb-3">
+						<label for="name" class="col-form-label">Type :</label>
+						<input type="text" class="form-control" id="type" name="type" maxlength="50" required>
+						<label for="name" class="col-form-label">Nom :</label>
+						<input type="text" class="form-control" id="name" name="name" maxlength="50" required>
+						<label for="name" class="col-form-label" aria-label="With textarea">Description :</label>
+						<input type="textarea" class="form-control" aria-label="With textarea" id="description" name="description" maxlength="100" required></textarea>
+					<label for="name" class="col-form-label">Capacité :</label>
+					<input type="number" class="form-control" id="capacity" name="capacity" maxlength="50" required>
+					<label for="name" class="col-form-label">Prix :</label>
+					<p><input type="number" class="form-control" id="price" name="price" maxlength="50" required></p>
+
+					<p>
+						<label>Equipements :
+						</label>
+					</p>
+					{% for equipment in equipments %}
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" name="equipments[]" value="{{ equipment.id }}" id="equipment-{{ equipment.id }}">
+							<label class="form-check-label" for="equipment-{{ equipment.id }}">
+								{{ equipment.description }}
+							</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+					Annuler
+				</button>
+
+				<button type="submit" class="btn btn-success">
+					Ajouter
+				</button>
+			</div>
+		</form>
+	</div>
+</div></div><!-- Database rows --><table class="my-4 table table-sm table-striped table-bordered">
+<thead>
+	<th>Type</th>
+	<th>Nom</th>
+	<th>Description</th>
+	<th>Capacité</th>
+	<th>Prix</th>
+	<th>Equipement</th>
+	<th>Actions</th>
+</thead>
+
+<tbody>
+	{% for activity in activities %}
+		<tr>
+			<td>{{activity.type }}</td>
+			<td>{{activity.name }}</td>
+			<td>{{activity.description }}</td>
+			<td>{{activity.capacity}}</td>
+			<td>{{activity.price}}</td>
+			<td>
+				{% for equipment in activity.equipments %}
+					{{ equipment.description }}<br/>
+				{% endfor %}
+			</td>
+
+			<td>
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#maj-activity-modal" data-bs-id="{{ activity.id }}" data-bs-type="{{ activity.type }}" data-bs-name="{{ activity.name }}" data-bs-description="{{ activity.description }}" data-bs-capacity="{{ activity.capacity }}" data-bs-price="{{ activity.price }}" data-bs-equipment="{{ activity.equipments|json_encode() }}">
+					Modifier
+				</button>
+
+				<a class="btn btn-danger" href="/admin/delActivity?id={{activity.id}}">
+					Supprimer
+				</a>
+			</td>
+		</tr>
+	{% endfor %}
+</tbody></table>{% endblock %}

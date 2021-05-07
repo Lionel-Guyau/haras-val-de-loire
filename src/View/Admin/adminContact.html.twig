@@ -12,7 +12,7 @@
 
 	<!-- Back button -->
 	<div>
-		<a class="my-3 btn btn-warning" href="/admin">Retour</a>
+		<a class="ms-2 my-3 btn btn-warning" href="/admin">Retour</a>
 	</div>
 
 	<!-- Database rows -->
@@ -22,27 +22,21 @@
 			<th>Coordonnées</th>
 			<th>Sujet</th>
 			<th>Message</th>
-<<<<<<< HEAD
 			<th>Action</th>
-=======
->>>>>>> 0e31ce485e50c8ba748491d10b4e4fa26ece769d
 		</thead>
 
 		<tbody>
 			{% for contact in contacts %}
 				<tr>
-					<td>{{contact.firstname ~ " " ~ contact.lastname }}</td>
-					<td>{{contact.email ~ " - 0" ~ contact.number}}</td>
-					<td>{{contact.subject}}</td>
-					<td>{{contact.message}}</td>
-<<<<<<< HEAD
-					<td>
+					<td class="col-2">{{contact.firstname ~ " " ~ contact.lastname }}</td>
+					<td class="col-3">{{contact.email ~ " - 0" ~ contact.number}}</td>
+					<td class="col-1">{{contact.subject}}</td>
+					<td class="col-4">{{contact.message}}</td>
+					<td class="col-1">
 						<a class="btn btn-danger" href="/admin/delMessage?id={{contact.id}}">
 							Supprimer
 						</a>
 					</td>
-=======
->>>>>>> 0e31ce485e50c8ba748491d10b4e4fa26ece769d
 				</tr>
 			{% endfor %}
 		</tbody>
