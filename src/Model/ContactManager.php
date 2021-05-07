@@ -6,7 +6,6 @@ use App\Model\Connection;
 use DateTime;
 use PDO;
 
-
 class ContactManager extends AbstractManager
 {
 
