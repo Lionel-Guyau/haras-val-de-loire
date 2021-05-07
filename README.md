@@ -1,7 +1,7 @@
 # Simple MVC
 
 ## Déploiement
-Your project master branch will be deployed on https://tlse-php-2021-march-project-2-group-3.phprover.wilders.dev
+Your project master branch will be deployed on https://harasvaldeloire.mydevprojects.io/
 
 ## Description
 
