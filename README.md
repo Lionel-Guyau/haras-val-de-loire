@@ -5,7 +5,7 @@ Le projet est déployé sur https://harasvaldeloire.mydevprojects.io/
 
 ## Description
 
-Thème : Refonte du Haras Val de Loire.
+Refonte du Haras Val de Loire.
 https://www.harasduvaldeloire.fr/
 
 ## Contexte
