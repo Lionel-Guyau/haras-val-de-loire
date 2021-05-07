@@ -38,7 +38,14 @@ class ContactController extends AbstractController
 
         if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             // test des valeurs d'entrées ($_POST)
-            if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($subject) && !empty($message) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if (
+                !empty($firstname) && 
+                !empty($lastname) && 
+                !empty($email) && 
+                !empty($subject) && 
+                !empty($message) && 
+                filter_var($email, FILTER_VALIDATE_EMAIL)
+            ) {
                 // intégrer les valeurs dans une table $contactInfos
                 $contactInfos = [
                     'firstname' => $firstname,
@@ -55,9 +62,10 @@ class ContactController extends AbstractController
                 // est égal à (new ContactManager())-> addContactInfo($contactInfos);
             }
         }
-        return $this->twig->render('/Contact/contact.html.twig', [
-            'hasSentMessage' =>$hasSentMessage,
-        ]);
+
         // retourne sur la page Contact
+        return $this->twig->render('/Contact/contact.html.twig', [
+            'hasSentMessage' => $hasSentMessage,
+        ]);
     }
 }
